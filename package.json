@@ -20,5 +20,8 @@
   "homepage": "https://github.com/tatyshev/focus-pokus#readme",
   "devDependencies": {
     "poi": "^9.0.4"
+  },
+  "dependencies": {
+    "vue": "^2.3.4"
   }
 }

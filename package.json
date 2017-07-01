@@ -6,7 +6,7 @@
   "scripts": {
     "start": "poi",
     "build": "poi build",
-    "test": "poi test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/tatyshev/focus-pokus#readme",
   "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-preset-env": "^1.5.2",
+    "jest": "^20.0.4",
     "poi": "^9.0.4"
   },
   "dependencies": {

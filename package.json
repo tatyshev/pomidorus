@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "Yet another pomodoro tracker",
   "scripts": {
+    "start": "poi",
+    "build": "poi build",
+    "test": "poi test"
   },
   "repository": {
     "type": "git",
@@ -14,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/tatyshev/focus-pokus/issues"
   },
-  "homepage": "https://github.com/tatyshev/focus-pokus#readme"
+  "homepage": "https://github.com/tatyshev/focus-pokus#readme",
+  "devDependencies": {
+    "poi": "^9.0.4"
+  }
 }

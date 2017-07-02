@@ -6,8 +6,10 @@ export default class Pomodoro {
   constructor (options = {}) {
     this.type = options.type || DEFAULT_TYPE;
     this.duration = options.duration || DEFAULT_DURATION;
-    this.started = true;
     this.timeout = options.timeout || DEFAULT_TIMEOUT;
+
+    this.current = 0;
+    this.started = true;
     this.timer = null;
   }
 
@@ -19,11 +21,12 @@ export default class Pomodoro {
   }
 
   tick () {
-    let next = this.duration - 1;
-    this.duration = next > 0 ? next : 0;
+    if (!this.isFinished()) {
+      this.current++;
+    }
   }
 
   isFinished () {
-    return this.duration === 0;
+    return this.duration === this.current;
   }
 }

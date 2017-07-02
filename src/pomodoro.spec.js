@@ -24,3 +24,20 @@ test('isFinished()', () => {
   pomodoro.current = DEFAULT_DURATION;
   expect(pomodoro.isFinished()).toBeTruthy();
 });
+
+test('pause(), unpause()', () => {
+  pomodoro.pause();
+  pomodoro.tick();
+
+  expect(pomodoro.pauses).toEqual({ 0: 1 });
+
+  pomodoro.unpause();
+  pomodoro.tick();
+
+  expect(pomodoro.pauses).toEqual({ 0: 1 });
+
+  pomodoro.pause();
+  pomodoro.tick();
+
+  expect(pomodoro.pauses).toEqual({ 0: 1, 1: 1 });
+});

@@ -10,6 +10,8 @@ export default class Pomodoro {
 
     this.current = 0;
     this.started = true;
+    this.paused = false;
+    this.pauses = {};
     this.timer = null;
   }
 
@@ -20,9 +22,25 @@ export default class Pomodoro {
     this.timer = setTimeout(tick, this.timeout);
   }
 
+  pause () {
+    this.paused = true;
+  }
+
+  unpause () {
+    this.paused = false;
+  }
+
   tick () {
-    if (!this.isFinished()) {
+    if (!this.paused && !this.isFinished()) {
       this.current++;
+    }
+
+    if (this.paused) {
+      let pauses = this.pauses;
+      let current = this.current;
+
+      pauses[current] = pauses[current] || 0;
+      pauses[current]++;
     }
   }
 

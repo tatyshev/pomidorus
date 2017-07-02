@@ -7,21 +7,21 @@ beforeEach(() => {
 });
 
 test('tick()', () => {
-  expect(pomodoro.current).toBe(0);
+  expect(pomodoro.state).toBe(0);
 
   pomodoro.tick();
 
-  expect(pomodoro.current).toBe(1);
+  expect(pomodoro.state).toBe(1);
 
-  pomodoro.current = DEFAULT_DURATION;
+  pomodoro.state = DEFAULT_DURATION;
   pomodoro.tick();
 
-  expect(pomodoro.current).toBe(DEFAULT_DURATION);
+  expect(pomodoro.state).toBe(DEFAULT_DURATION);
 });
 
 test('isFinished()', () => {
   expect(pomodoro.isFinished()).toBeFalsy();
-  pomodoro.current = DEFAULT_DURATION;
+  pomodoro.state = DEFAULT_DURATION;
   expect(pomodoro.isFinished()).toBeTruthy();
 });
 

@@ -1,7 +1,5 @@
 import Pomodoro, { DEFAULT_DURATION } from './pomodoro';
 
-jest.useFakeTimers();
-
 let pomodoro = null;
 
 beforeEach(() => {
@@ -9,15 +7,10 @@ beforeEach(() => {
 });
 
 test('tick()', () => {
-  pomodoro.tick();
-
-  expect(pomodoro.pending).toBe(1);
   expect(pomodoro.state).toBe(0);
 
-  pomodoro.start();
   pomodoro.tick();
 
-  expect(pomodoro.pending).toBe(1);
   expect(pomodoro.state).toBe(1);
 
   pomodoro.state = DEFAULT_DURATION;
@@ -33,7 +26,6 @@ test('isFinished()', () => {
 });
 
 test('pause(), unpause()', () => {
-  pomodoro.start();
   pomodoro.pause();
   pomodoro.tick();
 

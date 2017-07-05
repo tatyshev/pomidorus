@@ -25,6 +25,7 @@
     "poi": "^9.0.4"
   },
   "dependencies": {
+    "component-emitter": "^1.2.1",
     "vue": "^2.3.4"
   }
 }

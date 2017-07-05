@@ -1,4 +1,4 @@
-import Pomodoro, { DEFAULT_DURATION } from './pomodoro';
+import Pomodoro, { DEFAULT_DURATION, EVENT_FINISH } from './pomodoro';
 
 let pomodoro = null;
 
@@ -41,3 +41,18 @@ test('pause(), unpause()', () => {
 
   expect(pomodoro.pauses).toEqual({ 0: 1, 1: 1 });
 });
+
+test('finish event', () => {
+  let handler = jest.fn();
+
+  pomodoro.on(EVENT_FINISH, handler);
+
+  pomodoro.tick();
+
+  expect(handler).not.toBeCalled();
+
+  pomodoro.state = DEFAULT_DURATION;
+  pomodoro.tick();
+
+  expect(handler).toBeCalled();
+})

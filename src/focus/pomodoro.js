@@ -12,7 +12,7 @@ export default class Pomodoro {
     this.timeout = options.timeout || DEFAULT_TIMEOUT;
 
     this.state = 0;
-    this.started = true;
+    this.started = false;
     this.paused = false;
     this.pauses = {};
     this.timer = null;
@@ -23,8 +23,14 @@ export default class Pomodoro {
   start () {
     if (this.started) { return }
 
+    this.started = true;
+
     let tick = this.tick.bind(this);
     this.timer = setTimeout(tick, this.timeout);
+  }
+
+  stop () {
+    clearTimeout(this.timer);
   }
 
   pause () {
@@ -46,7 +52,8 @@ export default class Pomodoro {
       return;
     }
 
-    if (this.isFinished()) {
+    if (this.isFinished) {
+      this.stop();
       this.emit(EVENT_FINISH);
       return;
     }
@@ -54,7 +61,7 @@ export default class Pomodoro {
     this.state++;
   }
 
-  isFinished () {
+  get isFinished () {
     return this.duration === this.state;
   }
 }

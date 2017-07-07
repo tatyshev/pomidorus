@@ -20,9 +20,9 @@ test('tick()', () => {
 });
 
 test('isFinished()', () => {
-  expect(pomodoro.isFinished()).toBeFalsy();
+  expect(pomodoro.isFinished).toBeFalsy();
   pomodoro.state = DEFAULT_DURATION;
-  expect(pomodoro.isFinished()).toBeTruthy();
+  expect(pomodoro.isFinished).toBeTruthy();
 });
 
 test('pause(), unpause()', () => {

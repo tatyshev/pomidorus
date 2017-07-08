@@ -7,12 +7,13 @@ let pending = null
 
 beforeEach(() => {
   pending = new Pending()
-  pending.start()
 })
 
 describe('tick()', function () {
   describe('when started', () => {
     test('should just increment state on every tick', () => {
+      pending.start()
+
       expect(pending.state).toBe(0)
       tick()
       expect(pending.state).toBe(1)

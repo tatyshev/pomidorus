@@ -20,9 +20,6 @@ export default class Focus {
   }
 
   rotate () {
-    // console.log('this.isEmpty => ', this.isEmpty);
-    // console.log('this.isFinishedPomodoro => ', this.isFinishedPomodoro);
-
     if (this.isEmpty) {
       let work = new Pomodoro();
 

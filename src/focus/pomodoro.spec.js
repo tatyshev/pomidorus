@@ -1,23 +1,34 @@
-import Pomodoro, { DEFAULT_DURATION, EVENT_FINISH } from './pomodoro';
+import Pomodoro, {
+  DEFAULT_INTERVAL,
+  DEFAULT_DURATION,
+  EVENT_FINISH
+} from './pomodoro'
 
-let pomodoro = null;
+jest.useFakeTimers()
+
+let pomodoro = null
+let tick = () => jest.runTimersToTime(DEFAULT_INTERVAL)
 
 beforeEach(() => {
-  pomodoro = new Pomodoro();
-  pomodoro.start();
-});
+  pomodoro = new Pomodoro()
+  pomodoro.start()
+})
 
 describe('Pomodoro.tick()', () => {
   it('should just increment state on every tick', () => {
     expect(pomodoro.state).toBe(0)
-    jest.runAllTimers()
+
+    tick()
+
     expect(pomodoro.state).toBe(1)
   })
 
   it('should not increment when state >= duration', () => {
     pomodoro.state = DEFAULT_DURATION
-    jest.runAllTimers()
-    jest.runAllTimers()
+
+    tick()
+    tick()
+
     expect(pomodoro.state).toBe(DEFAULT_DURATION)
   })
 })
@@ -28,7 +39,7 @@ describe('Pomodoro.isFinished()', () => {
   })
 
   it('should return false when pomodoro is not finished', () => {
-    pomodoro.state = DEFAULT_DURATION;
+    pomodoro.state = DEFAULT_DURATION
     expect(pomodoro.isFinished).toBeTruthy()
   })
 })
@@ -37,7 +48,7 @@ describe('Pomodoro.pause()', () => {
   describe('when paused', () => {
     it('should add and increase pause counters', () => {
       pomodoro.pause()
-      jest.runAllTimers()
+      tick()
       expect(pomodoro.pauses).toEqual({ 0: 1 })
     })
   })
@@ -45,32 +56,25 @@ describe('Pomodoro.pause()', () => {
   describe('when paused multiple times', () => {
     it ('should add multiple items into pauses', () => {
       pomodoro.pause()
-      jest.runAllTimers()
-      jest.runAllTimers()
+
+      tick()
 
       expect(pomodoro.pauses).toEqual({ 0: 1 })
 
       pomodoro.unpause()
-
-      jest.runAllTimers()
-      jest.runAllTimers()
+      tick()
 
       pomodoro.pause()
+      tick()
 
-      jest.runAllTimers()
-      jest.runAllTimers()
-
-      expect(pomodoro.pauses).toEqual({ 0: 1 })
+      expect(pomodoro.pauses).toEqual({ 0: 1, 1: 1 })
     })
   })
 
   describe('when unpaused', () => {
     it('should not increase or add pause counters', () => {
-      jest.runAllTimers()
-      expect(pomodoro.pauses).toEqual({});
-
-      jest.runAllTimers()
-      expect(pomodoro.pauses).toEqual({});
+      tick()
+      expect(pomodoro.pauses).toEqual({})
     })
   })
-});
+})

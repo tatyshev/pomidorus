@@ -2,14 +2,14 @@ import Emitter from 'component-emitter';
 
 export const DEFAULT_TYPE = 'default';
 export const DEFAULT_DURATION = 25 * 60;
-export const DEFAULT_TIMEOUT = 1000;
+export const DEFAULT_INTERVAL = 1000;
 export const EVENT_FINISH = 'finish';
 
 export default class Pomodoro {
   constructor (options = {}) {
     this.type = options.type || DEFAULT_TYPE;
     this.duration = options.duration || DEFAULT_DURATION;
-    this.timeout = options.timeout || DEFAULT_TIMEOUT;
+    this.interval = options.interval || DEFAULT_INTERVAL;
 
     this.state = 0;
     this.started = false;
@@ -26,11 +26,11 @@ export default class Pomodoro {
     this.started = true;
 
     let tick = this.tick.bind(this);
-    this.timer = setTimeout(tick, this.timeout);
+    this.timer = setInterval(tick, this.interval);
   }
 
   stop () {
-    clearTimeout(this.timer);
+    clearInterval(this.timer);
   }
 
   pause () {

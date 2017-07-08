@@ -1,8 +1,8 @@
-export const DEFAULT_TIMEOUT = 1000;
+export const DEFAULT_INTERVAL = 1000;
 
 export default class Pending {
   constructor (options = {}) {
-    this.timeout = options.timeout || DEFAULT_TIMEOUT;
+    this.timeout = options.interval || DEFAULT_INTERVAL;
 
     this.state = 0;
     this.tick = this.tick.bind(this);

@@ -6,8 +6,8 @@ import Pomodoro, {
 
 jest.useFakeTimers()
 
-let pomodoro = null
 let tick = () => jest.runTimersToTime(DEFAULT_INTERVAL)
+let pomodoro = null
 
 beforeEach(() => {
   pomodoro = new Pomodoro()

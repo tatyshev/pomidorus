@@ -23,12 +23,13 @@ export default class Focus {
   }
 
   rotate () {
-    /*
     if (this.isEmpty) {
       let work = new Pomodoro();
-      return this.push(work);
+      this.push(work);
+      work.start();
     }
 
+    /*
     if (this.isWork) {
       let pomodoro = this.latest;
 

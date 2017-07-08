@@ -58,10 +58,14 @@ export default class Pomodoro {
       return;
     }
 
-    this.state++;
+    if (this.state >= this.duration) {
+      this.state = this.duration;
+    } else {
+      this.state++;
+    }
   }
 
   get isFinished () {
-    return this.duration === this.state;
+    return this.state >= this.duration;
   }
 }

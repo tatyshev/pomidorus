@@ -1,4 +1,4 @@
-import Pomodoro, { DEFAULT_TYPE } from './pomodoro';
+import Pomodoro, { DEFAULT_TYPE, EVENT_FINISH } from './pomodoro';
 import Pending from './pending';
 
 export const DEFAULT_GOAL = 25;
@@ -7,26 +7,39 @@ export const BREAK_TYPE = 'break';
 export default class Focus {
   constructor (options = {}) {
     this.goal = options.goal || DEFAULT_GOAL;
-    this.started = false;
     this.items = [];
-  }
-
-  start () {
-    if (this.started) { return }
-
-    this.started = true;
-    this.push();
+    this.pomodoro = null;
   }
 
   push (item) {
+    if (item instanceof Pomodoro) {
+      this.pomodoro = item;
+    }
+
     this.items.push(item);
   }
 
   rotate () {
+    // console.log('this.isEmpty => ', this.isEmpty);
+    // console.log('this.isFinishedPomodoro => ', this.isFinishedPomodoro);
+
     if (this.isEmpty) {
       let work = new Pomodoro();
-      this.push(work);
+
+      work.on(EVENT_FINISH, () => this.rotate());
       work.start();
+
+      this.push(work);
+
+      return;
+    }
+
+    if (this.isFinishedPomodoro) {
+      let pending = new Pending();
+
+      pending.start();
+
+      return;
     }
 
     /*
@@ -50,6 +63,14 @@ export default class Focus {
 
   get isPomodoro () {
     return this.latest instanceof Pomodoro;
+  }
+
+  get isFinishedPomodoro () {
+    if (this.isPomodoro) {
+      return this.latest.isFinished;
+    }
+
+    return false;
   }
 
   get isPending () {

@@ -31,6 +31,7 @@ export default class Focus {
       return;
     }
 
+    /*
     if (this.isFinishedPomodoro) {
       let pending = new Pending();
 
@@ -38,6 +39,7 @@ export default class Focus {
 
       return;
     }
+    */
 
     /*
     if (this.isWork) {

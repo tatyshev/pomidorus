@@ -6,7 +6,7 @@
   "scripts": {
     "start": "poi",
     "build": "poi build",
-    "test": "jest",
+    "test": "jest --verbose",
     "debug": "node debug ./node_modules/.bin/jest --runInBand"
   },
   "repository": {

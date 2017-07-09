@@ -6,7 +6,7 @@ export const DEFAULT_INTERVAL = 1000;
 export const EVENT_FINISH = 'finish';
 
 export default class Pomodoro {
-  constructor (options = {}) {
+  constructor(options = {}) {
     this.type = options.type || DEFAULT_TYPE;
     this.duration = options.duration || DEFAULT_DURATION;
     this.interval = options.interval || DEFAULT_INTERVAL;
@@ -20,34 +20,34 @@ export default class Pomodoro {
     Emitter(this);
   }
 
-  start () {
-    if (this.started) { return }
+  start() {
+    if (this.started) { return; }
 
     this.started = true;
 
-    let tick = this.tick.bind(this);
+    const tick = this.tick.bind(this);
     this.timer = setInterval(tick, this.interval);
   }
 
-  stop () {
+  stop() {
     clearInterval(this.timer);
   }
 
-  pause () {
+  pause() {
     this.paused = true;
   }
 
-  unpause () {
+  unpause() {
     this.paused = false;
   }
 
-  tick () {
+  tick() {
     if (this.paused) {
-      let pauses = this.pauses;
-      let current = this.state;
+      const pauses = this.pauses;
+      const current = this.state;
 
       pauses[current] = pauses[current] || 0;
-      pauses[current]++;
+      pauses[current] += 1;
 
       return;
     }
@@ -61,11 +61,11 @@ export default class Pomodoro {
     if (this.state >= this.duration) {
       this.state = this.duration;
     } else {
-      this.state++;
+      this.state += 1;
     }
   }
 
-  get isFinished () {
+  get isFinished() {
     return this.state >= this.duration;
   }
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "poi",
     "build": "poi build",
+    "lint": "eslint src/**/*.js",
     "test": "jest --verbose",
     "debug": "node debug ./node_modules/.bin/jest --runInBand"
   },
@@ -22,6 +23,9 @@
   "devDependencies": {
     "babel-jest": "^20.0.3",
     "babel-preset-env": "^1.5.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.7.0",
     "jest": "^20.0.4",
     "poi": "^9.0.4"
   },

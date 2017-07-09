@@ -1,20 +1,20 @@
-import Pomodoro, { DEFAULT_INTERVAL } from './pomodoro'
+import Pomodoro, { DEFAULT_INTERVAL } from './pomodoro';
 import Focus from './index';
 
-jest.useFakeTimers()
+jest.useFakeTimers();
 
-let tick = () => jest.runTimersToTime(DEFAULT_INTERVAL)
+const tick = () => jest.runTimersToTime(DEFAULT_INTERVAL);
 let focus = null;
 
 beforeEach(() => {
-  focus = new Focus()
+  focus = new Focus();
 });
 
 describe('Focus.rotate()', () => {
   describe('when items are empty', () => {
-    it ('should push pomodoro to item', () => {
-      focus.rotate()
-      expect(focus.latest).toBeInstanceOf(Pomodoro)
-    })
-  })
-})
+    it('should push pomodoro to item', () => {
+      focus.rotate();
+      expect(focus.latest).toBeInstanceOf(Pomodoro);
+    });
+  });
+});

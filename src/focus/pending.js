@@ -1,7 +1,7 @@
 export const DEFAULT_INTERVAL = 1000;
 
 export default class Pending {
-  constructor (options = {}) {
+  constructor(options = {}) {
     this.timeout = options.interval || DEFAULT_INTERVAL;
 
     this.state = 0;
@@ -9,15 +9,15 @@ export default class Pending {
     this.timer = null;
   }
 
-  start () {
+  start() {
     this.timer = setInterval(this.tick, this.timeout);
   }
 
-  stop () {
+  stop() {
     clearInterval(this.timer);
   }
 
-  tick () {
-    this.state++;
+  tick() {
+    this.state = this.state + 1;
   }
 }

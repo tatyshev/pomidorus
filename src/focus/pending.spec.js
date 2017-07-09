@@ -1,32 +1,32 @@
-import Pending, { DEFAULT_INTERVAL } from './pending'
+import Pending, { DEFAULT_INTERVAL } from './pending';
 
-jest.useFakeTimers()
+jest.useFakeTimers();
 
-let tick = () => jest.runTimersToTime(DEFAULT_INTERVAL)
-let pending = null
+const tick = () => jest.runTimersToTime(DEFAULT_INTERVAL);
+let pending = null;
 
 beforeEach(() => {
-  pending = new Pending()
-})
+  pending = new Pending();
+});
 
-describe('tick()', function () {
+describe('tick()', () => {
   describe('when started', () => {
     test('should just increment state on every tick', () => {
-      pending.start()
+      pending.start();
 
-      expect(pending.state).toBe(0)
-      tick()
-      expect(pending.state).toBe(1)
-    })
-  })
+      expect(pending.state).toBe(0);
+      tick();
+      expect(pending.state).toBe(1);
+    });
+  });
 
   describe('when stopped', () => {
     it('should not increment state on every tick', () => {
-      pending.stop()
+      pending.stop();
 
-      expect(pending.state).toBe(0)
-      tick()
-      expect(pending.state).toBe(0)
-    })
-  })
+      expect(pending.state).toBe(0);
+      tick();
+      expect(pending.state).toBe(0);
+    });
+  });
 });

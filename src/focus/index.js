@@ -5,13 +5,13 @@ export const DEFAULT_GOAL = 25;
 export const BREAK_TYPE = 'break';
 
 export default class Focus {
-  constructor (options = {}) {
+  constructor(options = {}) {
     this.goal = options.goal || DEFAULT_GOAL;
     this.items = [];
     this.pomodoro = null;
   }
 
-  push (item) {
+  push(item) {
     if (item instanceof Pomodoro) {
       this.pomodoro = item;
     }
@@ -19,16 +19,14 @@ export default class Focus {
     this.items.push(item);
   }
 
-  rotate () {
+  rotate() {
     if (this.isEmpty) {
-      let work = new Pomodoro();
+      const work = new Pomodoro();
 
       work.on(EVENT_FINISH, () => this.rotate());
       work.start();
 
       this.push(work);
-
-      return;
     }
 
     /*
@@ -51,20 +49,20 @@ export default class Focus {
     */
   }
 
-  get latest () {
-    let items = this.items;
+  get latest() {
+    const items = this.items;
     return items[items.length - 1];
   }
 
-  get isEmpty () {
+  get isEmpty() {
     return this.items.length === 0;
   }
 
-  get isPomodoro () {
+  get isPomodoro() {
     return this.latest instanceof Pomodoro;
   }
 
-  get isFinishedPomodoro () {
+  get isFinishedPomodoro() {
     if (this.isPomodoro) {
       return this.latest.isFinished;
     }
@@ -72,21 +70,21 @@ export default class Focus {
     return false;
   }
 
-  get isPending () {
+  get isPending() {
     return this.latest instanceof Pending;
   }
 
-  get isWork () {
+  get isWork() {
     if (this.isPomodoro) {
-      return this.latest && this.latest.type == DEFAULT_TYPE;
+      return this.latest && this.latest.type === DEFAULT_TYPE;
     }
 
     return false;
   }
 
-  get isBreak () {
+  get isBreak() {
     if (this.isPomodoro) {
-      return this.latest && this.latest.type == BREAK_TYPE;
+      return this.latest && this.latest.type === BREAK_TYPE;
     }
 
     return false;

@@ -1,80 +1,79 @@
 import Pomodoro, {
   DEFAULT_INTERVAL,
   DEFAULT_DURATION,
-  EVENT_FINISH
-} from './pomodoro'
+} from './pomodoro';
 
-jest.useFakeTimers()
+jest.useFakeTimers();
 
-let tick = () => jest.runTimersToTime(DEFAULT_INTERVAL)
-let pomodoro = null
+const tick = () => jest.runTimersToTime(DEFAULT_INTERVAL);
+let pomodoro = null;
 
 beforeEach(() => {
-  pomodoro = new Pomodoro()
-  pomodoro.start()
-})
+  pomodoro = new Pomodoro();
+  pomodoro.start();
+});
 
 describe('Pomodoro.tick()', () => {
   it('should just increment state on every tick', () => {
-    expect(pomodoro.state).toBe(0)
+    expect(pomodoro.state).toBe(0);
 
-    tick()
+    tick();
 
-    expect(pomodoro.state).toBe(1)
-  })
+    expect(pomodoro.state).toBe(1);
+  });
 
   it('should not increment when state >= duration', () => {
-    pomodoro.state = DEFAULT_DURATION
+    pomodoro.state = DEFAULT_DURATION;
 
-    tick()
-    tick()
+    tick();
+    tick();
 
-    expect(pomodoro.state).toBe(DEFAULT_DURATION)
-  })
-})
+    expect(pomodoro.state).toBe(DEFAULT_DURATION);
+  });
+});
 
 describe('Pomodoro.isFinished()', () => {
   it('should not return false when pomodoro is not finished', () => {
-    expect(pomodoro.isFinished).toBeFalsy()
-  })
+    expect(pomodoro.isFinished).toBeFalsy();
+  });
 
   it('should return false when pomodoro is not finished', () => {
-    pomodoro.state = DEFAULT_DURATION
-    expect(pomodoro.isFinished).toBeTruthy()
-  })
-})
+    pomodoro.state = DEFAULT_DURATION;
+    expect(pomodoro.isFinished).toBeTruthy();
+  });
+});
 
 describe('Pomodoro.pause()', () => {
   describe('when paused', () => {
     it('should add and increase pause counters', () => {
-      pomodoro.pause()
-      tick()
-      expect(pomodoro.pauses).toEqual({ 0: 1 })
-    })
-  })
+      pomodoro.pause();
+      tick();
+      expect(pomodoro.pauses).toEqual({ 0: 1 });
+    });
+  });
 
   describe('when paused multiple times', () => {
-    it ('should add multiple items into pauses', () => {
-      pomodoro.pause()
+    it('should add multiple items into pauses', () => {
+      pomodoro.pause();
 
-      tick()
+      tick();
 
-      expect(pomodoro.pauses).toEqual({ 0: 1 })
+      expect(pomodoro.pauses).toEqual({ 0: 1 });
 
-      pomodoro.unpause()
-      tick()
+      pomodoro.unpause();
+      tick();
 
-      pomodoro.pause()
-      tick()
+      pomodoro.pause();
+      tick();
 
-      expect(pomodoro.pauses).toEqual({ 0: 1, 1: 1 })
-    })
-  })
+      expect(pomodoro.pauses).toEqual({ 0: 1, 1: 1 });
+    });
+  });
 
   describe('when unpaused', () => {
     it('should not increase or add pause counters', () => {
-      tick()
-      expect(pomodoro.pauses).toEqual({})
-    })
-  })
-})
+      tick();
+      expect(pomodoro.pauses).toEqual({});
+    });
+  });
+});

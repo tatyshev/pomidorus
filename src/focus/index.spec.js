@@ -42,3 +42,16 @@ describe('Focus.rotate()', () => {
     });
   });
 });
+
+describe('Focus.pause(), Focus.pause()', () => {
+  it('should pause pomodoro', () => {
+    focus.rotate();
+    focus.pause();
+
+    expect(focus.latest.paused).toBeTruthy();
+
+    focus.unpause();
+
+    expect(focus.latest.paused).toBeFalsy();
+  });
+});

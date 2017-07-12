@@ -30,6 +30,18 @@ export default class Focus {
     }
   }
 
+  pause() {
+    if (this.isPomodoro) {
+      this.latest.pause();
+    }
+  }
+
+  unpause() {
+    if (this.isPomodoro) {
+      this.latest.unpause();
+    }
+  }
+
   get latest() {
     const items = this.items;
     return items[items.length - 1];

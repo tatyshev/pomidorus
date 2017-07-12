@@ -31,4 +31,14 @@ describe('Focus.rotate()', () => {
       expect(focus.rotate).toBeCalled();
     });
   });
+
+  describe('when pomodoro are not finished', () => {
+    it('should not do anything', () => {
+      focus.rotate();
+      focus.rotate();
+
+      expect(focus.items.length).toBe(1);
+      expect(focus.activity).toBe(focus.latest);
+    });
+  });
 });

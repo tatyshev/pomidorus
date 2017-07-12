@@ -8,12 +8,12 @@ export default class Focus {
   constructor(options = {}) {
     this.goal = options.goal || DEFAULT_GOAL;
     this.items = [];
-    this.pomodoro = null;
+    this.activity = null;
   }
 
   push(item) {
     if (item instanceof Pomodoro) {
-      this.pomodoro = item;
+      this.activity = item;
     }
 
     this.items.push(item);
@@ -28,25 +28,6 @@ export default class Focus {
 
       this.push(work);
     }
-
-    /*
-    if (this.isFinishedPomodoro) {
-      let pending = new Pending();
-
-      pending.start();
-
-      return;
-    }
-    */
-
-    /*
-    if (this.isWork) {
-      let pomodoro = this.latest;
-
-      if (pomodoro.isFinished) {
-      }
-    }
-    */
   }
 
   get latest() {

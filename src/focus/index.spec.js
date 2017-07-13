@@ -24,8 +24,7 @@ describe('Focus.rotate()', () => {
       const latest = focus.latest;
 
       latest.state = DEFAULT_DURATION;
-      focus.rotate = jest.fn();
-
+      jest.spyOn(focus, 'rotate');
       tick();
 
       expect(focus.rotate).toBeCalled();

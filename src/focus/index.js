@@ -22,11 +22,15 @@ export default class Focus {
   rotate() {
     if (this.isEmpty) {
       const work = new Pomodoro();
-
       work.on(EVENT_FINISH, () => this.rotate());
       work.start();
-
       this.push(work);
+    }
+
+    if (this.isPomodoro && this.latest.isFinished) {
+      const pending = new Pending();
+      pending.start();
+      this.push(pending);
     }
   }
 

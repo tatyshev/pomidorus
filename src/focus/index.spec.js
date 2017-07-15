@@ -21,13 +21,17 @@ describe('Focus.rotate()', () => {
   describe('when pomodoro are finished', () => {
     it('should call rotate() when pomodoro are finished', () => {
       focus.rotate();
-      const latest = focus.latest;
 
-      latest.state = DEFAULT_DURATION;
+      focus.latest.state = DEFAULT_DURATION;
       jest.spyOn(focus, 'rotate');
+
       tick();
 
       expect(focus.rotate).toBeCalled();
+
+      tick();
+
+      expect(focus.isPending).toBeTruthy();
     });
   });
 

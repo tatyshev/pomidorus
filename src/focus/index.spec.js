@@ -1,4 +1,4 @@
-import Pomodoro, { DEFAULT_INTERVAL, DEFAULT_DURATION } from './pomodoro';
+import { DEFAULT_INTERVAL, DEFAULT_DURATION } from './pomodoro';
 import Focus from './index';
 
 jest.useFakeTimers();
@@ -11,15 +11,15 @@ beforeEach(() => {
 });
 
 describe('Focus.rotate()', () => {
-  describe('when items are empty', () => {
-    it('should push pomodoro to item', () => {
+  describe('when items is empty', () => {
+    it('should push pomodoro', () => {
       focus.rotate();
-      expect(focus.latest).toBeInstanceOf(Pomodoro);
+      expect(focus.isPomodoro).toBeTruthy();
     });
   });
 
-  describe('when pomodoro are finished', () => {
-    it('should call rotate() when pomodoro are finished', () => {
+  describe('when latest is pomodoro and is finished', () => {
+    it('should call rotate() and push pending', () => {
       focus.rotate();
 
       focus.latest.state = DEFAULT_DURATION;
@@ -35,18 +35,39 @@ describe('Focus.rotate()', () => {
     });
   });
 
-  describe('when pomodoro are not finished', () => {
+  describe('when latest is pomodoro and is not finished', () => {
     it('should not do anything', () => {
       focus.rotate();
       focus.rotate();
 
-      expect(focus.items.length).toBe(1);
-      expect(focus.pomodoro).toBe(focus.latest);
+      expect(focus.stack.length).toBe(1);
+    });
+  });
+
+  describe('when latest is pending and switchTo is "break"', () => {
+    it('should push break into stack and switch to "default"', () => {
+      focus.rotate();
+      focus.latest.state = DEFAULT_DURATION;
+      tick();
+      tick();
+
+      expect(focus.isPending).toBeTruthy();
+      expect(focus.switchTo).toBe('break');
+
+      const pending = focus.latest;
+      jest.spyOn(pending, 'stop');
+
+      focus.rotate();
+
+      expect(pending.stop).toBeCalled();
+      expect(focus.isPomodoro).toBeTruthy();
+      expect(focus.latest.type).toBe('break');
+      expect(focus.switchTo).toBe('default');
     });
   });
 });
 
-describe('Focus.pause(), Focus.pause()', () => {
+describe('Focus.[un]pause()', () => {
   it('should pause pomodoro', () => {
     focus.rotate();
     focus.pause();

@@ -18,7 +18,7 @@
         "NODE_ENV": "development"
       },
       "console": "integratedTerminal",
-      "sourceMaps": false
+      "sourceMaps": true
     }
   ]
 }

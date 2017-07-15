@@ -37,7 +37,7 @@ describe('Focus.rotate()', () => {
       focus.rotate();
 
       expect(focus.items.length).toBe(1);
-      expect(focus.activity).toBe(focus.latest);
+      expect(focus.pomodoro).toBe(focus.latest);
     });
   });
 });

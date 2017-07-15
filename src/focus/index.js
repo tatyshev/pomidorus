@@ -8,12 +8,12 @@ export default class Focus {
   constructor(options = {}) {
     this.goal = options.goal || DEFAULT_GOAL;
     this.items = [];
-    this.activity = null;
+    this.pomodoro = null;
   }
 
   push(item) {
     if (item instanceof Pomodoro) {
-      this.activity = item;
+      this.pomodoro = item;
     }
 
     this.items.push(item);

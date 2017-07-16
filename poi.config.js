@@ -1,3 +1,4 @@
-module.exports = (options, req) => ({
-  entry: './src/index.js'
-})
+module.exports = {
+  entry: './src/index.js',
+};
+

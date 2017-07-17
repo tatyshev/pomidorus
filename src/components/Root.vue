@@ -10,7 +10,7 @@
     name: 'Root',
     data: () => ({ state: 0 }),
     methods: {
-      increment() {this.state += 1; },
+      increment() { this.state += 1; },
     },
   };
 </script>

@@ -1,5 +1,6 @@
 module.exports = {
   transform: {
-    '.js': 'babel-jest'
-  }
-}
+    '.js': 'babel-jest',
+    '.vue': 'jest-vue-preprocessor',
+  },
+};

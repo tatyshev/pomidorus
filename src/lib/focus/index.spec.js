@@ -1,13 +1,18 @@
 import { DEFAULT_INTERVAL, DEFAULT_DURATION } from './pomodoro';
 import Focus from './index';
 
-jest.useFakeTimers();
-
-const tick = () => jest.runTimersToTime(DEFAULT_INTERVAL);
+const tick = () => jasmine.clock().tick(DEFAULT_INTERVAL);
 let focus = null;
 
 beforeEach(() => {
+  jasmine.clock().uninstall();
+  jasmine.clock().install();
+
   focus = new Focus();
+});
+
+afterEach(() => {
+  jasmine.clock().uninstall();
 });
 
 describe('Focus.rotate()', () => {
@@ -23,11 +28,11 @@ describe('Focus.rotate()', () => {
       focus.rotate();
 
       focus.latest.state = DEFAULT_DURATION;
-      jest.spyOn(focus, 'rotate');
+      spyOn(focus, 'rotate').and.callThrough();
 
       tick();
 
-      expect(focus.rotate).toBeCalled();
+      expect(focus.rotate).toHaveBeenCalled();
 
       tick();
 
@@ -55,11 +60,11 @@ describe('Focus.rotate()', () => {
       expect(focus.switchTo).toBe('break');
 
       const pending = focus.latest;
-      jest.spyOn(pending, 'stop');
+      spyOn(pending, 'stop').and.callThrough();
 
       focus.rotate();
 
-      expect(pending.stop).toBeCalled();
+      expect(pending.stop).toHaveBeenCalled();
       expect(focus.isPomodoro).toBeTruthy();
       expect(focus.latest.type).toBe('break');
       expect(focus.switchTo).toBe('default');

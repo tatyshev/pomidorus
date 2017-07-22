@@ -1,17 +1,22 @@
 import Pending, { DEFAULT_INTERVAL } from './pending';
 
-jest.useFakeTimers();
-
-const tick = () => jest.runTimersToTime(DEFAULT_INTERVAL);
+const tick = () => jasmine.clock().tick(DEFAULT_INTERVAL);
 let pending = null;
 
 beforeEach(() => {
+  jasmine.clock().uninstall();
+  jasmine.clock().install();
+
   pending = new Pending();
+});
+
+afterEach(() => {
+  jasmine.clock().uninstall();
 });
 
 describe('tick()', () => {
   describe('when started', () => {
-    test('should just increment state on every tick', () => {
+    it('should just increment state on every tick', () => {
       pending.start();
 
       expect(pending.state).toBe(0);

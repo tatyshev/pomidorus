@@ -3,14 +3,19 @@ import Pomodoro, {
   DEFAULT_DURATION,
 } from './pomodoro';
 
-jest.useFakeTimers();
-
-const tick = () => jest.runTimersToTime(DEFAULT_INTERVAL);
+const tick = () => jasmine.clock().tick(DEFAULT_INTERVAL);
 let pomodoro = null;
 
 beforeEach(() => {
+  jasmine.clock().uninstall();
+  jasmine.clock().install();
+
   pomodoro = new Pomodoro();
   pomodoro.start();
+});
+
+afterEach(() => {
+  jasmine.clock().uninstall();
 });
 
 describe('Pomodoro.tick()', () => {

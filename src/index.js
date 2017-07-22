@@ -1,8 +1,10 @@
 import Vue from 'vue';
-import Root from './components/Root.vue';
+import App from './components/Application';
 
-const app = new Vue({
-  render: h => h(Root),
+Vue.config.productionTip = false;
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#root',
+  render: h => h(App),
 });
-
-app.$mount('#app');

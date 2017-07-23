@@ -19,7 +19,7 @@ describe('Focus.rotate()', () => {
   describe('when items is empty', () => {
     it('should push pomodoro', () => {
       focus.rotate();
-      expect(focus.isPomodoro).toBeTruthy();
+      expect(focus.isPomodoro()).toBeTruthy();
     });
   });
 
@@ -36,7 +36,7 @@ describe('Focus.rotate()', () => {
 
       tick();
 
-      expect(focus.isPending).toBeTruthy();
+      expect(focus.isPending()).toBeTruthy();
     });
   });
 
@@ -56,7 +56,7 @@ describe('Focus.rotate()', () => {
       tick();
       tick();
 
-      expect(focus.isPending).toBeTruthy();
+      expect(focus.isPending()).toBeTruthy();
       expect(focus.switchTo).toBe('break');
 
       const pending = focus.latest;
@@ -65,7 +65,7 @@ describe('Focus.rotate()', () => {
       focus.rotate();
 
       expect(pending.stop).toHaveBeenCalled();
-      expect(focus.isPomodoro).toBeTruthy();
+      expect(focus.isPomodoro()).toBeTruthy();
       expect(focus.latest.type).toBe('break');
       expect(focus.switchTo).toBe('default');
     });

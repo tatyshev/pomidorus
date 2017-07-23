@@ -13,10 +13,10 @@ export default class Focus {
   }
 
   rotate() {
-    if (this.isEmpty || this.isPending) {
+    if (this.isEmpty || this.isPending()) {
       let pomodoro = null;
 
-      if (this.isPending) {
+      if (this.isPending()) {
         this.latest.stop();
       }
 
@@ -36,7 +36,7 @@ export default class Focus {
       return;
     }
 
-    if (this.isPomodoro && this.latest.isFinished) {
+    if (this.isPomodoro() && this.latest.isFinished) {
       const pending = new Pending();
       pending.start();
       this.stack.push(pending);
@@ -44,11 +44,21 @@ export default class Focus {
   }
 
   pause() {
-    if (this.isPomodoro) { this.latest.pause(); }
+    if (this.isPomodoro()) { this.latest.pause(); }
   }
 
   unpause() {
-    if (this.isPomodoro) { this.latest.unpause(); }
+    if (this.isPomodoro()) { this.latest.unpause(); }
+  }
+
+  isPomodoro(object) {
+    const target = object || this.latest;
+    return target instanceof Pomodoro;
+  }
+
+  isPending(object) {
+    const target = object || this.latest;
+    return target instanceof Pending;
   }
 
   get latest() {
@@ -58,13 +68,5 @@ export default class Focus {
 
   get isEmpty() {
     return this.stack.length === 0;
-  }
-
-  get isPomodoro() {
-    return this.latest instanceof Pomodoro;
-  }
-
-  get isPending() {
-    return this.latest instanceof Pending;
   }
 }

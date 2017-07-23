@@ -66,8 +66,9 @@ export default class Pomodoro {
   }
 
   get clock() {
-    const seconds = this.state % 60;
-    const minutes = (this.state - seconds) / 60;
+    const left = this.duration - this.state;
+    const seconds = left % 60;
+    const minutes = (left - seconds) / 60;
     const m = (`0${minutes}`).slice(-2);
     const s = (`0${seconds}`).slice(-2);
 

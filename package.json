@@ -9,8 +9,8 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "test": "karma start",
-    "test:single": "karma start --single-run"
+    "test": "karma start --single-run",
+    "debug": "karma start"
   },
   "dependencies": {
     "component-emitter": "^1.2.1",

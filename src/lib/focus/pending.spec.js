@@ -14,7 +14,7 @@ afterEach(() => {
   jasmine.clock().uninstall();
 });
 
-describe('tick()', () => {
+describe('Pending.tick()', () => {
   describe('when started', () => {
     it('should just increment state on every tick', () => {
       pending.start();

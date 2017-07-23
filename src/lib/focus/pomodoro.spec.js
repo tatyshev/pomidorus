@@ -82,3 +82,19 @@ describe('Pomodoro.pause()', () => {
     });
   });
 });
+
+describe('Pomodoro.clock', () => {
+  it('should render state as human readable clock', () => {
+    pomodoro.state = 1389;
+    expect(pomodoro.clock).toBe('23:09');
+
+    pomodoro.state = 1400;
+    expect(pomodoro.clock).toBe('23:20');
+
+    pomodoro.state = DEFAULT_DURATION;
+    expect(pomodoro.clock).toBe('25:00');
+
+    pomodoro.state = 0;
+    expect(pomodoro.clock).toBe('00:00');
+  });
+});

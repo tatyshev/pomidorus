@@ -65,6 +65,15 @@ export default class Pomodoro {
     }
   }
 
+  get clock() {
+    const minutes = Math.round(this.state / 60);
+    const seconds = this.state % 60;
+    const m = (`0${minutes}`).slice(-2);
+    const s = (`0${seconds}`).slice(-2);
+
+    return `${m}:${s}`;
+  }
+
   get isFinished() {
     return this.state >= this.duration;
   }

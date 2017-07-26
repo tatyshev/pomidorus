@@ -1,7 +1,6 @@
-import { DEFAULT_INTERVAL, DEFAULT_DURATION } from './pomodoro';
+import { DEFAULT_DURATION } from './pomodoro';
 import Focus from './index';
 
-const tick = () => jasmine.clock().tick(DEFAULT_INTERVAL);
 let focus = null;
 
 beforeEach(() => {
@@ -18,25 +17,35 @@ afterEach(() => {
 describe('Focus.rotate()', () => {
   describe('when items is empty', () => {
     it('should push pomodoro', () => {
+      expect(focus.stack.length).toBe(0);
       focus.rotate();
-      expect(focus.isPomodoro()).toBeTruthy();
+      expect(focus.isWork).toBeTruthy();
     });
   });
 
-  describe('when latest is pomodoro and is finished', () => {
-    it('should call rotate() and push pending', () => {
+  describe('when latest is work and is finished', () => {
+    it('should push break', () => {
       focus.rotate();
 
       focus.latest.state = DEFAULT_DURATION;
-      spyOn(focus, 'rotate').and.callThrough();
 
-      tick();
+      expect(focus.progress).toBe(0);
 
-      expect(focus.rotate).toHaveBeenCalled();
+      focus.rotate();
 
-      tick();
+      expect(focus.progress).toBe(1);
+      expect(focus.isBreak).toBeTruthy();
+    });
+  });
 
-      expect(focus.isPending()).toBeTruthy();
+  describe('when latest is break and is finished', () => {
+    it('should push work', () => {
+      focus.rotate();
+      focus.latest.type = 'break';
+      focus.latest.state = DEFAULT_DURATION;
+      focus.rotate();
+
+      expect(focus.isWork).toBeTruthy();
     });
   });
 
@@ -46,28 +55,6 @@ describe('Focus.rotate()', () => {
       focus.rotate();
 
       expect(focus.stack.length).toBe(1);
-    });
-  });
-
-  describe('when latest is pending and switchTo is "break"', () => {
-    it('should push break into stack and switch to "default"', () => {
-      focus.rotate();
-      focus.latest.state = DEFAULT_DURATION;
-      tick();
-      tick();
-
-      expect(focus.isPending()).toBeTruthy();
-      expect(focus.switchTo).toBe('break');
-
-      const pending = focus.latest;
-      spyOn(pending, 'stop').and.callThrough();
-
-      focus.rotate();
-
-      expect(pending.stop).toHaveBeenCalled();
-      expect(focus.isPomodoro()).toBeTruthy();
-      expect(focus.latest.type).toBe('break');
-      expect(focus.switchTo).toBe('default');
     });
   });
 });

@@ -1,5 +1,4 @@
-import Pomodoro, { DEFAULT_TYPE, EVENT_FINISH } from './pomodoro';
-import Pending from './pending';
+import Pomodoro, { DEFAULT_TYPE } from './pomodoro';
 
 export const DEFAULT_GOAL = 25;
 export const BREAK_TYPE = 'break';
@@ -8,62 +7,50 @@ export const BREAK_DURATION = 5 * 60;
 export default class Focus {
   constructor(options = {}) {
     this.goal = options.goal || DEFAULT_GOAL;
+    this.progress = 0;
     this.stack = [];
-    this.switchTo = DEFAULT_TYPE;
   }
 
   rotate() {
-    if (this.isEmpty || this.isPending()) {
-      let pomodoro = null;
-
-      if (this.isPending()) {
-        this.latest.stop();
-      }
-
-      if (this.switchTo === DEFAULT_TYPE) {
-        pomodoro = new Pomodoro();
-        this.switchTo = BREAK_TYPE;
-      } else {
-        pomodoro = new Pomodoro({ type: BREAK_TYPE, duration: BREAK_DURATION });
-        this.switchTo = DEFAULT_TYPE;
-      }
-
-      pomodoro.on(EVENT_FINISH, () => this.rotate());
-      pomodoro.start();
-
-      this.stack.push(pomodoro);
-
+    if (this.latest && !this.latest.isFinished) {
       return;
     }
 
-    if (this.isPomodoro() && this.latest.isFinished) {
-      const pending = new Pending();
-      pending.start();
-      this.stack.push(pending);
+    if (this.isWork) {
+      this.progress += 1;
     }
+
+    let pomodoro = null;
+
+    if (this.isEmpty || this.isBreak) {
+      pomodoro = new Pomodoro();
+    } else if (this.isWork) {
+      pomodoro = new Pomodoro({ type: BREAK_TYPE, duration: BREAK_DURATION });
+    }
+
+    pomodoro.start();
+    this.stack.push(pomodoro);
   }
 
   pause() {
-    if (this.isPomodoro()) { this.latest.pause(); }
+    if (this.latest) { this.latest.pause(); }
   }
 
   unpause() {
-    if (this.isPomodoro()) { this.latest.unpause(); }
-  }
-
-  isPomodoro(object) {
-    const target = object || this.latest;
-    return target instanceof Pomodoro;
-  }
-
-  isPending(object) {
-    const target = object || this.latest;
-    return target instanceof Pending;
+    if (this.latest) { this.latest.unpause(); }
   }
 
   get latest() {
     const stack = this.stack;
     return stack[stack.length - 1];
+  }
+
+  get isWork() {
+    return this.latest && this.latest.type === DEFAULT_TYPE;
+  }
+
+  get isBreak() {
+    return this.latest && this.latest.type === BREAK_TYPE;
   }
 
   get isEmpty() {

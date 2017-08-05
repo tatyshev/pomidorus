@@ -64,10 +64,10 @@ describe('Focus.[un]pause()', () => {
     focus.rotate();
     focus.pause();
 
-    expect(focus.latest.paused).toBeTruthy();
+    expect(focus.isPaused).toBeTruthy();
 
     focus.unpause();
 
-    expect(focus.latest.paused).toBeFalsy();
+    expect(focus.isPaused).toBeFalsy();
   });
 });

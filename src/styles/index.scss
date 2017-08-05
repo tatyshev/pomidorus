@@ -1,0 +1,23 @@
+@import './components/application.scss';
+@import './components/focus.scss';
+@import './components/process.scss';
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  background: #20252d;
+  color: #f5f5f5;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 14px;
+}

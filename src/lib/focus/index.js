@@ -1,8 +1,8 @@
 import Pomodoro, { DEFAULT_TYPE } from './pomodoro';
 
-export const DEFAULT_GOAL = 25;
+export const DEFAULT_GOAL = 10;
 export const BREAK_TYPE = 'break';
-export const BREAK_DURATION = 5 * 60;
+export const BREAK_DURATION = 2;
 
 export default class Focus {
   constructor(options = {}) {
@@ -12,7 +12,7 @@ export default class Focus {
   }
 
   rotate() {
-    if (this.latest && !this.latest.isFinished) {
+    if (this.isActive) {
       return;
     }
 
@@ -55,5 +55,13 @@ export default class Focus {
 
   get isEmpty() {
     return this.stack.length === 0;
+  }
+
+  get isPaused() {
+    return this.latest && this.latest.paused;
+  }
+
+  get isActive() {
+    return this.latest && !this.latest.isFinished;
   }
 }

@@ -68,14 +68,21 @@
 
       values() {
         const progress = this.progress;
-        const goal = progress > this.goal ? progress + 1 : this.goal;
-
+        const goal = progress >= this.goal ? progress + 1 : this.goal;
         const items = new Array(goal).fill();
 
-        return items.map((item, index) => ({
-          value: 1,
-          color: (index < progress ? '#f55e51' : '#3c4352'),
-        }));
+        return items.map((item, index) => {
+          let color = '#3c4352';
+
+          if (index < progress) {
+            color = index >= this.goal ? '#51a4f5' : '#f55e51';
+          }
+
+          return {
+            value: 1,
+            color,
+          };
+        });
       },
     },
 

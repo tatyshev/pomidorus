@@ -11,7 +11,7 @@
       <div class="b-focus__body">
         <div class="b-focus__clock" v-if="clock">{{ clock }}</div>
         <div class="b-focus__controls">
-          <button class="b-focus__button" @click="action()">{{ actionText }} {{ focus.progress }} </button>
+          <button class="b-focus__button" @click="action()">{{ actionText }}</button>
         </div>
       </div>
     </div>

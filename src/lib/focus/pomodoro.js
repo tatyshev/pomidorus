@@ -1,7 +1,7 @@
 import Emitter from 'component-emitter';
 
 export const DEFAULT_TYPE = 'default';
-export const DEFAULT_DURATION = 5;
+export const DEFAULT_DURATION = 25 * 60;
 export const DEFAULT_INTERVAL = 1000;
 export const EVENT_FINISH = 'finish';
 

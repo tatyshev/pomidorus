@@ -13,6 +13,7 @@
     "debug": "karma start"
   },
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "component-emitter": "^1.2.1",
     "d3": "^4.10.0",
     "normalize.css": "^7.0.0",

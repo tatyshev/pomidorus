@@ -1,4 +1,5 @@
 .b-focus {
+  background: darken(#323949, 1%);
   position: relative;
   text-align: center;
   width: 60vh;
@@ -30,30 +31,8 @@
   transform: translate(-50%, -50%);
 }
 
-.b-focus__clock {
-  margin-bottom: 20px;
-}
-
 .b-focus__controls {
-}
-
-.b-focus__button {
-  transition: border-color 200ms;
-  background: transparent;
-  color: inherit;
-  border: 1px solid #3c4352;
-  cursor: pointer;
-  padding: 5px 15px;
-  text-transform: uppercase;
-  border-radius: 5px;
-
-  &:hover {
-    border-color: rgba(#f55e51, 0.8);
-  }
-
-  &:focus {
-    outline: 0;
-  }
+  padding-top: 20px;
 }
 
 .b-focus__clock {

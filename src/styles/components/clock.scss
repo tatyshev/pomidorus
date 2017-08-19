@@ -1,0 +1,19 @@
+.b-clock {
+  position: relative;
+  display: inline-block;
+}
+
+.b-clock__minutes {
+  font-size: 4em;
+  line-height: 1;
+}
+
+.b-clock__seconds {
+  font-size: 1.2em;
+  position: absolute;
+  top: 5px;
+  right: -5px;
+  transform: translateX(100%);
+  line-height: 1;
+  color: #39b6ea;
+}

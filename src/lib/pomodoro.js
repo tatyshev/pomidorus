@@ -56,7 +56,11 @@ export default class Pomodoro {
   }
 
   get pauses() {
-    return this.state.pauses;
+    return this.state.pauses.reduce((result, pause) => {
+      const start = new Date(pause.start);
+      const end = pause.end !== null ? new Date(pause.end) : this.now;
+      return result + (end.getTime() - start.getTime());
+    }, 0);
   }
 
   get paused() {
@@ -85,7 +89,7 @@ export default class Pomodoro {
   }
 
   get elapsed() {
-    const value = this.duration - this.interval;
+    const value = this.duration - this.interval - this.pauses;
     return value;
   }
 

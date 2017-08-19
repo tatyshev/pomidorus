@@ -55,17 +55,17 @@ describe('Pomodoro', () => {
       prepare();
       spyOnProperty(pomodoro, 'now', 'get').and.returnValue(now);
 
-      expect(pomodoro.pauses).toEqual([]);
+      expect(pomodoro.state.pauses).toEqual([]);
 
       pomodoro.pause();
 
-      expect(pomodoro.pauses.length).toBe(1);
+      expect(pomodoro.state.pauses.length).toBe(1);
 
       pomodoro.pause();
 
-      expect(pomodoro.pauses.length).toBe(1);
-      expect(pomodoro.pauses[0].start).toEqual(now.toISOString());
-      expect(pomodoro.pauses[0].end).toBeNull();
+      expect(pomodoro.state.pauses.length).toBe(1);
+      expect(pomodoro.state.pauses[0].start).toEqual(now.toISOString());
+      expect(pomodoro.state.pauses[0].end).toBeNull();
     });
   });
 
@@ -78,21 +78,21 @@ describe('Pomodoro', () => {
       now.setTime(t + 1000);
       pomodoro.unpause();
 
-      expect(pomodoro.pauses.length).toBe(1);
-      expect(pomodoro.pauses[0].start).toEqual((new Date(t).toISOString()));
-      expect(pomodoro.pauses[0].end).toEqual(now.toISOString());
+      expect(pomodoro.state.pauses.length).toBe(1);
+      expect(pomodoro.state.pauses[0].start).toEqual((new Date(t).toISOString()));
+      expect(pomodoro.state.pauses[0].end).toEqual(now.toISOString());
 
       pomodoro.pause();
       now.setTime(t + 2000);
       pomodoro.unpause();
 
-      expect(pomodoro.pauses.length).toBe(2);
+      expect(pomodoro.state.pauses.length).toBe(2);
 
       pomodoro.pause();
       now.setTime(t + 2000);
       pomodoro.unpause();
 
-      expect(pomodoro.pauses.length).toBe(2);
+      expect(pomodoro.state.pauses.length).toBe(2);
     });
   });
 
@@ -104,6 +104,25 @@ describe('Pomodoro', () => {
       expect(pomodoro.paused).toBeTruthy();
       pomodoro.unpause();
       expect(pomodoro.paused).toBeFalsy();
+    });
+  });
+
+  describe('pauses', () => {
+    it('should total paused time', () => {
+      prepare();
+
+      const getTime = x => new Date(t + x).toISOString();
+      const current = new Date(getTime(75));
+
+      spyOnProperty(pomodoro, 'now', 'get').and.returnValue(current);
+
+      pomodoro.state.pauses = [
+        { start: getTime(10), end: getTime(20) },
+        { start: getTime(30), end: getTime(40) },
+        { start: getTime(50), end: null },
+      ];
+
+      expect(pomodoro.pauses).toBe(45);
     });
   });
 });

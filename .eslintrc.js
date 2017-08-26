@@ -11,6 +11,9 @@ module.exports = {
     browser: true,
     jasmine: true,
   },
+  globals: {
+    the: true,
+  },
   extends: 'airbnb-base',
   'settings': {
     'import/resolver': {

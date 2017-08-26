@@ -2,10 +2,10 @@ import merge from 'deepmerge';
 
 export default class Pomodoro {
   static get state() {
-    const createdAt = new Date();
+    const createdAt = Date.now();
 
     return {
-      createdAt: createdAt.toISOString(),
+      createdAt,
       duration: 0,
       type: null,
       pauses: [],
@@ -14,13 +14,12 @@ export default class Pomodoro {
 
   constructor(state = {}) {
     this.state = merge(Pomodoro.state, state);
-    this.date = new Date();
     this.tick();
   }
 
   tick() {
     if (!this.finished) {
-      this.date = new Date();
+      this.time = Date.now();
     }
   }
 
@@ -30,7 +29,7 @@ export default class Pomodoro {
 
     if (last === undefined || last.end !== null) {
       pauses.push({
-        start: this.now.toISOString(),
+        start: this.time,
         end: null,
       });
     }
@@ -41,7 +40,7 @@ export default class Pomodoro {
     const last = pauses[pauses.length - 1];
 
     if (last !== undefined && last.end === null) {
-      const end = this.now.toISOString();
+      const end = this.time;
 
       if (last.start === end) {
         pauses.pop();
@@ -51,15 +50,11 @@ export default class Pomodoro {
     }
   }
 
-  get now() {
-    return new Date(this.date);
-  }
-
   get pauses() {
     return this.state.pauses.reduce((result, pause) => {
       const start = new Date(pause.start);
-      const end = pause.end !== null ? new Date(pause.end) : this.now;
-      return result + (end.getTime() - start.getTime());
+      const end = pause.end !== null ? pause.end : this.time;
+      return result + (end - start);
     }, 0);
   }
 
@@ -82,14 +77,11 @@ export default class Pomodoro {
   }
 
   get interval() {
-    const now = this.now;
-    const createdAt = new Date(this.createdAt);
-    const result = now.getTime() - createdAt.getTime();
-    return isNaN(result) ? 0 : result;
+    return this.time - (this.createdAt + this.pauses);
   }
 
   get elapsed() {
-    const value = this.duration - this.interval - this.pauses;
+    const value = this.duration - this.interval;
     return value;
   }
 

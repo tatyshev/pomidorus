@@ -6,9 +6,13 @@ module.exports = (config) => {
   config.set({
     browsers: ['jsdom'],
     frameworks: ['jasmine'],
-    files: ['src/**/*.spec.js'],
+    files: [
+      'src/config/jasmine.js',
+      'src/**/*.spec.js',
+    ],
     reporters: ['spec', 'kjhtml'],
     preprocessors: {
+      'src/config/*.js': ['webpack', 'sourcemap'],
       'src/**/*.spec.js': ['webpack', 'sourcemap'],
     },
     webpack: webpackConfig,

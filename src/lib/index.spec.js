@@ -78,7 +78,7 @@ describe('Focus', () => {
           ],
         }));
 
-        it('should long break', () => {
+        it('should add long break', () => {
           the.focus.play();
           expect(the.focus.current.type).toBe(LONG_TYPE);
         });

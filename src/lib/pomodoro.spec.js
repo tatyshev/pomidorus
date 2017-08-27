@@ -7,10 +7,15 @@ the('pauses', () => the.state.pauses);
 
 describe('Pomodoro', () => {
   describe('.constructor()', () => {
-    the('createdAt', () => Date.now());
-    the('input', () => ({ createdAt: the.createdAt, type: 'example' }));
+    it('should set default state', () => {
+      spyOn(Date, 'now').and.returnValue(123);
+      expect(the.pomodoro.state).toEqual(Pomodoro.state);
+    });
 
     it('should set initial state', () => {
+      the('createdAt', () => Date.now());
+      the('input', () => ({ createdAt: the.createdAt, type: 'example' }));
+
       expect(the.pomodoro.createdAt).toBe(the.createdAt);
       expect(the.pomodoro.type).toBe('example');
     });

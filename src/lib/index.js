@@ -95,7 +95,7 @@ export default class Focus {
   }
 
   get isTimeToLong() {
-    return (this.completed.length % this.longBreakAfter) === 0;
+    return (this.completed.length % this.longAfter) === 0;
   }
 
   get elapsed() {

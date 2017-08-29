@@ -83,6 +83,16 @@ describe('Focus', () => {
           expect(the.focus.current.type).toBe(LONG_TYPE);
         });
       });
+
+      describe('when current is active', () => {
+        the('items', () => [{ duration: 5 }]);
+
+        it('should not add new items', () => {
+          expect(the.focus.items.length).toBe(1);
+          the.focus.play();
+          expect(the.focus.items.length).toBe(1);
+        });
+      });
     });
   });
 });

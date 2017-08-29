@@ -95,4 +95,116 @@ describe('Focus', () => {
       });
     });
   });
+
+  describe('.start()', () => {
+    it('should call "tick" every second', () => {
+      const tick = () => {};
+
+      spyOn(window, 'setInterval');
+      spyOn(the.focus.tick, 'bind').and.returnValue(tick);
+
+      the.focus.start();
+
+      expect(window.setInterval).toHaveBeenCalledWith(tick, 1000);
+    });
+  });
+
+  describe('.tick()', () => {
+    it('should call "tick" on each item', () => {
+      the('input', () => ({ items: [{}, {}] }));
+
+      const first = the.focus.items[0];
+      const second = the.focus.items[1];
+
+      spyOn(first, 'tick');
+      spyOn(second, 'tick');
+
+      the.focus.tick();
+
+      expect(first.tick).toHaveBeenCalled();
+      expect(second.tick).toHaveBeenCalled();
+    });
+  });
+
+  describe('.pause()', () => {
+    it('should call pause on current item', () => {
+      the('input', () => ({ items: [{}] }));
+      spyOn(the.focus.current, 'pause');
+
+      the.focus.pause();
+      expect(the.focus.current.pause).toHaveBeenCalled();
+    });
+  });
+
+  describe('.unpause()', () => {
+    it('should call pause on current item', () => {
+      the('input', () => ({ items: [{}] }));
+      spyOn(the.focus.current, 'unpause');
+
+      the.focus.unpause();
+      expect(the.focus.current.unpause).toHaveBeenCalled();
+    });
+  });
+
+  describe('.toJson()', () => {
+    the('input', () => ({
+      items: [
+        { createdAt: 1, type: 'one', duration: 1, pauses: [] },
+        { createdAt: 2, type: 'two', duration: 2, pauses: [] },
+      ],
+      target: 5,
+      longAfter: 3,
+      durations: {
+        DEFAULT: 1,
+        SHORT: 2,
+        LONG: 3,
+      },
+    }));
+
+    it('should return state as json', () => {
+      expect(the.focus.toJson()).toEqual(the.input);
+    });
+  });
+
+  describe('.isTimeToLong', () => {
+    the('input', () => ({ longAfter: 4 }));
+    the('length', () => 0);
+    the('completed', () => ({ length: the.length }));
+
+    beforeEach(() => {
+      spyOnProperty(the.focus, 'completed', 'get').and.callFake(() => the.completed);
+    });
+
+    describe('when completed is equal', () => {
+      the('length', () => 4);
+
+      it('should return "true"', () => {
+        expect(the.focus.isTimeToLong).toBe(true);
+      });
+    });
+
+    describe('when completed is enough', () => {
+      the('length', () => 12);
+
+      it('should return "true"', () => {
+        expect(the.focus.isTimeToLong).toBe(true);
+      });
+    });
+
+    describe('when completed is not enough', () => {
+      the('length', () => 3);
+
+      it('should return "false"', () => {
+        expect(the.focus.isTimeToLong).toBe(false);
+      });
+    });
+
+    describe('when completed is not time', () => {
+      the('length', () => 5);
+
+      it('should return "false"', () => {
+        expect(the.focus.isTimeToLong).toBe(false);
+      });
+    });
+  });
 });

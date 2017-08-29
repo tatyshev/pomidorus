@@ -28,7 +28,7 @@ export default class Focus {
   }
 
   start() {
-    setInterval(() => this.tick(), 1000);
+    setInterval(this.tick.bind(this), 1000);
   }
 
   tick() {
@@ -68,7 +68,7 @@ export default class Focus {
     }
   }
 
-  getState() {
+  toJson() {
     const state = { ...this.state };
 
     if (state.items.length !== 0) {

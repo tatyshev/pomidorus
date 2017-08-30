@@ -8,7 +8,7 @@
 <script>
   export default {
     props: {
-      value: Number,
+      elapsed: Number,
     },
 
     filters: {
@@ -19,7 +19,7 @@
 
     computed: {
       left() {
-        return Math.floor(this.value / 1000);
+        return Math.floor(this.elapsed / 1000);
       },
 
       seconds() {

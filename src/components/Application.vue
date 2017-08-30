@@ -10,6 +10,7 @@
       </div>
 
       <div class="b-layout__body">
+        <clock :elapsed="focus.elapsed"/>
       </div>
 
       <div class="b-layout__section">

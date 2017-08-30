@@ -11,7 +11,11 @@
 }
 
 .b-layout__body {
+  position: relative;
   flex: 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .b-layout__section--center {

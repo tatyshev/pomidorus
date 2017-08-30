@@ -8,8 +8,8 @@
 
 .b-tabs__item {
   transition: opacity 200ms;
-  margin: 0 4px;
-  opacity: 0.5;
+  margin: 0 10px;
+  opacity: 0.2;
   cursor: pointer;
   position: relative;
 
@@ -29,7 +29,7 @@
   &:hover {
     &:after {
       transform: translateY(-1px);
-      opacity: 0.5;
+      opacity: 1;
     }
   }
 }

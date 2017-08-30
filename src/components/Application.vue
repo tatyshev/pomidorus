@@ -15,6 +15,7 @@
       </div>
 
       <div class="b-layout__bottom">
+        <controls :focus="focus"/>
       </div>
     </div>
   </div>
@@ -23,18 +24,18 @@
 <script>
   import Focus from '@/lib';
   import Clock from './Clock';
-  import Play from './Play';
   import Tabs from './Tabs';
   import Process from './Process';
+  import Controls from './Controls';
 
   export default {
     name: 'application',
 
     components: {
+      Controls,
       Tabs,
       Process,
       Clock,
-      Play,
     },
 
     data: () => ({

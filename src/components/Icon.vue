@@ -1,19 +1,19 @@
 <template>
-  <svg class="b-inline-svg" v-bind="props" v-html="inner"></svg>
+  <svg :class="classes" v-bind="props" v-html="inner"></svg>
 </template>
 
 <script>
-  const ctx = require.context('!svg-inline-loader?removeSVGTagAttrs=false!svgo-loader!@/assets', true, /.svg$/);
-  const loadSvg = src => ctx(`./${src}`);
+  const ctx = require.context('!svg-inline-loader?removeSVGTagAttrs=false!svgo-loader!@/assets/icons', true, /.svg$/);
+  const loadSvg = name => ctx(`./${name}.svg`);
   const parser = new DOMParser();
 
   export default {
-    name: 'inline-svg',
+    name: 'icon',
 
     props: {
       height: true,
       width: true,
-      src: {
+      name: {
         type: String,
         required: true,
       },
@@ -27,7 +27,7 @@
 
     computed: {
       svg() {
-        const svg = loadSvg(this.src);
+        const svg = loadSvg(this.name);
         const doc = parser.parseFromString(svg, 'text/xml');
         return doc.querySelector('svg');
       },
@@ -43,6 +43,10 @@
 
       inner() {
         return this.svg.innerHTML;
+      },
+
+      classes() {
+        return ['b-icon', `b-icon--${this.name}`];
       },
     },
   };

@@ -1,14 +1,14 @@
 .b-layout {
   position: relative;
   text-align: center;
-  width: 60vh;
-  height: 60vh;
+  width: 65vh;
+  height: 65vh;
   display: flex;
   flex-direction: column;
 }
 
 .b-layout__top {
-  padding-bottom: 15px;
+  padding-bottom: 25px;
 }
 
 .b-layout__body {
@@ -27,8 +27,6 @@
   }
 }
 
-.b-layout__section--center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.b-layout__bottom {
+  padding-top: 35px;
 }

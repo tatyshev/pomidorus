@@ -1,8 +1,9 @@
-@import './components/application.scss';
-@import './components/focus.scss';
+@import './components/applicaiton.scss';
+@import './components/layout.scss';
 @import './components/process.scss';
 @import './components/clock.scss';
 @import './components/play.scss';
+@import './components/tabs.scss';
 
 html {
   box-sizing: border-box;
@@ -21,5 +22,5 @@ body {
   background: #323949;
   color: #f5f5f5;
   font-family: 'Roboto Condensed', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }

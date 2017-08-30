@@ -1,0 +1,21 @@
+.b-layout {
+  position: relative;
+  text-align: center;
+  width: 70vh;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.b-layout__section {
+}
+
+.b-layout__body {
+  flex: 1 auto;
+}
+
+.b-layout__section--center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

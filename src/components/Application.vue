@@ -5,15 +5,16 @@
 <template>
   <div class="b-application">
     <div class="b-layout">
-      <div class="b-layout__section">
+      <div class="b-layout__top">
         <tabs/>
       </div>
 
       <div class="b-layout__body">
+        <process :value="3" :max="10"/>
         <clock :elapsed="focus.elapsed"/>
       </div>
 
-      <div class="b-layout__section">
+      <div class="b-layout__bottom">
       </div>
     </div>
   </div>
@@ -24,12 +25,14 @@
   import Clock from './Clock';
   import Play from './Play';
   import Tabs from './Tabs';
+  import Process from './Process';
 
   export default {
     name: 'application',
 
     components: {
       Tabs,
+      Process,
       Clock,
       Play,
     },

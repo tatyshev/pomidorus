@@ -78,11 +78,11 @@
         return [
           {
             value: this.value,
-            color: this.foreground || '#f55e51',
+            color: this.foreground || '#9dd52b',
           },
           {
             value: this.max - this.value,
-            color: this.background || '#3c4352',
+            color: this.background || '#4f5560',
           },
         ];
       },

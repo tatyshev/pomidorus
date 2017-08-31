@@ -68,6 +68,12 @@ export default class Focus {
     }
   }
 
+  reset() {
+    if (this.isActive) {
+      this.items.pop();
+    }
+  }
+
   toJson() {
     const state = { ...this.state };
 

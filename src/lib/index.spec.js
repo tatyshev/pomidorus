@@ -146,6 +146,28 @@ describe('Focus', () => {
     });
   });
 
+  describe('.reset()', () => {
+    describe('when current is active', () => {
+      the('input', () => ({ items: [{}, { duration: 1 }] }));
+
+      it('should remove last element', () => {
+        expect(the.focus.items.length).toBe(2);
+        the.focus.reset();
+        expect(the.focus.items.length).toBe(1);
+      });
+    });
+
+    describe('when current is not active', () => {
+      the('input', () => ({ items: [{}] }));
+
+      it('should not do anything', () => {
+        expect(the.focus.items.length).toBe(1);
+        the.focus.reset();
+        expect(the.focus.items.length).toBe(1);
+      });
+    });
+  });
+
   describe('.toJson()', () => {
     the('input', () => ({
       items: [

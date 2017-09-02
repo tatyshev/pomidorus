@@ -81,7 +81,7 @@
             color: this.foreground || '#39b6ea',
           },
           {
-            value: this.max - this.value,
+            value: (this.max - this.value) || 1,
             color: this.background || '#4f5560',
           },
         ];

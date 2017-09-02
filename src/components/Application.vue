@@ -10,7 +10,7 @@
       </div>
 
       <div class="b-layout__body">
-        <process :value="focus.interval" :max="focus.duration || 1"/>
+        <process :value="focus.interval" :max="focus.duration"/>
         <clock :elapsed="focus.elapsed" :paused="focus.isPaused" :pauses="focus.pauses"/>
       </div>
 

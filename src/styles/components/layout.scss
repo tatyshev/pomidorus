@@ -1,10 +1,11 @@
 .b-layout {
   position: relative;
   text-align: center;
-  width: 65vh;
-  height: 65vh;
+  width: 500px;
+  height: 500px;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .b-layout__top {
@@ -17,6 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   .b-process {
     position: absolute;

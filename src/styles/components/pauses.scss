@@ -1,0 +1,15 @@
+.b-pauses {
+  transition: opacity 200ms;
+  margin: 5px 0;
+  font-size: .9em;
+  transform: translateY(10px) translateX(-2px);
+  color: #d27d52;
+  display: inline-flex;
+  opacity: 1;
+  background: red;
+  line-height: 0;
+}
+
+.b-pauses--hidden {
+  opacity: 0;
+}

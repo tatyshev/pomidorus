@@ -1,33 +1,76 @@
 <template>
-  <div class="b-clock">
-    <div class="b-clock__minutes">{{ minutes | zeroify }}</div>
-    <div class="b-clock__seconds">{{ seconds | zeroify }}</div>
+  <div :class="classes.clock">
+    <div :class="classes.minutes">{{ clock.minutes | zeroify }}</div>
+    <div :class="classes.seconds">{{ clock.seconds | zeroify }}</div>
+    <div :class="classes.pauses">{{ pauseClock }}</div>
   </div>
 </template>
 
 <script>
   export default {
     props: {
-      elapsed: Number,
-    },
+      elapsed: {
+        type: Number,
+        default: 0,
+      },
+      pauses: {
+        type: Number,
+        default: 0,
+      },
 
-    filters: {
-      zeroify(value) {
-        return (`0${value}`).slice(-2);
+      paused: {
+        type: Boolean,
+        default: false,
       },
     },
 
     computed: {
-      left() {
-        return Math.floor(this.elapsed / 1000);
+      clock() {
+        const left = Math.floor(this.elapsed / 1000);
+        const seconds = left % 60;
+        const minutes = (left - seconds) / 60;
+
+        return { seconds, minutes };
       },
 
-      seconds() {
-        return this.left % 60;
+      pause() {
+        const left = Math.floor(this.pauses / 1000);
+        const seconds = left % 60;
+        const minutes = (left - seconds) / 60;
+
+        return { seconds, minutes };
       },
 
-      minutes() {
-        return (this.left - this.seconds) / 60;
+      pauseClock() {
+        const zeroify = this.$options.filters.zeroify;
+        const minutes = this.pause.minutes;
+        const seconds = zeroify(this.pause.seconds);
+
+        if (minutes === 0) return seconds;
+        return `${minutes}:${seconds}`;
+      },
+
+      classes() {
+        return {
+          clock: {
+            'b-clock': true,
+            'b-clock--paused': this.paused,
+          },
+
+          minutes: {
+            'b-clock__minutes': true,
+          },
+
+          seconds: {
+            'b-clock__seconds': true,
+          },
+
+          pauses: {
+            'b-clock__pauses': true,
+            'b-clock__pauses--hidden': this.pauses === 0,
+            'b-clock__pauses--small': this.pause.minutes !== 0,
+          },
+        };
       },
     },
   };

@@ -1,19 +1,56 @@
 .b-clock {
   position: relative;
   display: inline-block;
+  transform: translateX(-2px);
+}
+
+.b-clock--paused {
+  .b-clock__pauses {
+    opacity: 0.8;
+  }
+
+  .b-clock__minutes {
+    opacity: 0.3;
+  }
+
+  .b-clock__seconds {
+    opacity: 0.2;
+  }
 }
 
 .b-clock__minutes {
+  transition: opacity 300ms;
   font-size: 4em;
   line-height: 1;
 }
 
 .b-clock__seconds {
+  transition: opacity 300ms;
   font-size: 1.2em;
   position: absolute;
   top: 5px;
-  right: -5px;
-  transform: translateX(100%);
+  right: -23px;
   line-height: 1;
-  color: #39b6ea;
+  opacity: 0.6;
+}
+
+.b-clock__pauses {
+  transition: opacity 300ms, transform 300ms, bottom 300ms;
+  font-size: 1.2em;
+  color: #ff9451;
+  position: absolute;
+  opacity: 0.3;
+  white-space: nowrap;
+  bottom: 6px;
+  left: 100%;
+  transform: translateX(5px);
+}
+
+.b-clock__pauses--hidden {
+  opacity: 0;
+}
+
+.b-clock__pauses--small {
+  transform: translateX(0) scale(0.75);
+  bottom: 5px;
 }

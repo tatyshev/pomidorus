@@ -5,6 +5,7 @@
 @import './components/play.scss';
 @import './components/tabs.scss';
 @import './components/controls.scss';
+@import './components/pauses.scss';
 
 html {
   box-sizing: border-box;
@@ -23,5 +24,6 @@ body {
   background: #323949;
   color: #f5f5f5;
   font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 300;
   font-size: 16px;
 }

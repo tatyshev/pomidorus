@@ -105,11 +105,29 @@ export default class Focus {
   }
 
   get elapsed() {
+    if (!this.current) return 0;
+    return this.current.elapsed;
+  }
+
+  get pauses() {
+    if (!this.current) return 0;
+    return this.current.pauses;
+  }
+
+  get interval() {
     if (!this.current) {
       return 0;
     }
 
-    return this.current.elapsed;
+    return this.current.interval;
+  }
+
+  get duration() {
+    if (!this.current) {
+      return 0;
+    }
+
+    return this.current.duration;
   }
 
   get current() {

@@ -12,7 +12,7 @@
       Resume
     </button>
 
-    <button class="b-controls__button" @click="focus.reset()">
+    <button class="b-controls__button" @click="reset()">
       Reset
     </button>
   </div>
@@ -31,6 +31,13 @@
       focus: {
         type: Focus,
         required: true,
+      },
+    },
+
+    methods: {
+      reset() {
+        // eslint-disable-next-line no-alert
+        if (confirm('Are you sure?')) this.focus.reset();
       },
     },
   };

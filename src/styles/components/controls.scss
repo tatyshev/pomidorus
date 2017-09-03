@@ -17,6 +17,10 @@
   text-align: center;
   border-right-width: 0;
 
+  &:active {
+    background: rgba(#000, 0.09) !important;
+  }
+
   &:focus {
     outline: none;
   }

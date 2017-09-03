@@ -10,8 +10,9 @@
       </div>
 
       <div class="b-layout__body">
-        <process :value="focus.interval" :max="focus.duration"/>
         <clock :elapsed="focus.elapsed" :paused="focus.isPaused" :pauses="focus.pauses"/>
+        <process :value="focus.interval" :max="focus.duration"/>
+        <target :goal="focus.target" :completed="focus.completed.length"/>
       </div>
 
       <div class="b-layout__bottom">
@@ -26,12 +27,14 @@
   import Clock from './Clock';
   import Tabs from './Tabs';
   import Process from './Process';
+  import Target from './Target';
   import Controls from './Controls';
 
   export default {
     name: 'application',
 
     components: {
+      Target,
       Controls,
       Tabs,
       Process,

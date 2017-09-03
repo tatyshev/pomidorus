@@ -1,5 +1,5 @@
 <template>
-  <svg class="b-goal" :viewBox="viewBox">
+  <svg class="b-target" :viewBox="viewBox">
   </svg>
 </template>
 
@@ -7,14 +7,14 @@
   import * as d3 from 'd3';
 
   export default {
-    name: 'goal',
+    name: 'target',
 
     props: {
       goal: {
         type: Number,
         required: true,
       },
-      progress: {
+      completed: {
         type: Number,
         required: true,
       },
@@ -23,7 +23,7 @@
     data: () => ({
       width: 500,
       height: 500,
-      weight: 10,
+      weight: 3,
     }),
 
     mounted() {
@@ -45,7 +45,8 @@
       this.arc = d3.arc()
         .outerRadius(this.radius)
         .innerRadius(this.radius - this.weight)
-        .padAngle(0.03);
+        .padAngle(0.03)
+        .cornerRadius(this.weight);
 
       this.root
         .selectAll('path')
@@ -67,15 +68,19 @@
       },
 
       values() {
-        const progress = this.progress;
-        const goal = progress >= this.goal ? progress + 1 : this.goal;
+        const completed = this.completed;
+        const goal = completed >= this.goal ? completed + 1 : this.goal;
         const items = new Array(goal).fill();
 
         return items.map((item, index) => {
-          let color = '#3c4352';
+          let color = '#4f5560';
 
-          if (index < progress) {
-            color = index >= this.goal ? '#51a4f5' : '#f55e51';
+          if (index < completed) {
+            color = index >= this.goal ? '#51a4f5' : '#f15d2a';
+          }
+
+          if (index === completed) {
+            color = '#4f5560';
           }
 
           return {

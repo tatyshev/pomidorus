@@ -12,9 +12,9 @@ export default class Focus {
       target: 10,
       longAfter: 4,
       durations: {
-        [DEFAULT_TYPE]: 25 * 60 * 1000,
-        [SHORT_TYPE]: 5 * 60 * 1000,
-        [LONG_TYPE]: 15 * 60 * 1000,
+        [DEFAULT_TYPE]: 0.3 * 60 * 1000,
+        [SHORT_TYPE]: 0.3 * 60 * 1000,
+        [LONG_TYPE]: 0.3 * 60 * 1000,
       },
     };
   }
@@ -86,6 +86,10 @@ export default class Focus {
 
   get items() {
     return this.state.items;
+  }
+
+  get target() {
+    return this.state.target;
   }
 
   get completed() {

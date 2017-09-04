@@ -14,6 +14,7 @@ export default class Pomodoro {
 
   constructor(state = {}) {
     this.state = merge(Pomodoro.state, state);
+    this.time = Date.now();
     this.tick();
   }
 
@@ -82,7 +83,7 @@ export default class Pomodoro {
 
   get elapsed() {
     const value = this.duration - this.interval;
-    return value;
+    return value > 0 ? value : 0;
   }
 
   get finished() {

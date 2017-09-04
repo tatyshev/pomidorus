@@ -68,6 +68,8 @@
           .attr('d', this.arc)
           .style('fill', d => d.data.color)
           .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
+
+      document.addEventListener('visibilitychange', () => { this.update(); });
     },
 
     computed: {
@@ -102,10 +104,16 @@
     },
 
     watch: {
-      values(v) {
+      values() {
+        this.update();
+      },
+    },
+
+    methods: {
+      update() {
         const all = this.root
           .selectAll('path')
-          .data(this.pie(v));
+          .data(this.pie(this.values));
 
         const recent = all
           .enter()

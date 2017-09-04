@@ -9,12 +9,12 @@ export default class Focus {
   static get state() {
     return {
       items: [],
-      target: 10,
+      target: 2,
       longAfter: 4,
       durations: {
         [DEFAULT_TYPE]: 0.1 * 60 * 1000,
         [SHORT_TYPE]: 0.1 * 60 * 1000,
-        [LONG_TYPE]: 0.1 * 60 * 1000,
+        [LONG_TYPE]: 1 * 60 * 1000,
       },
     };
   }
@@ -43,7 +43,7 @@ export default class Focus {
     let type;
     let duration;
 
-    if (this.isBreak || this.isEmpty) {
+    if (this.isEmpty || this.isShort || this.isLong) {
       type = DEFAULT_TYPE;
       duration = this.durations[DEFAULT_TYPE];
     }
@@ -127,10 +127,7 @@ export default class Focus {
   }
 
   get duration() {
-    if (!this.current) {
-      return 0;
-    }
-
+    if (!this.current) return 0;
     return this.current.duration;
   }
 
@@ -142,7 +139,7 @@ export default class Focus {
     return this.current && this.current.type === DEFAULT_TYPE;
   }
 
-  get isBreak() {
+  get isShort() {
     return this.current && this.current.type === SHORT_TYPE;
   }
 

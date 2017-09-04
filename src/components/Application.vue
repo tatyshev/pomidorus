@@ -10,9 +10,20 @@
       </div>
 
       <div class="b-layout__body">
-        <clock :elapsed="focus.elapsed" :paused="focus.isPaused" :pauses="focus.pauses"/>
-        <process :value="focus.interval" :max="focus.duration"/>
-        <target :goal="focus.target" :completed="focus.completed.length"/>
+        <clock
+          :elapsed="focus.elapsed"
+          :paused="focus.isPaused"
+          :pauses="focus.pauses"/>
+
+        <process
+          :value="focus.interval"
+          :max="focus.duration"
+          :color-foreground="colors.process.foreground"
+          :color-background="colors.process.background"/>
+
+        <target
+          :goal="focus.target"
+          :completed="focus.completed.length"/>
       </div>
 
       <div class="b-layout__bottom">
@@ -44,6 +55,20 @@
     data: () => ({
       focus: new Focus(),
     }),
+
+    computed: {
+      colors() {
+        const isShort = this.focus.isShort;
+        const isLong = this.focus.isLong;
+
+        return {
+          process: {
+            background: 'rgba(255, 255, 255, 0.15)',
+            foreground: (isLong || isShort) ? '#97ce28' : '#39b6eb',
+          },
+        };
+      },
+    },
 
     mounted() {
       this.focus.start();

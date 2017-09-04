@@ -18,11 +18,11 @@
         type: Number,
         required: true,
       },
-      foreground: {
+      colorForeground: {
         type: String,
         default: 'rgba(255, 255, 255, 0.4)',
       },
-      background: {
+      colorBackground: {
         type: String,
         default: 'rgba(255, 255, 255, 0.1)',
       },
@@ -69,6 +69,8 @@
           .attr('d', this.arc)
           .style('fill', d => d.data.color)
           .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
+
+      document.addEventListener('visibilitychange', () => { this.update(); });
     },
 
     computed: {
@@ -84,21 +86,27 @@
         return [
           {
             value: this.value,
-            color: this.foreground,
+            color: this.colorForeground,
           },
           {
             value: (this.max - this.value) || 1,
-            color: this.background,
+            color: this.colorBackground,
           },
         ];
       },
     },
 
     watch: {
-      values(v) {
+      values() {
+        this.update();
+      },
+    },
+
+    methods: {
+      update() {
         this.root
           .selectAll('path')
-          .data(this.pie(v))
+          .data(this.pie(this.values))
           .transition()
           .duration(200)
           .attrTween('d', this.arcTween)

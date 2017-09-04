@@ -70,7 +70,7 @@
           .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
       document.addEventListener('visibilitychange', () => {
-        setTimeout(() => this.update(), 200);
+        setTimeout(() => this.update(), 300);
       });
     },
 

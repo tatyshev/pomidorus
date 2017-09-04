@@ -18,8 +18,14 @@
         type: Number,
         required: true,
       },
-      foreground: String,
-      background: String,
+      foreground: {
+        type: String,
+        default: 'rgba(255, 255, 255, 0.4)',
+      },
+      background: {
+        type: String,
+        default: 'rgba(255, 255, 255, 0.1)',
+      },
     },
 
     data: () => ({
@@ -78,11 +84,11 @@
         return [
           {
             value: this.value,
-            color: this.foreground || '#39b6ea',
+            color: this.foreground,
           },
           {
             value: (this.max - this.value) || 1,
-            color: this.background || '#4f5560',
+            color: this.background,
           },
         ];
       },

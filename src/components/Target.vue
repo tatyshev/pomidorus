@@ -18,6 +18,18 @@
         type: Number,
         required: true,
       },
+      colorBackground: {
+        type: String,
+        default: 'rgba(255, 255, 255, 0.1)',
+      },
+      colorCompleted: {
+        type: String,
+        default: 'rgba(255, 255, 255, 0.5)',
+      },
+      colorExtra: {
+        type: String,
+        default: 'rgba(255, 255, 255, 0.8)',
+      },
     },
 
     data: () => ({
@@ -73,14 +85,12 @@
         const items = new Array(goal).fill();
 
         return items.map((item, index) => {
-          let color = '#4f5560';
+          let color = this.colorBackground;
 
           if (index < completed) {
-            color = index >= this.goal ? '#51a4f5' : '#f15d2a';
-          }
-
-          if (index === completed) {
-            color = '#4f5560';
+            color = index >= this.goal
+              ? this.colorExtra
+              : this.colorCompleted;
           }
 
           return {

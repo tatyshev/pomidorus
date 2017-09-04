@@ -69,7 +69,9 @@
           .style('fill', d => d.data.color)
           .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
-      document.addEventListener('visibilitychange', () => { this.update(); });
+      document.addEventListener('visibilitychange', () => {
+        setTimeout(() => this.update(), 200);
+      });
     },
 
     computed: {

@@ -23,7 +23,10 @@
 
         <target
           :goal="focus.target"
-          :completed="focus.completed.length"/>
+          :completed="focus.completed.length"
+          :color-background="colors.target.background"
+          :color-completed="colors.target.completed"
+          :color-extra="colors.target.extra"/>
       </div>
 
       <div class="b-layout__bottom">
@@ -61,10 +64,17 @@
         const isShort = this.focus.isShort;
         const isLong = this.focus.isLong;
 
+        // '#39b6eb'
+
         return {
           process: {
             background: 'rgba(255, 255, 255, 0.15)',
-            foreground: (isLong || isShort) ? '#97ce28' : '#39b6eb',
+            foreground: (isLong || isShort) ? '#97ce28' : 'rgba(255, 255, 255, 0.7)',
+          },
+          target: {
+            background: 'rgba(255, 255, 255, 0.15)',
+            completed: '#39b6eb',
+            extra: 'rgba(229, 91, 48, 0.8)',
           },
         };
       },

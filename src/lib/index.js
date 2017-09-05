@@ -9,7 +9,7 @@ export default class Focus {
   static get state() {
     return {
       items: [],
-      target: 2,
+      target: 3,
       longAfter: 4,
       durations: {
         [DEFAULT_TYPE]: 0.1 * 60 * 1000,

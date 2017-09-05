@@ -31,7 +31,7 @@
     data: () => ({
       width: 500,
       height: 500,
-      weight: 3,
+      weight: 4,
     }),
 
     mounted() {

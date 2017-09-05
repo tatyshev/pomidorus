@@ -55,16 +55,16 @@
       Clock,
     },
 
-    data: () => ({
-      focus: new Focus(),
-    }),
+    data() {
+      return {
+        focus: new Focus(this.takeState()),
+      };
+    },
 
     computed: {
       colors() {
         const isShort = this.focus.isShort;
         const isLong = this.focus.isLong;
-
-        // '#39b6eb'
 
         return {
           process: {
@@ -80,8 +80,28 @@
       },
     },
 
+    watch: {
+      focus: {
+        handler() { this.saveState(); },
+        deep: true,
+      },
+    },
+
     mounted() {
       this.focus.start();
+    },
+
+    methods: {
+      saveState() {
+        const state = this.focus.toJson();
+        localStorage.setItem('state', JSON.stringify(state));
+      },
+
+      takeState() {
+        const state = localStorage.getItem('state');
+        if (state) return JSON.parse(state);
+        return {};
+      },
     },
   };
 </script>

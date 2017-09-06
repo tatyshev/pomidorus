@@ -68,7 +68,7 @@
 
         return {
           process: {
-            background: 'rgba(255, 255, 255, 0.15)',
+            background: 'transparent',
             foreground: (isLong || isShort) ? '#97ce28' : 'rgba(255, 255, 255, 0.7)',
           },
           target: {

@@ -58,7 +58,7 @@
       this.arc = d3.arc()
         .outerRadius(this.radius)
         .innerRadius(this.radius - this.weight)
-        .padAngle(0.01)
+        .padAngle(0)
         .cornerRadius(this.weight);
 
       this.root

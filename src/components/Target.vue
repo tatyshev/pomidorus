@@ -26,10 +26,6 @@
         type: String,
         default: 'rgba(255, 255, 255, 0.5)',
       },
-      colorExtra: {
-        type: String,
-        default: 'rgba(255, 255, 255, 0.8)',
-      },
     },
 
     data: () => ({
@@ -67,6 +63,7 @@
           .append('path')
           .attr('d', this.arc)
           .style('fill', d => d.data.color)
+          .style('opacity', d => d.data.opacity)
           .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
       document.addEventListener('visibilitychange', () => {
@@ -87,18 +84,22 @@
         const completed = this.completed;
         const goal = completed >= this.goal ? completed + 1 : this.goal;
         const items = new Array(goal).fill();
+        let opacity = 1;
 
         return items.map((item, index) => {
           let color = this.colorBackground;
 
           if (index < completed) {
-            color = index >= this.goal
-              ? this.colorExtra
-              : this.colorCompleted;
+            color = this.colorCompleted;
+          }
+
+          if (completed > this.goal) {
+            opacity = index >= this.goal ? 1 : 0.4;
           }
 
           return {
             value: 1,
+            opacity,
             color,
           };
         });
@@ -127,14 +128,16 @@
           .transition()
           .duration(200)
           .attrTween('d', this.arcTween)
-          .style('fill', d => d.data.color);
+          .style('fill', d => d.data.color)
+          .style('opacity', d => d.data.opacity);
 
         recent
           .transition()
           .delay(200)
           .duration(400)
           .attrTween('d', this.arcTween)
-          .style('fill', d => d.data.color);
+          .style('fill', d => d.data.color)
+          .style('opacity', d => d.data.opacity);
       },
     },
   };

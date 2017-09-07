@@ -11,17 +11,12 @@
 </template>
 
 <script>
-  const ITEMS = [
-    { key: 'timer', text: 'Timer' },
-    { key: 'stats', text: 'Stats' },
-    { key: 'settings', text: 'Settings' },
-  ];
-
   export default {
     name: 'tabs',
 
+    props: ['items'],
+
     data: () => ({
-      items: ITEMS,
       current: null,
     }),
 

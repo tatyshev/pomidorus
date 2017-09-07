@@ -15,10 +15,6 @@
 .b-layout__body {
   position: relative;
   flex: 1 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 
   .b-process {
     position: absolute;
@@ -36,6 +32,77 @@
     width: 100%;
     height: 100%;
   }
+}
+
+.b-layout__body--timer {
+  .b-layout__tab--timer {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .b-layout__tab--stats {
+    transform: translateX(50%);
+  }
+
+  .b-layout__tab--settings {
+    transform: translateX(100%);
+  }
+}
+
+.b-layout__body--stats {
+  .b-layout__tab--timer {
+    transform: translateX(-50%);
+  }
+
+  .b-layout__tab--stats {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .b-layout__tab--settings {
+    transform: translateX(50%);
+  }
+}
+
+.b-layout__body--settings {
+  .b-layout__tab--timer {
+    transform: translateX(-100%);
+  }
+
+  .b-layout__tab--stats {
+    transform: translateX(-50%);
+  }
+
+  .b-layout__tab--settings {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.b-layout__tab {
+  transition: transform 300ms, opacity 200ms, visibility 200ms;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.b-layout__tab--timer {
+}
+
+.b-layout__tab--stats {
+}
+
+.b-layout__tab--settings {
 }
 
 .b-layout__bottom {

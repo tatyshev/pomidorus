@@ -6,26 +6,36 @@
   <div class="b-application">
     <div class="b-layout">
       <div class="b-layout__top">
-        <tabs/>
+        <tabs :items="tabs" @activated="handleTabActivated"/>
       </div>
 
-      <div class="b-layout__body">
-        <clock
-          :elapsed="focus.elapsed"
-          :paused="focus.isPaused"
-          :pauses="focus.pauses"/>
+      <div :class="classes.body">
+        <div class="b-layout__tab b-layout__tab--timer">
+          <clock
+            :elapsed="focus.elapsed"
+            :paused="focus.isPaused"
+            :pauses="focus.pauses"/>
 
-        <process
-          :value="focus.interval"
-          :max="focus.duration"
-          :color-foreground="colors.process.foreground"
-          :color-background="colors.process.background"/>
+          <process
+            :value="focus.interval"
+            :max="focus.duration"
+            :color-foreground="colors.process.foreground"
+            :color-background="colors.process.background"/>
 
-        <target
-          :goal="focus.target"
-          :completed="focus.completed.length"
-          :color-background="colors.target.background"
-          :color-completed="colors.target.completed"/>
+          <target
+            :goal="focus.target"
+            :completed="focus.completed.length"
+            :color-background="colors.target.background"
+            :color-completed="colors.target.completed"/>
+        </div>
+
+        <div class="b-layout__tab b-layout__tab--stats">
+          Stats
+        </div>
+
+        <div class="b-layout__tab b-layout__tab--settings">
+          Settings
+        </div>
       </div>
 
       <div class="b-layout__bottom">
@@ -43,6 +53,16 @@
   import Target from './Target';
   import Controls from './Controls';
 
+  const TABS_TIMER = 'timer';
+  const TABS_STATS = 'stats';
+  const TABS_SETTINGS = 'settings';
+
+  const TABS = [
+    { key: TABS_TIMER, text: 'Timer' },
+    { key: TABS_STATS, text: 'Stats' },
+    { key: TABS_SETTINGS, text: 'Settings' },
+  ];
+
   export default {
     name: 'application',
 
@@ -57,6 +77,8 @@
     data() {
       return {
         focus: new Focus(this.takeState()),
+        tabs: TABS,
+        tab: TABS_TIMER,
       };
     },
 
@@ -76,6 +98,17 @@
           },
         };
       },
+
+      classes() {
+        return {
+          body: {
+            'b-layout__body': true,
+            'b-layout__body--timer': this.tab === TABS_TIMER,
+            'b-layout__body--stats': this.tab === TABS_STATS,
+            'b-layout__body--settings': this.tab === TABS_SETTINGS,
+          },
+        };
+      },
     },
 
     mounted() {
@@ -84,6 +117,10 @@
     },
 
     methods: {
+      handleTabActivated(value) {
+        this.tab = value;
+      },
+
       saveState() {
         const state = this.focus.toJson();
         localStorage.setItem('state', JSON.stringify(state));

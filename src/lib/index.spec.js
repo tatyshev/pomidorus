@@ -115,6 +115,9 @@ describe('Focus', () => {
 
       const first = the.focus.items[0];
       const second = the.focus.items[1];
+      const spy = jasmine.createSpy('tickHandler');
+
+      the.focus.on('tick', spy);
 
       spyOn(first, 'tick');
       spyOn(second, 'tick');
@@ -123,6 +126,7 @@ describe('Focus', () => {
 
       expect(first.tick).toHaveBeenCalled();
       expect(second.tick).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalled();
     });
   });
 

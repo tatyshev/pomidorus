@@ -1,4 +1,5 @@
 import merge from 'deepmerge';
+import Events from 'events';
 import Pomodoro from './pomodoro';
 
 export const DEFAULT_TYPE = 'DEFAULT';
@@ -20,7 +21,11 @@ export default class Focus {
   }
 
   constructor(state = {}) {
+    const events = new Events();
+
     this.state = merge(Focus.state, state);
+    this.on = events.on;
+    this.emit = events.emit;
 
     if (!this.isEmpty) {
       this.state.items = this.items.map(item => new Pomodoro(item));
@@ -33,6 +38,7 @@ export default class Focus {
 
   tick() {
     this.items.forEach(item => item.tick());
+    this.emit('tick');
   }
 
   play() {

@@ -15,7 +15,7 @@ export default class Focus {
       durations: {
         [DEFAULT_TYPE]: 0.1 * 60 * 1000,
         [SHORT_TYPE]: 0.1 * 60 * 1000,
-        [LONG_TYPE]: 1 * 60 * 1000,
+        [LONG_TYPE]: 0.1 * 60 * 1000,
       },
     };
   }
@@ -38,7 +38,7 @@ export default class Focus {
 
   tick() {
     this.items.forEach(item => item.tick());
-    this.emit('tick');
+    if (this.isActive) this.emit('tick');
   }
 
   play() {

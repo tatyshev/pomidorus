@@ -78,15 +78,9 @@
       },
     },
 
-    watch: {
-      focus: {
-        handler() { this.saveState(); },
-        deep: true,
-      },
-    },
-
     mounted() {
       this.focus.start();
+      this.focus.on('tick', this.saveState);
     },
 
     methods: {

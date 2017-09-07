@@ -82,7 +82,8 @@
 }
 
 .b-layout__tab {
-  transition: transform 300ms, opacity 200ms, visibility 200ms;
+  transition: transform 400ms, opacity 200ms, visibility 200ms;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
   opacity: 0;
   visibility: hidden;
   position: absolute;

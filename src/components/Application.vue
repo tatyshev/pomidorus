@@ -11,30 +11,13 @@
 
       <div :class="classes.body">
         <div class="b-layout__tab b-layout__tab--timer">
-          <clock
-            :elapsed="focus.elapsed"
-            :paused="focus.isPaused"
-            :pauses="focus.pauses"/>
-
-          <process
-            :value="focus.interval"
-            :max="focus.duration"
-            :color-foreground="colors.process.foreground"
-            :color-background="colors.process.background"/>
-
-          <target
-            :goal="focus.target"
-            :completed="focus.completed.length"
-            :color-background="colors.target.background"
-            :color-completed="colors.target.completed"/>
+          <timer :focus="focus"/>
         </div>
 
         <div class="b-layout__tab b-layout__tab--stats">
-          Stats
         </div>
 
         <div class="b-layout__tab b-layout__tab--settings">
-          Settings
         </div>
       </div>
 
@@ -52,6 +35,7 @@
   import Process from './Process';
   import Target from './Target';
   import Controls from './Controls';
+  import Timer from './Timer';
 
   const TABS_TIMER = 'timer';
   const TABS_STATS = 'stats';
@@ -67,6 +51,7 @@
     name: 'application',
 
     components: {
+      Timer,
       Target,
       Controls,
       Tabs,
@@ -83,22 +68,6 @@
     },
 
     computed: {
-      colors() {
-        const isShort = this.focus.isShort;
-        const isLong = this.focus.isLong;
-
-        return {
-          process: {
-            background: 'transparent',
-            foreground: (isLong || isShort) ? '#97ce28' : '#e4582b',
-          },
-          target: {
-            background: 'rgba(255, 255, 255, 0.15)',
-            completed: '#39b6eb',
-          },
-        };
-      },
-
       classes() {
         return {
           body: {

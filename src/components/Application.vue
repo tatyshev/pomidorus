@@ -17,7 +17,8 @@
         <div class="b-layout__tab b-layout__tab--stats">
         </div>
 
-        <div class="b-layout__tab b-layout__tab--settings">
+        <div class="b-layout__tab b-layout__tab--settings" ref="settingsTab">
+          <settings :focus="focus" :settings="settings" ref="settings"/>
         </div>
       </div>
 
@@ -36,6 +37,7 @@
   import Target from './Target';
   import Controls from './Controls';
   import Timer from './Timer';
+  import Settings from './Settings';
 
   const TABS_TIMER = 'timer';
   const TABS_STATS = 'stats';
@@ -52,6 +54,7 @@
 
     components: {
       Timer,
+      Settings,
       Target,
       Controls,
       Tabs,
@@ -62,6 +65,7 @@
     data() {
       return {
         focus: new Focus(this.takeState()),
+        settings: {},
         tabs: TABS,
         tab: TABS_TIMER,
       };
@@ -83,11 +87,21 @@
     mounted() {
       this.focus.start();
       this.focus.on('tick', this.saveState);
+
+      this.$refs.settingsTab.addEventListener('transitionend', this.handleTransition);
+    },
+
+    destroyed() {
+      this.$refs.settingsTab.removeEventListener('transitionend', this.handleTransition);
     },
 
     methods: {
       handleTabActivated(value) {
         this.tab = value;
+      },
+
+      handleTransition() {
+        this.$refs.settings.refresh();
       },
 
       saveState() {

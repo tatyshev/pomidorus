@@ -33,7 +33,6 @@
     "events": "^1.1.1",
     "normalize.css": "^7.0.0",
     "vue": "^2.5.3",
-    "vue-slider-component": "^2.4.5",
-    "vuex": "^3.0.1"
+    "vue-slider-component": "^2.4.5"
   }
 }

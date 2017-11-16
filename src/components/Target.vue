@@ -60,11 +60,11 @@
         .selectAll('path')
         .data(this.pie(this.values))
         .enter()
-          .append('path')
-          .attr('d', this.arc)
-          .style('fill', d => d.data.color)
-          .style('opacity', d => d.data.opacity)
-          .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
+        .append('path')
+        .attr('d', this.arc)
+        .style('fill', d => d.data.color)
+        .style('opacity', d => d.data.opacity)
+        .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
       document.addEventListener('visibilitychange', () => {
         setTimeout(() => this.update(), 300);
@@ -81,7 +81,7 @@
       },
 
       values() {
-        const completed = this.completed;
+        const { completed } = this;
         const goal = completed >= this.goal ? completed + 1 : this.goal;
         const items = new Array(goal).fill();
         let opacity = 1;

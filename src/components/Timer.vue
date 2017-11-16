@@ -43,8 +43,7 @@
 
     computed: {
       colors() {
-        const isShort = this.focus.isShort;
-        const isLong = this.focus.isLong;
+        const { isShort, isLong } = this.focus;
 
         return {
           process: {

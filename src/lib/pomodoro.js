@@ -25,7 +25,7 @@ export default class Pomodoro {
   }
 
   pause() {
-    const pauses = this.state.pauses;
+    const { pauses } = this.state;
     const last = pauses[pauses.length - 1];
 
     if (last === undefined || last.end !== null) {
@@ -37,7 +37,7 @@ export default class Pomodoro {
   }
 
   unpause() {
-    const pauses = this.state.pauses;
+    const { pauses } = this.state;
     const last = pauses[pauses.length - 1];
 
     if (last !== undefined && last.end === null) {
@@ -60,7 +60,7 @@ export default class Pomodoro {
   }
 
   get paused() {
-    const pauses = this.state.pauses;
+    const { pauses } = this.state;
     const last = pauses[pauses.length - 1];
     return last !== undefined && last.end === null;
   }

@@ -1,32 +1,18 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   plugins: ['html'],
-  parserOptions: {
-    sourceType: 'module'
-  },
+  parser: 'babel-eslint',
+  extends: 'airbnb-base',
   env: {
     browser: true,
     jasmine: true,
   },
   globals: {
-    the: true,
-  },
-  extends: 'airbnb-base',
-  'settings': {
-    'import/resolver': {
-      'webpack': {
-        'config': 'build/webpack.base.conf.js'
-      }
-    }
+    given: true,
   },
   'rules': {
-    'import/extensions': ['error', 'always', {
-      'js': 'never',
-      'vue': 'never'
-    }],
+    'import/no-unresolved': [0],
+    'import/extensions': [0],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
-}
+};

@@ -42,8 +42,8 @@
       },
 
       pauseClock() {
-        const zeroify = this.$options.filters.zeroify;
-        const minutes = this.pause.minutes;
+        const { zeroify } = this.$options.filters;
+        const { minutes } = this.pause;
         const seconds = zeroify(this.pause.seconds);
 
         if (minutes === 0) return seconds;

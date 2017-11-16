@@ -19,14 +19,11 @@
 </template>
 
 <script>
-  import Focus from '../lib/index';
-  import Icon from './Icon';
+  /* eslint no-restricted-globals: 0 */
+
+  import Focus from '@/lib/index';
 
   export default {
-    components: {
-      Icon,
-    },
-
     props: {
       focus: {
         type: Focus,

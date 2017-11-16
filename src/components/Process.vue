@@ -65,10 +65,10 @@
         .selectAll('path')
         .data(this.pie(this.values))
         .enter()
-          .append('path')
-          .attr('d', this.arc)
-          .style('fill', d => d.data.color)
-          .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
+        .append('path')
+        .attr('d', this.arc)
+        .style('fill', d => d.data.color)
+        .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
       document.addEventListener('visibilitychange', () => {
         setTimeout(() => this.update(), 300);

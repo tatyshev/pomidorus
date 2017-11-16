@@ -1,13 +1,13 @@
 import Focus, { DEFAULT_TYPE, SHORT_TYPE, LONG_TYPE } from './index';
 import Pomodoro from './pomodoro';
 
-the('input', () => ({}));
-the('focus', () => new Focus(the.input));
+given('input', () => ({}));
+given('focus', () => new Focus(given.input));
 
 describe('Focus', () => {
   describe('.constructor()', () => {
     it('should set default initial state', () => {
-      expect(the.focus.state).toEqual(Focus.state);
+      expect(given.focus.state).toEqual(Focus.state);
     });
 
     it('should set initial state', () => {
@@ -18,50 +18,50 @@ describe('Focus', () => {
         durations: { DEFAULT: 3, SHORT: 4, LONG: 5 },
       };
 
-      the('input', () => custom);
-      expect(the.focus.state).toEqual(custom);
+      given('input', () => custom);
+      expect(given.focus.state).toEqual(custom);
     });
 
     it('should wrap all items with Pomodoro', () => {
-      the('input', () => ({ items: [{}, {}] }));
+      given('input', () => ({ items: [{}, {}] }));
       const isPomodoro = item => item instanceof Pomodoro;
-      expect(the.focus.items.map(isPomodoro)).toEqual([true, true]);
+      expect(given.focus.items.map(isPomodoro)).toEqual([true, true]);
     });
   });
 
   describe('.play()', () => {
     describe('when items is empty', () => {
       it('should add first pomodoro', () => {
-        expect(the.focus.items.length).toBe(0);
-        the.focus.play();
-        expect(the.focus.items.length).toBe(1);
+        expect(given.focus.items.length).toBe(0);
+        given.focus.play();
+        expect(given.focus.items.length).toBe(1);
       });
     });
 
     describe('when items is not empty', () => {
-      the('input', () => ({ items: the.items }));
+      given('input', () => ({ items: given.items }));
 
       describe('when current is work', () => {
-        the('items', () => [{ type: DEFAULT_TYPE }]);
+        given('items', () => [{ type: DEFAULT_TYPE }]);
 
         it('should add "work" pomodoro', () => {
-          const items = the.focus.items;
-          the.focus.play();
+          const { items } = given.focus;
+          given.focus.play();
 
           expect(items.length).toBe(2);
-          expect(the.focus.current.type).toBe(SHORT_TYPE);
+          expect(given.focus.current.type).toBe(SHORT_TYPE);
         });
       });
 
       describe('when current is break', () => {
-        the('items', () => [
+        given('items', () => [
           { type: DEFAULT_TYPE },
           { type: SHORT_TYPE },
         ]);
 
         it('should add "break" pomodoro', () => {
-          const items = the.focus.items;
-          the.focus.play();
+          const { items } = given.focus;
+          given.focus.play();
 
           expect(items.length).toBe(3);
           expect(items[items.length - 1].type).toBe(DEFAULT_TYPE);
@@ -69,7 +69,7 @@ describe('Focus', () => {
       });
 
       describe('when time to long break', () => {
-        the('input', () => ({
+        given('input', () => ({
           longAfter: 2,
           items: [
             { type: DEFAULT_TYPE, duration: 0 },
@@ -79,18 +79,18 @@ describe('Focus', () => {
         }));
 
         it('should add long break', () => {
-          the.focus.play();
-          expect(the.focus.current.type).toBe(LONG_TYPE);
+          given.focus.play();
+          expect(given.focus.current.type).toBe(LONG_TYPE);
         });
       });
 
       describe('when current is active', () => {
-        the('items', () => [{ duration: 5 }]);
+        given('items', () => [{ duration: 5 }]);
 
         it('should not add new items', () => {
-          expect(the.focus.items.length).toBe(1);
-          the.focus.play();
-          expect(the.focus.items.length).toBe(1);
+          expect(given.focus.items.length).toBe(1);
+          given.focus.play();
+          expect(given.focus.items.length).toBe(1);
         });
       });
     });
@@ -101,9 +101,9 @@ describe('Focus', () => {
       const tick = () => {};
 
       spyOn(window, 'setInterval');
-      spyOn(the.focus.tick, 'bind').and.returnValue(tick);
+      spyOn(given.focus.tick, 'bind').and.returnValue(tick);
 
-      the.focus.start();
+      given.focus.start();
 
       expect(window.setInterval).toHaveBeenCalledWith(tick, 1000);
     });
@@ -111,69 +111,65 @@ describe('Focus', () => {
 
   describe('.tick()', () => {
     it('should call "tick" on each item', () => {
-      the('input', () => ({ items: [{}, {}] }));
+      given('input', () => ({ items: [{}, {}] }));
 
-      const first = the.focus.items[0];
-      const second = the.focus.items[1];
-      const spy = jasmine.createSpy('tickHandler');
-
-      the.focus.on('tick', spy);
+      const first = given.focus.items[0];
+      const second = given.focus.items[1];
 
       spyOn(first, 'tick');
       spyOn(second, 'tick');
 
-      the.focus.tick();
+      given.focus.tick();
 
       expect(first.tick).toHaveBeenCalled();
       expect(second.tick).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalled();
     });
   });
 
   describe('.pause()', () => {
     it('should call pause on current item', () => {
-      the('input', () => ({ items: [{}] }));
-      spyOn(the.focus.current, 'pause');
+      given('input', () => ({ items: [{}] }));
+      spyOn(given.focus.current, 'pause');
 
-      the.focus.pause();
-      expect(the.focus.current.pause).toHaveBeenCalled();
+      given.focus.pause();
+      expect(given.focus.current.pause).toHaveBeenCalled();
     });
   });
 
   describe('.unpause()', () => {
     it('should call pause on current item', () => {
-      the('input', () => ({ items: [{}] }));
-      spyOn(the.focus.current, 'unpause');
+      given('input', () => ({ items: [{}] }));
+      spyOn(given.focus.current, 'unpause');
 
-      the.focus.unpause();
-      expect(the.focus.current.unpause).toHaveBeenCalled();
+      given.focus.unpause();
+      expect(given.focus.current.unpause).toHaveBeenCalled();
     });
   });
 
   describe('.reset()', () => {
     describe('when current is active', () => {
-      the('input', () => ({ items: [{}, { duration: 1 }] }));
+      given('input', () => ({ items: [{}, { duration: 1 }] }));
 
       it('should remove last element', () => {
-        expect(the.focus.items.length).toBe(2);
-        the.focus.reset();
-        expect(the.focus.items.length).toBe(1);
+        expect(given.focus.items.length).toBe(2);
+        given.focus.reset();
+        expect(given.focus.items.length).toBe(1);
       });
     });
 
     describe('when current is not active', () => {
-      the('input', () => ({ items: [{}] }));
+      given('input', () => ({ items: [{}] }));
 
       it('should not do anything', () => {
-        expect(the.focus.items.length).toBe(1);
-        the.focus.reset();
-        expect(the.focus.items.length).toBe(1);
+        expect(given.focus.items.length).toBe(1);
+        given.focus.reset();
+        expect(given.focus.items.length).toBe(1);
       });
     });
   });
 
   describe('.toJson()', () => {
-    the('input', () => ({
+    given('input', () => ({
       items: [
         { createdAt: 1, type: 'one', duration: 1, pauses: [] },
         { createdAt: 2, type: 'two', duration: 2, pauses: [] },
@@ -188,48 +184,48 @@ describe('Focus', () => {
     }));
 
     it('should return state as json', () => {
-      expect(the.focus.toJson()).toEqual(the.input);
+      expect(given.focus.toJson()).toEqual(given.input);
     });
   });
 
   describe('.isTimeToLong', () => {
-    the('input', () => ({ longAfter: 4 }));
-    the('length', () => 0);
-    the('completed', () => ({ length: the.length }));
+    given('input', () => ({ longAfter: 4 }));
+    given('length', () => 0);
+    given('completed', () => ({ length: given.length }));
 
     beforeEach(() => {
-      spyOnProperty(the.focus, 'completed', 'get').and.callFake(() => the.completed);
+      spyOnProperty(given.focus, 'completed', 'get').and.callFake(() => given.completed);
     });
 
     describe('when completed is equal', () => {
-      the('length', () => 4);
+      given('length', () => 4);
 
       it('should return "true"', () => {
-        expect(the.focus.isTimeToLong).toBe(true);
+        expect(given.focus.isTimeToLong).toBe(true);
       });
     });
 
     describe('when completed is enough', () => {
-      the('length', () => 12);
+      given('length', () => 12);
 
       it('should return "true"', () => {
-        expect(the.focus.isTimeToLong).toBe(true);
+        expect(given.focus.isTimeToLong).toBe(true);
       });
     });
 
     describe('when completed is not enough', () => {
-      the('length', () => 3);
+      given('length', () => 3);
 
       it('should return "false"', () => {
-        expect(the.focus.isTimeToLong).toBe(false);
+        expect(given.focus.isTimeToLong).toBe(false);
       });
     });
 
     describe('when completed is not time', () => {
-      the('length', () => 5);
+      given('length', () => 5);
 
       it('should return "false"', () => {
-        expect(the.focus.isTimeToLong).toBe(false);
+        expect(given.focus.isTimeToLong).toBe(false);
       });
     });
   });

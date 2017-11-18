@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-@import './components/applicaiton.scss';
-@import './components/layout.scss';
-@import './components/process.scss';
-@import './components/clock.scss';
-@import './components/play.scss';
-@import './components/tabs.scss';
-@import './components/controls.scss';
-@import './components/pauses.scss';
-@import './components/timer.scss';
-@import './components/settings.scss';
+
+@import './components/applicaiton';
+@import './components/layout';
+@import './components/process';
+@import './components/clock';
+@import './components/play';
+@import './components/tabs';
+@import './components/controls';
+@import './components/pauses';
+@import './components/timer';
+@import './components/settings';
+@import './plugins';
 
 html {
   box-sizing: border-box;

@@ -18,7 +18,7 @@
         </div>
 
         <div class="b-layout__tab b-layout__tab--settings" ref="settingsTab">
-          <settings :focus="focus" :settings="settings" ref="settings"/>
+          <settings :focus="focus" ref="settings"/>
         </div>
       </div>
 

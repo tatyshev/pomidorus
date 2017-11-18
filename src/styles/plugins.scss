@@ -1,0 +1,21 @@
+.vue-slider-component {
+  // padding: 3px !important;
+
+  .vue-slider {
+    background: rgba(#fff, 0.1) !important;
+  }
+
+  .vue-slider-process {
+    background: #39b6eb;
+  }
+
+  .vue-slider-tooltip {
+    transform: translateY(7px);
+    background: transparent;
+    border: 0;
+
+    &:before {
+      border-top-color: transparent !important;
+    }
+  }
+}

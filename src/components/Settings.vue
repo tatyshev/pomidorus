@@ -1,6 +1,14 @@
 <template>
   <div class="b-settings">
-    <slider v-model="focus.state.target" :min="0" :max="20" :interval="1" ref="slider"/>
+    <slider
+      ref="slider"
+      v-model="focus.state.target"
+      :min="0"
+      :max="20"
+      :interval="1"
+      :height="3"
+      :dotSize="12"
+    />
   </div>
 </template>
 
@@ -16,9 +24,6 @@
     },
 
     props: {
-      settings: {
-        default: () => ({}),
-      },
       focus: {
         type: Focus,
         required: true,

@@ -25,7 +25,8 @@
     "node-sass": "^4.7.1",
     "poi": "^9.5.2",
     "poi-preset-karma": "^9.2.2",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "vue-template-compiler": "^2.5.5"
   },
   "dependencies": {
     "d3": "^4.11.0",

@@ -131,6 +131,8 @@
           .style('fill', d => d.data.color)
           .style('opacity', d => d.data.opacity);
 
+        all.exit().remove();
+
         recent
           .transition()
           .delay(200)

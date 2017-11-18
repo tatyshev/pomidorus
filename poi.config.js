@@ -8,19 +8,12 @@ module.exports = {
     browsers: ['jsdom'],
     reporters: ['spec', 'kjhtml'],
     proxies: {},
-    plugins: [
-      'karma-jsdom-launcher',
-      'karma-jasmine',
-      'karma-webpack',
-      'karma-spec-reporter',
-      'karma-jasmine-html-reporter',
-    ],
   },
   presets: [
     require('poi-preset-karma')({
       files: [
         './node_modules/given2/jasmine.js',
-        './karma.js'
+        './karma.js',
       ],
     }),
   ],

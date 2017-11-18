@@ -22,9 +22,9 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-jsdom-launcher": "^6.1.2",
     "karma-spec-reporter": "^0.0.31",
-    "node-sass": "^4.6.0",
-    "poi": "^9.5.1",
-    "poi-preset-karma": "^9.2.1",
+    "node-sass": "^4.7.1",
+    "poi": "^9.5.2",
+    "poi-preset-karma": "^9.2.2",
     "sass-loader": "^6.0.6"
   },
   "dependencies": {
@@ -32,7 +32,7 @@
     "deepmerge": "^2.0.1",
     "events": "^1.1.1",
     "normalize.css": "^7.0.0",
-    "vue": "^2.5.3",
+    "vue": "^2.5.5",
     "vue-slider-component": "^2.4.5"
   }
 }

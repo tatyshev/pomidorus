@@ -88,11 +88,11 @@
       this.focus.start();
       this.focus.on('tick', this.saveState);
 
-      this.$refs.settingsTab.addEventListener('transitionend', this.handleTransition);
+      this.$refs.settingsTab.addEventListener('transitionend', this.handleTransition, { passive: true });
     },
 
     destroyed() {
-      this.$refs.settingsTab.removeEventListener('transitionend', this.handleTransition);
+      this.$refs.settingsTab.removeEventListener('transitionend', this.handleTransition, { passive: true });
     },
 
     methods: {

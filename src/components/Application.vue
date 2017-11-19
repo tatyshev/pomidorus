@@ -86,9 +86,9 @@
 
     mounted() {
       this.focus.start();
-      this.focus.on('tick', this.saveState);
-
       this.$refs.settingsTab.addEventListener('transitionend', this.handleTransition, { passive: true });
+
+      this.$watch('focus.state', this.saveState, { deep: true });
     },
 
     destroyed() {

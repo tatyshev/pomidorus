@@ -6,6 +6,8 @@ export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
 export const LONG_TYPE = 'LONG';
 
+export const minutes = n => n * 60 * 1000;
+
 export default class Focus {
   static get state() {
     return {
@@ -13,9 +15,9 @@ export default class Focus {
       target: 10,
       longAfter: 4,
       durations: {
-        [DEFAULT_TYPE]: 0.1 * 60 * 1000,
-        [SHORT_TYPE]: 0.1 * 60 * 1000,
-        [LONG_TYPE]: 0.1 * 60 * 1000,
+        [DEFAULT_TYPE]: minutes(5),
+        [SHORT_TYPE]: minutes(2),
+        [LONG_TYPE]: minutes(5),
       },
     };
   }

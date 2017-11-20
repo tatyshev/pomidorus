@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { zeroify } from '@/lib/utils';
+
   export default {
     props: {
       elapsed: {
@@ -22,6 +24,10 @@
         type: Boolean,
         default: false,
       },
+    },
+
+    filters: {
+      zeroify,
     },
 
     computed: {
@@ -42,7 +48,6 @@
       },
 
       pauseClock() {
-        const { zeroify } = this.$options.filters;
         const { minutes } = this.pause;
         const seconds = zeroify(this.pause.seconds);
 

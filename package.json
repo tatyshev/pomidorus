@@ -34,6 +34,7 @@
     "events": "^1.1.1",
     "lory.js": "^2.3.4",
     "normalize.css": "^7.0.0",
+    "siema": "^1.4.6",
     "vue": "^2.5.5",
     "vue-slider-component": "^2.4.5"
   }

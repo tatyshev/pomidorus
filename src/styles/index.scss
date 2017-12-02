@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+// @import '~normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 
+@import './components/root';
 @import './components/applicaiton';
 @import './components/layout';
 @import './components/process';
@@ -28,7 +30,7 @@ html {
 body {
   background: #323949;
   color: #f5f5f5;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
   font-weight: 300;
   font-size: 16px;
 }

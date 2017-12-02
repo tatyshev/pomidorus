@@ -32,6 +32,7 @@
     "d3": "^4.11.0",
     "deepmerge": "^2.0.1",
     "events": "^1.1.1",
+    "lory.js": "^2.3.4",
     "normalize.css": "^7.0.0",
     "vue": "^2.5.5",
     "vue-slider-component": "^2.4.5"

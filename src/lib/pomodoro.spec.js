@@ -1,3 +1,4 @@
+import given from 'given2';
 import Pomodoro from './pomodoro';
 
 given('input', () => ({}));

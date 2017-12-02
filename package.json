@@ -16,7 +16,7 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-html": "^4.0.0",
     "eslint-plugin-import": "^2.8.0",
-    "given2": "^1.0.3",
+    "given2": "^2.1.0",
     "jsdom": "^11.3.0",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",

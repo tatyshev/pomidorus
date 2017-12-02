@@ -1,10 +1,11 @@
+import given from 'given2';
 import Focus, { DEFAULT_TYPE, SHORT_TYPE, LONG_TYPE } from './index';
 import Pomodoro from './pomodoro';
 
-given('input', () => ({}));
-given('focus', () => new Focus(given.input));
-
 describe('Focus', () => {
+  given('input', () => ({}));
+  given('focus', () => new Focus(given.input));
+
   describe('.constructor()', () => {
     it('should set default initial state', () => {
       expect(given.focus.state).toEqual(Focus.state);
@@ -190,15 +191,15 @@ describe('Focus', () => {
 
   describe('.isTimeToLong', () => {
     given('input', () => ({ longAfter: 4 }));
-    given('length', () => 0);
-    given('completed', () => ({ length: given.length }));
+    given('len', () => 0);
+    given('completed', () => ({ length: given.len }));
 
     beforeEach(() => {
       spyOnProperty(given.focus, 'completed', 'get').and.callFake(() => given.completed);
     });
 
     describe('when completed is equal', () => {
-      given('length', () => 4);
+      given('len', () => 4);
 
       it('should return "true"', () => {
         expect(given.focus.isTimeToLong).toBe(true);
@@ -206,7 +207,7 @@ describe('Focus', () => {
     });
 
     describe('when completed is enough', () => {
-      given('length', () => 12);
+      given('len', () => 12);
 
       it('should return "true"', () => {
         expect(given.focus.isTimeToLong).toBe(true);
@@ -214,7 +215,7 @@ describe('Focus', () => {
     });
 
     describe('when completed is not enough', () => {
-      given('length', () => 3);
+      given('len', () => 3);
 
       it('should return "false"', () => {
         expect(given.focus.isTimeToLong).toBe(false);
@@ -222,7 +223,7 @@ describe('Focus', () => {
     });
 
     describe('when completed is not time', () => {
-      given('length', () => 5);
+      given('len', () => 5);
 
       it('should return "false"', () => {
         expect(given.focus.isTimeToLong).toBe(false);

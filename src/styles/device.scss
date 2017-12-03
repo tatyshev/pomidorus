@@ -1,0 +1,75 @@
+$devices: (
+  mobile: 700px,
+  desktop: 1200px,
+  wide: 1800px,
+);
+
+@mixin device-between ($from: null, $until: null) {
+  $query: "screen";
+
+  @if type-of($from) == 'string' {
+    @if map-has-key($devices, $from) {
+      $from: map-get($devices, $from);
+    }
+
+    @else {
+      @error "Can not find device '#{$from}'";
+    }
+  }
+
+  @if type-of($until) == 'string' {
+    @if map-has-key($devices, $until) {
+      $until: map-get($devices, $until);
+    }
+
+    @else {
+      @error "Can not find device '#{$until}'";
+    }
+  }
+
+  @if ($from) {
+    $query: "#{$query} and (min-width: #{$from + 1})";
+  }
+
+  @if ($until) {
+    $query: "#{$query} and (max-width: #{$until - 1})";
+  }
+
+  @media #{$query} { @content; }
+}
+
+@mixin device-from($device) {
+  @include device-between($from: $device) { @content; }
+}
+
+@mixin device-until($device) {
+  @include device-between($until: $device) { @content; }
+}
+
+@mixin device-only($device) {
+  @if $device == mobile {
+    @include device-until(mobile) { @content; }
+  }
+
+  @else {
+    @if $device == tablet {
+      @include device-between(mobile, desktop) { @content; }
+    }
+
+    @else {
+      @if $device == desktop {
+        @include device-between(desktop, wide) { @content; }
+      }
+
+      @else {
+        @if $device == wide {
+          @include device-from(wide) { @content; }
+        }
+
+        @else {
+          @error "Can't build media query for \"#{$device}\" device";
+        }
+      }
+    }
+  }
+}

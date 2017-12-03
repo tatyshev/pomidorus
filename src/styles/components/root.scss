@@ -7,6 +7,9 @@
 
 .b-root__header {
   flex-grow: auto;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0 20px;
 }
 
 .b-root__body {
@@ -34,7 +37,8 @@
 }
 
 .b-root__section {
-  background: #000;
-  text-align: center;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

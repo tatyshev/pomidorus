@@ -104,6 +104,14 @@
       SHORT_TYPE,
     }),
 
+    mounted() {
+      document.addEventListener('transitionend', this.refresh, { passive: true });
+    },
+
+    destroyed() {
+      document.removeEventListener('transitionend', this.refresh);
+    },
+
     methods: {
       minutes,
 

@@ -1,29 +1,32 @@
-<style src="normalize.css"></style>
 <style src="@/styles/index.scss" lang="scss">
 </style>
 
 <template>
-  <div class="b-application">
-    <div class="b-layout">
-      <div class="b-layout__top">
-        <tabs :items="tabs" @activated="handleTabActivated"/>
-      </div>
+  <div class="b-root">
+    <div class="b-root__header">
+      <tbs :siema="siema" v-if="siema"/>
+    </div>
 
-      <div :class="classes.body">
-        <div class="b-layout__tab b-layout__tab--timer">
-          <timer :focus="focus"/>
+    <div class="b-root__body">
+      <div class="b-root__sections" ref="sections">
+        <div class="b-root__section">
+          <div class="b-root__wrapper b-root__wrapper--timer">
+            <timer :focus="focus"/>
+            <controls :focus="focus"/>
+          </div>
         </div>
 
-        <div class="b-layout__tab b-layout__tab--stats">
+        <div class="b-root__section">
+          <div class="b-root__wrapper b-root__wrapper--stats">
+            Stats
+          </div>
         </div>
 
-        <div class="b-layout__tab b-layout__tab--settings" ref="settingsTab">
-          <settings :focus="focus" ref="settings"/>
+        <div class="b-root__section">
+          <div class="b-root__wrapper b-root__wrapper--settings">
+            <settings :focus="focus" ref="settings"/>
+          </div>
         </div>
-      </div>
-
-      <div class="b-layout__bottom">
-        <controls :focus="focus"/>
       </div>
     </div>
   </div>
@@ -31,79 +34,47 @@
 
 <script>
   import Focus from '@/lib';
-  import Clock from './Clock';
-  import Tabs from './Tabs';
-  import Process from './Process';
-  import Target from './Target';
-  import Controls from './Controls';
+  import Siema from 'siema';
   import Timer from './Timer';
+  import Controls from './Controls';
   import Settings from './Settings';
-
-  const TABS_TIMER = 'timer';
-  const TABS_STATS = 'stats';
-  const TABS_SETTINGS = 'settings';
-
-  const TABS = [
-    { key: TABS_TIMER, text: 'Timer' },
-    { key: TABS_STATS, text: 'Stats' },
-    { key: TABS_SETTINGS, text: 'Settings' },
-  ];
+  import Tbs from './Tbs';
 
   export default {
-    name: 'application',
+    name: 'root',
 
     components: {
-      Timer,
-      Settings,
-      Target,
       Controls,
-      Tabs,
-      Process,
-      Clock,
+      Settings,
+      Timer,
+      Tbs,
+    },
+
+    filters: {
+      json(v) {
+        return JSON.stringify(v, null, 2);
+      },
     },
 
     data() {
       return {
         focus: new Focus(this.takeState()),
-        settings: {},
-        tabs: TABS,
-        tab: TABS_TIMER,
+        siema: null,
       };
-    },
-
-    computed: {
-      classes() {
-        return {
-          body: {
-            'b-layout__body': true,
-            'b-layout__body--timer': this.tab === TABS_TIMER,
-            'b-layout__body--stats': this.tab === TABS_STATS,
-            'b-layout__body--settings': this.tab === TABS_SETTINGS,
-          },
-        };
-      },
     },
 
     mounted() {
       this.focus.start();
-      this.$refs.settingsTab.addEventListener('transitionend', this.handleTransition, { passive: true });
+
+      this.siema = new Siema({
+        selector: this.$refs.sections,
+        draggable: true,
+      });
 
       this.$watch('focus.state', this.saveState, { deep: true });
     },
 
-    destroyed() {
-      this.$refs.settingsTab.removeEventListener('transitionend', this.handleTransition, { passive: true });
-    },
-
     methods: {
-      handleTabActivated(value) {
-        this.tab = value;
-      },
-
-      handleTransition() {
-        this.$refs.settings.refresh();
-      },
-
       saveState() {
         const state = this.focus.toJson();
         localStorage.setItem('state', JSON.stringify(state));

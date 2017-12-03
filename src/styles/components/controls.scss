@@ -1,5 +1,7 @@
 .b-controls {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
 }
 
 .b-controls__button {

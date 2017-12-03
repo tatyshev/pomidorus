@@ -1,11 +1,16 @@
 .b-timer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .b-process {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border: 15px solid transparent;
+    border: 58px solid transparent;
   }
 
   .b-target {
@@ -14,5 +19,6 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border: 45px solid transparent;
   }
 }

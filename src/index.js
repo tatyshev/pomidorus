@@ -1,9 +1,9 @@
 import Vue from 'vue';
-import Root from '@/components/Root';
+import Application from '@/components/Application';
 
 Vue.config.productionTip = false;
 
 export default new Vue({
   el: '#app',
-  render: h => h(Root),
+  render: h => h(Application),
 });

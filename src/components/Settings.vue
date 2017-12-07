@@ -12,6 +12,7 @@
           :formatter="(v) => v / 1000 / 60"
           :height="3"
           :dotSize="12"
+          :stop-propagation="true"
         />
       </div>
     </div>
@@ -28,6 +29,7 @@
           :formatter="(v) => v / 1000 / 60"
           :height="3"
           :dotSize="12"
+          :stop-propagation="true"
         />
       </div>
     </div>
@@ -44,6 +46,7 @@
           :formatter="(v) => v / 1000 / 60"
           :height="3"
           :dotSize="12"
+          :stop-propagation="true"
         />
       </div>
     </div>
@@ -59,6 +62,7 @@
           :interval="1"
           :height="3"
           :dotSize="12"
+          :stop-propagation="true"
         />
       </div>
     </div>
@@ -74,6 +78,7 @@
           :interval="1"
           :height="3"
           :dotSize="12"
+          :stop-propagation="true"
         />
       </div>
     </div>

@@ -69,6 +69,7 @@
       this.siema = new Siema({
         selector: this.$refs.sections,
         draggable: true,
+        stopPropagation: false,
       });
 
       this.$watch('focus.state', this.saveState, { deep: true });

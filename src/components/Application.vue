@@ -4,7 +4,7 @@
 <template>
   <div class="b-root">
     <div class="b-root__header">
-      <tbs :siema="siema" v-if="siema"/>
+      <tabs :siema="siema" v-if="siema"/>
     </div>
 
     <div class="b-root__body">
@@ -38,7 +38,7 @@
   import Timer from './Timer';
   import Controls from './Controls';
   import Settings from './Settings';
-  import Tbs from './Tbs';
+  import Tabs from './Tabs';
 
   export default {
     name: 'root',
@@ -47,7 +47,7 @@
       Controls,
       Settings,
       Timer,
-      Tbs,
+      Tabs,
     },
 
     filters: {

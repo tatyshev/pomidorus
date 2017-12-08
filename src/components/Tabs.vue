@@ -1,37 +1,27 @@
 <template>
   <ul class="b-tabs">
-    <li class="b-tabs__item"
-        v-for="item in items"
-        :key="item.key"
-        :class="active(item.key)"
-        @click="activate(item.key)">
-      {{ item.text }}
-    </li>
+    <li class="b-tabs__item" :class="active(0)" @click="goTo(0)">Timer</li>
+    <li class="b-tabs__item" :class="active(1)" @click="goTo(1)">Stats</li>
+    <li class="b-tabs__item" :class="active(2)" @click="goTo(2)">Settings</li>
   </ul>
 </template>
 
 <script>
   export default {
-    name: 'tabs',
-
-    props: ['items'],
-
-    data: () => ({
-      current: null,
-    }),
-
-    created() {
-      this.current = this.items[0].key;
-    },
+    name: 'Tabs',
+    props: ['siema'],
 
     methods: {
-      active(value) {
-        return this.current === value ? 'b-tabs__item--active' : undefined;
+      active(index) {
+        if (this.siema.currentSlide === index) {
+          return { 'b-tabs__item--active': true };
+        }
+
+        return {};
       },
 
-      activate(value) {
-        this.current = value;
-        this.$emit('activated', value);
+      goTo(index) {
+        this.siema.goTo(index);
       },
     },
   };

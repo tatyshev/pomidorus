@@ -33,7 +33,7 @@
     "deepmerge": "^2.0.1",
     "events": "^1.1.1",
     "normalize.css": "^7.0.0",
-    "siema": "tatyshev/siema#stop-propagation",
+    "siema": "tatyshev/siema",
     "vue": "^2.5.5",
     "vue-slider-component": "^2.4.5"
   }

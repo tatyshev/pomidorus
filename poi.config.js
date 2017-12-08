@@ -11,10 +11,7 @@ module.exports = {
   },
   presets: [
     require('poi-preset-karma')({
-      files: [
-        './node_modules/given2/jasmine.js',
-        './karma.js',
-      ],
+      files: ['./karma.js'],
     }),
   ],
 };

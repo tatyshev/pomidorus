@@ -14,8 +14,7 @@
     <target
       :goal="focus.target"
       :completed="focus.completed.length"
-      :color-background="colors.target.background"
-      :color-completed="colors.target.completed"/>
+    />
   </div>
 </template>
 
@@ -38,17 +37,6 @@
       focus: {
         type: Focus,
         required: true,
-      },
-    },
-
-    computed: {
-      colors() {
-        return {
-          target: {
-            background: 'rgba(255, 255, 255, 0.15)',
-            completed: '#39b6eb',
-          },
-        };
       },
     },
   };

@@ -18,14 +18,6 @@
         type: Number,
         required: true,
       },
-      colorBackground: {
-        type: String,
-        default: 'rgba(255, 255, 255, 0.1)',
-      },
-      colorCompleted: {
-        type: String,
-        default: 'rgba(255, 255, 255, 0.5)',
-      },
     },
 
     data: () => ({
@@ -62,8 +54,9 @@
         .enter()
         .append('path')
         .attr('d', this.arc)
-        .style('fill', d => d.data.color)
-        .style('opacity', d => d.data.opacity)
+        .classed('b-target__item', true)
+        .classed('b-target__item--finished', d => d.data.finished)
+        .classed('b-target__item--extra', d => d.data.extra)
         .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
       document.addEventListener('visibilitychange', () => {
@@ -84,23 +77,15 @@
         const { completed } = this;
         const goal = completed >= this.goal ? completed + 1 : this.goal;
         const items = new Array(goal).fill();
-        let opacity = 1;
 
         return items.map((item, index) => {
-          let color = this.colorBackground;
-
-          if (index < completed) {
-            color = this.colorCompleted;
-          }
-
-          if (completed > this.goal) {
-            opacity = index >= this.goal ? 1 : 0.4;
-          }
+          const finished = index < completed;
+          const extra = finished && (index >= this.goal);
 
           return {
             value: 1,
-            opacity,
-            color,
+            finished,
+            extra,
           };
         });
       },
@@ -116,7 +101,10 @@
       update() {
         const all = this.root
           .selectAll('path')
-          .data(this.pie(this.values));
+          .data(this.pie(this.values))
+          .classed('b-target__item', true)
+          .classed('b-target__item--finished', d => d.data.finished)
+          .classed('b-target__item--extra', d => d.data.extra);
 
         const recent = all
           .enter()
@@ -127,9 +115,7 @@
         all
           .transition()
           .duration(200)
-          .attrTween('d', this.arcTween)
-          .style('fill', d => d.data.color)
-          .style('opacity', d => d.data.opacity);
+          .attrTween('d', this.arcTween);
 
         all.exit().remove();
 
@@ -137,9 +123,7 @@
           .transition()
           .delay(200)
           .duration(400)
-          .attrTween('d', this.arcTween)
-          .style('fill', d => d.data.color)
-          .style('opacity', d => d.data.opacity);
+          .attrTween('d', this.arcTween);
       },
     },
   };

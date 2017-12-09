@@ -1,0 +1,11 @@
+.b-target__item {
+  fill: rgba(#fff, 0.15);
+}
+
+.b-target__item--finished {
+  fill: #39b6eb;
+}
+
+.b-target__item--extra {
+  fill: lighten(#39b6eb, 20%);
+}

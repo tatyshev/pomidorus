@@ -1,3 +1,8 @@
-.b-process {
-  // border: 2px solid #1b2027;
+.b-process__value {
+  transition: fill 200ms 200ms;
+  fill: #e4582b;
+}
+
+.b-process__bar  {
+  fill: transparent;
 }

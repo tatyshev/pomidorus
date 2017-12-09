@@ -1,24 +1,30 @@
-.b-root {
+.b-application {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.b-root__header {
+.b-application--break {
+  .b-process__value {
+    fill: #97ce28;
+  }
+}
+
+.b-application__header {
   flex-grow: auto;
   display: flex;
   justify-content: center;
   padding: 30px 0 20px;
 }
 
-.b-root__body {
+.b-application__body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.b-root__sections {
+.b-application__sections {
   position: relative;
   flex-grow: 1;
 
@@ -36,12 +42,12 @@
   }
 }
 
-.b-root__section {
+.b-application__section {
   width: 100%;
   display: flex;
 }
 
-.b-root__wrapper {
+.b-application__wrapper {
   position: relative;
   max-width: 600px;
   width: 100%;
@@ -50,7 +56,7 @@
   flex-direction: column;
 }
 
-.b-root__wrapper--timer {
+.b-application__wrapper--timer {
   .b-timer {
     flex-grow: 1;
   }

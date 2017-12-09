@@ -2,28 +2,28 @@
 </style>
 
 <template>
-  <div class="b-root">
-    <div class="b-root__header">
+  <div class="b-application" :class="classes.root">
+    <div class="b-application__header">
       <tabs :siema="siema" v-if="siema"/>
     </div>
 
-    <div class="b-root__body">
-      <div class="b-root__sections" ref="sections">
-        <div class="b-root__section">
-          <div class="b-root__wrapper b-root__wrapper--timer">
+    <div class="b-application__body">
+      <div class="b-application__sections" ref="sections">
+        <div class="b-application__section">
+          <div class="b-application__wrapper b-application__wrapper--timer">
             <timer :focus="focus"/>
             <controls :focus="focus"/>
           </div>
         </div>
 
-        <div class="b-root__section">
-          <div class="b-root__wrapper b-root__wrapper--stats">
+        <div class="b-application__section">
+          <div class="b-application__wrapper b-application__wrapper--stats">
             Stats
           </div>
         </div>
 
-        <div class="b-root__section">
-          <div class="b-root__wrapper b-root__wrapper--settings">
+        <div class="b-application__section">
+          <div class="b-application__wrapper b-application__wrapper--settings">
             <settings :focus="focus" ref="settings"/>
           </div>
         </div>
@@ -73,6 +73,20 @@
       });
 
       this.$watch('focus.state', this.saveState, { deep: true });
+    },
+
+    computed: {
+      classes() {
+        const { isShort, isLong } = this.focus;
+
+        return {
+          root: {
+            'b-application--break': (isShort || isLong),
+            'b-application--short': isShort,
+            'b-application--long': isLong,
+          },
+        };
+      },
     },
 
     methods: {

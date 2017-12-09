@@ -8,8 +8,8 @@
     <process
       :value="focus.interval"
       :max="focus.duration"
-      :color-foreground="colors.process.foreground"
-      :color-background="colors.process.background"/>
+      :is-break="focus.isLong || focus.isShort"
+    />
 
     <target
       :goal="focus.target"
@@ -43,13 +43,7 @@
 
     computed: {
       colors() {
-        const { isShort, isLong } = this.focus;
-
         return {
-          process: {
-            background: 'transparent',
-            foreground: (isLong || isShort) ? '#97ce28' : '#e4582b',
-          },
           target: {
             background: 'rgba(255, 255, 255, 0.15)',
             completed: '#39b6eb',

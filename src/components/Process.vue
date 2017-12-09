@@ -18,14 +18,6 @@
         type: Number,
         required: true,
       },
-      colorForeground: {
-        type: String,
-        default: 'rgba(255, 255, 255, 0.4)',
-      },
-      colorBackground: {
-        type: String,
-        default: 'rgba(255, 255, 255, 0.1)',
-      },
     },
 
     data: () => ({
@@ -53,12 +45,12 @@
       this.pie = d3
         .pie()
         .sort(null)
-        .value(d => d.value);
+        .value(d => d);
 
       this.arc = d3.arc()
         .outerRadius(this.radius)
         .innerRadius(this.radius - this.weight)
-        .padAngle(0)
+        .padAngle(0.03)
         .cornerRadius(this.weight);
 
       this.root
@@ -67,7 +59,8 @@
         .enter()
         .append('path')
         .attr('d', this.arc)
-        .style('fill', d => d.data.color)
+        .classed('b-process__value', d => d.index === 0)
+        .classed('b-process__bar', d => d.index !== 0)
         .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
       document.addEventListener('visibilitychange', () => {
@@ -86,14 +79,8 @@
 
       values() {
         return [
-          {
-            value: this.value,
-            color: this.colorForeground,
-          },
-          {
-            value: (this.max - this.value) || 1,
-            color: this.colorBackground,
-          },
+          this.value,
+          (this.max - this.value) || 1,
         ];
       },
     },

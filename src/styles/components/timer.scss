@@ -3,6 +3,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
 
   .b-process {
     position: absolute;

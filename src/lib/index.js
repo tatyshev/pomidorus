@@ -80,6 +80,10 @@ export default class Focus {
     }
   }
 
+  clear() {
+    this.state = Focus.state;
+  }
+
   toJson() {
     const state = { ...this.state };
 

@@ -109,7 +109,7 @@
         const recent = all
           .enter()
           .append('path')
-          .style('fill', 'transparent')
+          .classed('b-target__item', true)
           .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
         all

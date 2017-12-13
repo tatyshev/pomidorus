@@ -43,7 +43,7 @@
   white-space: nowrap;
   bottom: 6px;
   left: 100%;
-  transform: translateX(5px);
+  transform: translateX(8px);
 }
 
 .b-clock__pauses--hidden {
@@ -51,6 +51,6 @@
 }
 
 .b-clock__pauses--small {
-  transform: translateX(0) scale(0.75);
+  transform: translateX(3px) translateY(1px) scale(0.75);
   bottom: 5px;
 }

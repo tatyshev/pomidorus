@@ -11,6 +11,7 @@
   flex-grow: 1;
   flex-direction: column;
   max-height: 580px;
+  margin: 30px 0;
 }
 
 .b-application--break {
@@ -23,7 +24,7 @@
   flex-grow: auto;
   display: flex;
   justify-content: center;
-  padding: 30px 0 20px;
+  padding-bottom: 45px;
 }
 
 .b-application__body {

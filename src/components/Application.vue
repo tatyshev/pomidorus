@@ -3,28 +3,30 @@
 
 <template>
   <div class="b-application" :class="classes.root">
-    <div class="b-application__header">
-      <tabs :siema="siema" v-if="siema"/>
-    </div>
+    <div class="b-application__middle">
+      <div class="b-application__header">
+        <tabs :siema="siema" v-if="siema"/>
+      </div>
 
-    <div class="b-application__body">
-      <div class="b-application__sections" ref="sections">
-        <div class="b-application__section">
-          <div class="b-application__wrapper b-application__wrapper--timer">
-            <timer :focus="focus"/>
-            <controls :focus="focus"/>
+      <div class="b-application__body">
+        <div class="b-application__sections" ref="sections">
+          <div class="b-application__section">
+            <div class="b-application__wrapper b-application__wrapper--timer">
+              <timer :focus="focus"/>
+              <controls :focus="focus"/>
+            </div>
           </div>
-        </div>
 
-        <div class="b-application__section">
-          <div class="b-application__wrapper b-application__wrapper--stats">
-            Stats
+          <div class="b-application__section">
+            <div class="b-application__wrapper b-application__wrapper--stats">
+              Stats
+            </div>
           </div>
-        </div>
 
-        <div class="b-application__section">
-          <div class="b-application__wrapper b-application__wrapper--settings">
-            <settings :focus="focus" ref="settings"/>
+          <div class="b-application__section">
+            <div class="b-application__wrapper b-application__wrapper--settings">
+              <settings :focus="focus" ref="settings"/>
+            </div>
           </div>
         </div>
       </div>

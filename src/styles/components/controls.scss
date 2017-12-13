@@ -12,6 +12,7 @@
   margin: 0 35px;
   opacity: 0.25;
   position: relative;
+  cursor: pointer;
 
   &:after {
     transition: opacity 200ms, transform 200ms;

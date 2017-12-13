@@ -1,7 +1,7 @@
 <template>
   <div class="b-controls">
     <div class="b-controls__body">
-      <a href="#" class="b-controls__action" @click.prevent="clear">Clear</a>
+      <a class="b-controls__action" @click.prevent="clear">Clear</a>
 
       <button class="b-controls__button" v-if="!focus.isActive" @click="focus.play()">
         Start
@@ -15,7 +15,7 @@
         Resume
       </button>
 
-      <a href="#" class="b-controls__action" @click.prevent="reset">Reset</a>
+      <a class="b-controls__action" @click.prevent="reset">Reset</a>
     </div>
   </div>
 </template>

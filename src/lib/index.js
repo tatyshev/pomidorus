@@ -12,12 +12,14 @@ export default class Focus {
   static get state() {
     return {
       items: [],
-      target: 10,
-      longAfter: 4,
-      durations: {
-        [DEFAULT_TYPE]: minutes(5),
-        [SHORT_TYPE]: minutes(2),
-        [LONG_TYPE]: minutes(5),
+      options: {
+        target: 10,
+        longAfter: 4,
+        durations: {
+          [DEFAULT_TYPE]: minutes(5),
+          [SHORT_TYPE]: minutes(2),
+          [LONG_TYPE]: minutes(5),
+        },
       },
     };
   }
@@ -98,8 +100,12 @@ export default class Focus {
     return this.state.items;
   }
 
+  get options() {
+    return this.state.options;
+  }
+
   get target() {
-    return this.state.target;
+    return this.options.target;
   }
 
   get completed() {
@@ -107,11 +113,11 @@ export default class Focus {
   }
 
   get durations() {
-    return this.state.durations;
+    return this.options.durations;
   }
 
   get longAfter() {
-    return this.state.longAfter;
+    return this.options.longAfter;
   }
 
   get isTimeToLong() {

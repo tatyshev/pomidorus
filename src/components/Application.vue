@@ -25,7 +25,7 @@
 
           <div class="b-application__section">
             <div class="b-application__wrapper b-application__wrapper--settings">
-              <settings :focus="focus" ref="settings"/>
+              <settings :focus="focus" :options="focus.options" ref="settings"/>
             </div>
           </div>
         </div>

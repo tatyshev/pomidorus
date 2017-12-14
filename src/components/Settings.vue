@@ -5,7 +5,7 @@
       <div class="b-settings__control">
         <slider
           ref="default"
-          v-model="focus.state.durations[DEFAULT_TYPE]"
+          v-model="options.durations[DEFAULT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
@@ -22,7 +22,7 @@
       <div class="b-settings__control">
         <slider
           ref="short"
-          v-model="focus.state.durations[SHORT_TYPE]"
+          v-model="options.durations[SHORT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
@@ -39,7 +39,7 @@
       <div class="b-settings__control">
         <slider
           ref="long"
-          v-model="focus.state.durations[LONG_TYPE]"
+          v-model="options.durations[LONG_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
@@ -56,7 +56,7 @@
       <div class="b-settings__control">
         <slider
           ref="slider"
-          v-model="focus.state.target"
+          v-model="options.target"
           :min="0"
           :max="20"
           :interval="1"
@@ -72,7 +72,7 @@
       <div class="b-settings__control">
         <slider
           ref="longAfter"
-          v-model="focus.state.longAfter"
+          v-model="options.longAfter"
           :min="0"
           :max="20"
           :interval="1"
@@ -87,7 +87,7 @@
 
 <script>
   import Slider from 'vue-slider-component';
-  import Focus, { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE, minutes } from '@/lib';
+  import { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE, minutes } from '@/lib';
 
   export default {
     name: 'settings',
@@ -97,8 +97,8 @@
     },
 
     props: {
-      focus: {
-        type: Focus,
+      options: {
+        type: Object,
         required: true,
       },
     },

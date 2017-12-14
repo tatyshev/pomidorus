@@ -81,7 +81,7 @@ export default class Focus {
   }
 
   clear() {
-    this.state = Focus.state;
+    this.state.items = [];
   }
 
   toJson() {

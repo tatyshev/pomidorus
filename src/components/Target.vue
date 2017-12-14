@@ -4,7 +4,9 @@
 </template>
 
 <script>
-  import * as d3 from 'd3';
+  import { select } from 'd3-selection';
+  import { interpolate } from 'd3-interpolate';
+  import { pie, arc } from 'd3-shape';
 
   export default {
     name: 'target',
@@ -29,11 +31,11 @@
     mounted() {
       const self = this;
 
-      this.svg = d3.select(this.$el);
-      this.pie = d3.pie().sort(null).value(d => d.value);
+      this.svg = select(this.$el);
+      this.pie = pie().sort(null).value(d => d.value);
 
       this.arcTween = function (angle) { // eslint-disable-line func-names
-        const i = d3.interpolate(this.$angle, angle);
+        const i = interpolate(this.$angle, angle);
         this.$angle = i(0);
         return t => self.arc(i(t));
       };
@@ -42,7 +44,7 @@
         .append('g')
         .attr('transform', `translate(${this.width / 2}, ${this.height / 2})`);
 
-      this.arc = d3.arc()
+      this.arc = arc()
         .outerRadius(this.radius)
         .innerRadius(this.radius - this.weight)
         .padAngle(0.03)

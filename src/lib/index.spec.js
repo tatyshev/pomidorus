@@ -14,9 +14,11 @@ describe('Focus', () => {
     it('should set initial state', () => {
       const custom = {
         items: [],
-        target: 1,
-        longAfter: 2,
-        durations: { DEFAULT: 3, SHORT: 4, LONG: 5 },
+        options: {
+          target: 1,
+          longAfter: 2,
+          durations: { DEFAULT: 3, SHORT: 4, LONG: 5 },
+        },
       };
 
       given('input', () => custom);
@@ -71,12 +73,14 @@ describe('Focus', () => {
 
       describe('when time to long break', () => {
         given('input', () => ({
-          longAfter: 2,
           items: [
             { type: DEFAULT_TYPE, duration: 0 },
             { type: SHORT_TYPE, duration: 0 },
             { type: DEFAULT_TYPE, duration: 0 },
           ],
+          options: {
+            longAfter: 2,
+          },
         }));
 
         it('should add long break', () => {
@@ -175,12 +179,14 @@ describe('Focus', () => {
         { createdAt: 1, type: 'one', duration: 1, pauses: [] },
         { createdAt: 2, type: 'two', duration: 2, pauses: [] },
       ],
-      target: 5,
-      longAfter: 3,
-      durations: {
-        DEFAULT: 1,
-        SHORT: 2,
-        LONG: 3,
+      options: {
+        target: 5,
+        longAfter: 3,
+        durations: {
+          DEFAULT: 1,
+          SHORT: 2,
+          LONG: 3,
+        },
       },
     }));
 

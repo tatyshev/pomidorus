@@ -1,12 +1,11 @@
 import merge from 'deepmerge';
 import Events from 'events';
+import { minutes } from '@/lib/utils';
 import Pomodoro from './pomodoro';
 
 export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
 export const LONG_TYPE = 'LONG';
-
-export const minutes = n => n * 60 * 1000;
 
 export default class Focus {
   static get state() {

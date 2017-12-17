@@ -23,6 +23,11 @@ export default class Focus {
     };
   }
 
+  static load() {
+    const state = JSON.parse(localStorage.getItem('state'));
+    return new this(state || {});
+  }
+
   constructor(state = {}) {
     const events = new Events();
 
@@ -93,6 +98,11 @@ export default class Focus {
     }
 
     return state;
+  }
+
+  save() {
+    const state = this.toJson();
+    localStorage.setItem('state', JSON.stringify(state));
   }
 
   get items() {

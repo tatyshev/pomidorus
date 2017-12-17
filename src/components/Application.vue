@@ -60,7 +60,7 @@
 
     data() {
       return {
-        focus: new Focus(this.takeState()),
+        focus: Focus.load(),
         siema: null,
       };
     },
@@ -74,7 +74,7 @@
         stopPropagation: false,
       });
 
-      this.$watch('focus.state', this.saveState, { deep: true });
+      this.$watch('focus.state', () => this.focus.save(), { deep: true });
     },
 
     computed: {
@@ -88,19 +88,6 @@
             'b-application--long': isLong,
           },
         };
-      },
-    },
-
-    methods: {
-      saveState() {
-        const state = this.focus.toJson();
-        localStorage.setItem('state', JSON.stringify(state));
-      },
-
-      takeState() {
-        const state = localStorage.getItem('state');
-        if (state) return JSON.parse(state);
-        return {};
       },
     },
   };

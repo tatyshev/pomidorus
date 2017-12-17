@@ -87,7 +87,8 @@
 
 <script>
   import Slider from 'vue-slider-component';
-  import { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE, minutes } from '@/lib';
+  import { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE } from '@/lib';
+  import { minutes } from '@/lib/utils';
 
   export default {
     name: 'settings',

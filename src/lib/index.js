@@ -26,8 +26,7 @@ export default class Focus {
   static load() {
     const t = today();
     const options = JSON.parse(localStorage.getItem('options')) || {};
-    const states = JSON.parse(localStorage.getItem('states')) || {};
-    const items = states[t] || [];
+    const items = JSON.parse(localStorage.getItem(t)) || [];
 
     return new this({ items, options });
   }
@@ -108,12 +107,9 @@ export default class Focus {
   save() {
     const t = today();
     const state = this.toJson();
-    const states = JSON.parse(localStorage.getItem('states')) || {};
 
-    states[t] = state.items;
-
-    localStorage.setItem('states', JSON.stringify(states));
-    localStorage.setItem('options', JSON.stringify(this.state.options));
+    localStorage.setItem(t, JSON.stringify(state.items));
+    localStorage.setItem('options', JSON.stringify(state.options));
   }
 
   get items() {

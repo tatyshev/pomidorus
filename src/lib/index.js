@@ -1,7 +1,7 @@
 import merge from 'deepmerge';
 import Events from 'events';
 import { minutes, today } from '@/lib/utils';
-import Pomodoro from './pomodoro';
+import Pomodoro from '@/lib/pomodoro';
 
 export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
@@ -26,7 +26,10 @@ export default class Focus {
   static load() {
     const t = today();
     const options = JSON.parse(localStorage.getItem('options')) || {};
-    const items = JSON.parse(localStorage.getItem(t)) || [];
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+    const items = sessions[t] || (sessions[t] = []);
+
+    localStorage.setItem('sessions', JSON.stringify(sessions));
 
     return new this({ items, options });
   }
@@ -106,9 +109,15 @@ export default class Focus {
 
   save() {
     const t = today();
-    const state = this.toJson();
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+    const current = sessions[t];
 
-    localStorage.setItem(t, JSON.stringify(state.items));
+    if (!current) this.clear();
+
+    const state = this.toJson();
+    sessions[t] = state.items;
+
+    localStorage.setItem('sessions', JSON.stringify(sessions));
     localStorage.setItem('options', JSON.stringify(state.options));
   }
 

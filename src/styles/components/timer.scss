@@ -1,6 +1,7 @@
 .b-timer {
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-left: 25px solid transparent;

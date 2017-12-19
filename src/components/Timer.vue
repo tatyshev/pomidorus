@@ -11,6 +11,8 @@
       :is-break="focus.isLong || focus.isShort"
     />
 
+    <heatmap :stats="stats"/>
+
     <target
       :goal="focus.target"
       :completed="focus.completed.length"
@@ -19,10 +21,11 @@
 </template>
 
 <script>
-  import Focus from '../lib/index';
+  import Focus from '@/lib/index';
   import Clock from './Clock';
   import Process from './Process';
   import Target from './Target';
+  import Heatmap from './Heatmap';
 
   export default {
     name: 'timer',
@@ -31,6 +34,7 @@
       Process,
       Target,
       Clock,
+      Heatmap,
     },
 
     props: {
@@ -38,6 +42,18 @@
         type: Focus,
         required: true,
       },
+    },
+
+    data: () => ({
+      stats: [],
+    }),
+
+    mounted() {
+      this.stats = Focus.stats();
+
+      this.focus.on('update', () => {
+        this.stats = Focus.stats();
+      });
     },
   };
 </script>

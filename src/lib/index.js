@@ -34,6 +34,19 @@ export default class Focus {
     return new this({ items, options });
   }
 
+  static stats() {
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
+    const keys = Object.keys(sessions);
+    const stats = {};
+
+    keys.forEach((key) => {
+      const focus = new this({ items: sessions[key] });
+      stats[key] = focus.completed.length;
+    });
+
+    return stats;
+  }
+
   constructor(state = {}) {
     const events = new Events();
 
@@ -73,6 +86,7 @@ export default class Focus {
     }
 
     this.items.push(new Pomodoro({ type, duration }));
+    this.emit('update');
   }
 
   pause() {
@@ -90,11 +104,13 @@ export default class Focus {
   reset() {
     if (this.isActive) {
       this.items.pop();
+      this.emit('update');
     }
   }
 
   clear() {
     this.state.items = [];
+    this.emit('update');
   }
 
   toJson() {

@@ -22,9 +22,10 @@
       values() {
         const now = Date.now();
 
-        return array(42).map((_, i) => {
+        return array(30).map((_, i) => {
           const day = dayMonthYear(now - days(i));
           const value = this.stats[day] || 0;
+
           return { day, value };
         });
       },

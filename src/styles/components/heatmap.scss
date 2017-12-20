@@ -1,16 +1,17 @@
 $columns: 14;
-$size: 10px;
+$size: 7px;
 
 .b-heatmap {
   transform: translateY(30px);
   display: flex;
   flex-wrap: wrap;
-  width: ($size * $columns) + ($columns * 4px);
+  width: ($size * $columns) + ($columns * 6px);
 }
 
 .b-heatmap__box {
   width: $size;
   height: $size;
-  margin: 2px;
-  border-radius: 3px;
+  margin: 3px;
+  background: rgba(#fff, 0.1);
+  border-radius: 50%;
 }

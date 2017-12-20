@@ -23,7 +23,7 @@
         const now = Date.now();
 
         return array(42).map((_, i) => {
-          const day = dayMonthYear(now - days(i + 1));
+          const day = dayMonthYear(now - days(i));
           const value = this.stats[day] || 0;
           return { day, value };
         });
@@ -36,7 +36,7 @@
 
       color() {
         return scaleLinear()
-          .range(['#d8e6e7', '#218380'])
+          .range(['#4c525f', '#97ce28'])
           .domain([0, this.max]);
       },
     },

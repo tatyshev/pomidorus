@@ -176,8 +176,12 @@ describe('Focus', () => {
   describe('.toJson()', () => {
     given('input', () => ({
       items: [
-        { createdAt: 1, type: 'one', duration: 1, pauses: [] },
-        { createdAt: 2, type: 'two', duration: 2, pauses: [] },
+        {
+          createdAt: 1, type: 'one', duration: 1, pauses: [],
+        },
+        {
+          createdAt: 2, type: 'two', duration: 2, pauses: [],
+        },
       ],
       options: {
         target: 5,
@@ -234,6 +238,24 @@ describe('Focus', () => {
       it('should return "false"', () => {
         expect(given.focus.isTimeToLong).toBe(false);
       });
+    });
+  });
+
+  describe('.time', () => {
+    given('input', () => ({
+      items: [
+        { createdAt: 10, duration: 10, type: DEFAULT_TYPE },
+        { createdAt: 20, duration: 10, type: DEFAULT_TYPE },
+      ],
+    }));
+
+    it('should return total work time', () => {
+      const [first, second] = given.focus.items;
+
+      first.time = 20;
+      second.time = 40;
+
+      expect(given.focus.time).toBe(20);
     });
   });
 });

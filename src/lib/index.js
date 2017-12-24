@@ -155,6 +155,10 @@ export default class Focus {
     return this.items.filter(item => item.type === DEFAULT_TYPE && item.finished);
   }
 
+  get time() {
+    return this.completed.reduce((time, p) => time + p.duration, 0);
+  }
+
   get durations() {
     return this.options.durations;
   }

@@ -50,10 +50,7 @@
 
     mounted() {
       this.stats = Focus.stats();
-
-      this.focus.on('update', () => {
-        this.stats = Focus.stats();
-      });
+      this.focus.on('update', () => { this.stats = Focus.stats(); });
     },
   };
 </script>

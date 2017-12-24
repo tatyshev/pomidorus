@@ -41,7 +41,10 @@ export default class Focus {
 
     keys.forEach((key) => {
       const focus = new this({ items: sessions[key] });
-      stats[key] = focus.completed.length;
+
+      stats[key] = {
+        completed: focus.completed.length,
+      };
     });
 
     return stats;

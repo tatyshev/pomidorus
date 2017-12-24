@@ -21,24 +21,25 @@
     computed: {
       values() {
         const now = Date.now();
+        const heats = array(30).map((_, i) => i);
 
-        return array(30).map((_, i) => {
+        return heats.map((i) => {
           const day = dayMonthYear(now - days(i));
-          const value = this.stats[day] || 0;
+          const values = this.stats[day] || { completed: 0 };
 
-          return { day, value };
+          return { day, ...values };
         });
       },
 
-      max() {
-        const values = this.values.map(x => x.value);
+      completedMax() {
+        const values = this.values.map(d => d.completed);
         return Math.max(...values);
       },
 
       color() {
         return scaleLinear()
           .range(['#4c525f', '#97ce28'])
-          .domain([0, this.max]);
+          .domain([0, this.completedMax]);
       },
     },
 
@@ -51,7 +52,7 @@
         .enter()
         .append('div')
         .classed('b-heatmap__box', true)
-        .style('background-color', d => this.color(d.value));
+        .style('background-color', d => this.color(d.completed));
     },
 
     watch: {
@@ -65,7 +66,7 @@
         this.heatmap
           .selectAll('.b-heatmap__box')
           .data(this.values)
-          .style('background-color', d => this.color(d.value));
+          .style('background-color', d => this.color(d.completed));
       },
     },
   };

@@ -1,11 +1,13 @@
 $columns: 10;
-$size: 8px;
+$size: 10px;
 
 .b-heatmap {
+  cursor: default !important;
   transform: translateY(30px);
   display: flex;
   flex-wrap: wrap;
   width: ($size * $columns) + ($columns * 6px);
+  z-index: 1;
 }
 
 .b-heatmap__box {
@@ -14,4 +16,30 @@ $size: 8px;
   margin: 3px;
   background: rgba(#fff, 0.1);
   border-radius: 50%;
+  position: relative;
+
+  &:hover {
+    .b-heatmap__title {
+      transform: translateY(-130%) translateX(-50%) scale(1);
+      visibility: visible;
+      opacity: 1;
+    }
+  };
+}
+
+.b-heatmap__title {
+  transition: transform 100ms, opacity 100ms, visibility 100ms;
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(#000, 0.7);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateY(-100%) translateX(-50%) scale(0.8);
+  padding: 2px;
+  font-size: 0.8em;
+  border-radius: 3px;
+  text-align: center;
+  min-width: 20px;
+  pointer-events: none;
 }

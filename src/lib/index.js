@@ -44,6 +44,7 @@ export default class Focus {
 
       stats[key] = {
         completed: focus.completed.length,
+        time: focus.time,
       };
     });
 

@@ -25,7 +25,7 @@
 
         return heats.map((i) => {
           const day = dayMonthYear(now - days(i));
-          const values = this.stats[day] || { completed: 0 };
+          const values = this.stats[day] || { completed: 0, time: 0 };
 
           return { day, ...values };
         });
@@ -52,7 +52,10 @@
         .enter()
         .append('div')
         .classed('b-heatmap__box', true)
-        .style('background-color', d => this.color(d.completed));
+        .style('background-color', d => this.color(d.completed))
+        .append('div')
+        .classed('b-heatmap__title', true)
+        .text(d => d.completed);
     },
 
     watch: {
@@ -67,6 +70,12 @@
           .selectAll('.b-heatmap__box')
           .data(this.values)
           .style('background-color', d => this.color(d.completed));
+
+
+        this.heatmap
+          .selectAll('.b-heatmap__title')
+          .data(this.values)
+          .text(d => d.completed);
       },
     },
   };

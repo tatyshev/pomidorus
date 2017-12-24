@@ -40,7 +40,8 @@ export default class Focus {
     const stats = {};
 
     keys.forEach((key) => {
-      const focus = new this({ items: sessions[key] });
+      const options = JSON.parse(localStorage.getItem('options')) || {};
+      const focus = new this({ items: sessions[key], options });
 
       stats[key] = {
         completed: focus.completed.length,

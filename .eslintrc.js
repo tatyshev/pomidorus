@@ -10,7 +10,7 @@ module.exports = {
   globals: {
     given: true,
   },
-  'rules': {
+  rules: {
     'import/no-unresolved': [0],
     'import/extensions': [0],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0

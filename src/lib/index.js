@@ -86,7 +86,6 @@ export default class Focus {
     }
 
     this.items.push(new Pomodoro({ type, duration }));
-    this.emit('update');
   }
 
   pause() {
@@ -104,13 +103,11 @@ export default class Focus {
   reset() {
     if (this.isActive) {
       this.items.pop();
-      this.emit('update');
     }
   }
 
   clear() {
     this.state.items = [];
-    this.emit('update');
   }
 
   toJson() {
@@ -135,6 +132,8 @@ export default class Focus {
 
     localStorage.setItem('sessions', JSON.stringify(sessions));
     localStorage.setItem('options', JSON.stringify(state.options));
+
+    this.emit('update');
   }
 
   get items() {

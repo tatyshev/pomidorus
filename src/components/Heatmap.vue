@@ -6,7 +6,8 @@
 <script>
   import { select } from 'd3-selection';
   import { scaleLinear } from 'd3-scale';
-  import { array, days, dayMonthYear } from '@/lib/utils';
+  import humanize from 'humanize-duration';
+  import { array, days, dayMonth } from '@/lib/utils';
 
   export default {
     name: 'heatmap',
@@ -24,8 +25,8 @@
         const heats = array(30).map((_, i) => i);
 
         return heats.map((i) => {
-          const day = dayMonthYear(now - days(i));
-          const values = this.stats[day] || { completed: 0, time: 0 };
+          const day = dayMonth(now - days(i));
+          const values = this.stats[day] || { completed: 0, time: 0, target: 0 };
 
           return { day, ...values };
         });
@@ -55,7 +56,7 @@
         .style('background-color', d => this.color(d.completed))
         .append('div')
         .classed('b-heatmap__title', true)
-        .text(d => d.completed);
+        .html(this.title);
     },
 
     watch: {
@@ -65,6 +66,26 @@
     },
 
     methods: {
+      title(d) {
+        let result = `
+          <div class="b-heatmap__day">${d.day}</div>
+        `;
+
+        if (d.completed !== 0) {
+          result += `
+            <div class="b-heatmap__pomodoros"><b>${d.completed}</b>/${d.target} pomidorus</div>
+          `;
+        }
+
+        if (d.time !== 0) {
+          result += `
+            <div class="b-heatmap__time">${humanize(d.time)}</div>
+          `;
+        }
+
+        return result;
+      },
+
       update() {
         this.heatmap
           .selectAll('.b-heatmap__box')
@@ -75,7 +96,7 @@
         this.heatmap
           .selectAll('.b-heatmap__title')
           .data(this.values)
-          .text(d => d.completed);
+          .html(this.title);
       },
     },
   };

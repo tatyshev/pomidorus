@@ -1,3 +1,7 @@
+export const MONTHS = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+];
+
 export const array = n => [...Array(n)];
 
 export const zeroify = (number, fixed = 2) => {
@@ -5,17 +9,16 @@ export const zeroify = (number, fixed = 2) => {
   return (zeros + number).slice(-fixed);
 };
 
-export const dayMonthYear = (date) => {
+export const dayMonth = (date) => {
   date = new Date(date); // eslint-disable-line no-param-reassign
 
-  const year = date.getFullYear();
-  const month = date.getMonth();
+  const month = MONTHS[date.getMonth()];
   const day = date.getDate();
 
-  return `${day}:${month}:${year}`;
+  return `${day} ${month}`;
 };
 
-export const today = () => dayMonthYear(new Date());
+export const today = () => dayMonth(new Date());
 export const seconds = n => n * 1000;
 export const minutes = n => n * seconds(60);
 export const hours = n => n * minutes(60);

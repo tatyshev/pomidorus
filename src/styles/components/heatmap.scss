@@ -20,7 +20,7 @@ $size: 10px;
 
   &:hover {
     .b-heatmap__title {
-      transform: translateY(-130%) translateX(-50%) scale(1);
+      transform: translateY(-100%) translateX(-50%) scale(1);
       visibility: visible;
       opacity: 1;
     }
@@ -31,15 +31,35 @@ $size: 10px;
   transition: transform 100ms, opacity 100ms, visibility 100ms;
   visibility: hidden;
   opacity: 0;
-  background: rgba(#000, 0.7);
+  background: rgba(#000, 0.5);
   position: absolute;
   top: 0;
   left: 50%;
+  margin-top: -5px;
   transform: translateY(-100%) translateX(-50%) scale(0.8);
-  padding: 2px;
-  font-size: 0.8em;
+  padding: 3px 4px;
+  font-size: 0.85em;
   border-radius: 3px;
   text-align: center;
   min-width: 20px;
+  white-space: nowrap;
   pointer-events: none;
+}
+
+.b-heatmap__pomodoros {
+  > b {
+    color: #39b6eb;
+    position: relative;
+  }
+}
+
+.b-heatmap__day {
+  font-size: 0.82em;
+  opacity: 0.7;
+}
+
+.b-heatmap__pomodoros {
+}
+
+.b-heatmap__time {
 }

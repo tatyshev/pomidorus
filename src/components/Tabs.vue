@@ -8,11 +8,11 @@
 <script>
   export default {
     name: 'Tabs',
-    props: ['siema'],
+    props: ['current'],
 
     methods: {
       active(index) {
-        if (this.siema.currentSlide === index) {
+        if (this.current === index) {
           return { 'b-tabs__item--active': true };
         }
 
@@ -20,7 +20,7 @@
       },
 
       goTo(index) {
-        this.siema.goTo(index);
+        this.$emit('go-to', index);
       },
     },
   };

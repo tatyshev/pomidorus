@@ -5,32 +5,39 @@
   <div class="b-application" :class="classes.root">
     <div class="b-application__middle">
       <div class="b-application__header">
-        <tabs :siema="siema" v-if="siema"/>
+        <tabs :current="activeTab" @go-to="i => $refs.carousel.goToPage(i)"/>
       </div>
 
       <div class="b-application__body">
-        <div class="b-application__sections" ref="sections">
-          <div class="b-application__section">
+        <carousel
+          ref="carousel"
+          class="b-application__sections"
+          :perPage="1"
+          :paginationEnabled="false"
+          :easing="'cubic-bezier(0.165, 0.84, 0.44, 1)'"
+          @pageChange="handlePageChange"
+        >
+          <slide class="b-application__section">
             <div class="b-application__wrapper b-application__wrapper--timer">
               <timer :focus="focus"/>
               <controls :focus="focus"/>
             </div>
-          </div>
+          </slide>
 
-          <div class="b-application__section">
+          <slide class="b-application__section">
             <div class="b-application__wrapper b-application__wrapper--settings">
               <settings :focus="focus" :options="focus.options" ref="settings"/>
             </div>
-          </div>
-        </div>
+          </slide>
+        </carousel>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import { Carousel, Slide } from 'vue-carousel';
   import Focus from '@/lib';
-  import Siema from 'siema';
   import Timer from './Timer';
   import Controls from './Controls';
   import Settings from './Settings';
@@ -40,6 +47,8 @@
     name: 'root',
 
     components: {
+      Carousel,
+      Slide,
       Controls,
       Settings,
       Timer,
@@ -55,19 +64,12 @@
     data() {
       return {
         focus: Focus.load(),
-        siema: null,
+        activeTab: 0,
       };
     },
 
     mounted() {
       this.focus.start();
-
-      this.siema = new Siema({
-        selector: this.$refs.sections,
-        draggable: true,
-        stopPropagation: false,
-      });
-
       this.$watch('focus.state', () => this.focus.save(), { deep: true });
     },
 
@@ -82,6 +84,12 @@
             'b-application--long': isLong,
           },
         };
+      },
+    },
+
+    methods: {
+      handlePageChange(value) {
+        this.activeTab = value;
       },
     },
   };

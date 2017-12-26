@@ -1,6 +1,13 @@
-import { zeroify, minutes, seconds } from './utils';
+import { zeroify, minutes, seconds, propsLimit } from './utils';
 
 describe('utils', () => {
+  describe('.propsLimit', () => {
+    it('should pick only limited prop list', () => {
+      const result = propsLimit({ one: 1, two: 2, three: 3 }, 2);
+      expect(result).toEqual({ one: 1, two: 2 });
+    });
+  });
+
   describe('.zeroify', () => {
     describe('when number length is 1', () => {
       it('should add zero', () => {

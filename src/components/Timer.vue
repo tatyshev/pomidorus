@@ -49,8 +49,14 @@
     }),
 
     mounted() {
-      this.stats = Focus.stats();
-      this.focus.on('update', () => { this.stats = Focus.stats(); });
+      this.setStats();
+      this.focus.on('update', this.setStats);
+    },
+
+    methods: {
+      setStats() {
+        this.stats = JSON.parse(localStorage.getItem('statistics'));
+      },
     },
   };
 </script>

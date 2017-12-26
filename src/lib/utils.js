@@ -2,6 +2,13 @@ export const MONTHS = [
   'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 ];
 
+export const propsLimit = (obj, limit) => {
+  const result = {};
+  const keys = Object.keys(obj).slice(0, limit);
+  keys.forEach((key) => { result[key] = obj[key]; });
+  return result;
+};
+
 export const array = n => [...Array(n)];
 
 export const zeroify = (number, fixed = 2) => {

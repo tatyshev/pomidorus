@@ -1,11 +1,12 @@
 import merge from 'deepmerge';
 import Events from 'events';
-import { minutes, today } from '@/lib/utils';
+import { minutes, today, propsLimit } from '@/lib/utils';
 import Pomodoro from '@/lib/pomodoro';
 
 export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
 export const LONG_TYPE = 'LONG';
+export const STATS_LIMIT = 100;
 
 export default class Focus {
   static get state() {
@@ -24,33 +25,8 @@ export default class Focus {
   }
 
   static load() {
-    const t = today();
-    const options = JSON.parse(localStorage.getItem('options')) || {};
-    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
-    const items = sessions[t] || (sessions[t] = []);
-
-    localStorage.setItem('sessions', JSON.stringify(sessions));
-
-    return new this({ items, options });
-  }
-
-  static stats() {
-    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
-    const keys = Object.keys(sessions);
-    const stats = {};
-
-    keys.forEach((key) => {
-      const options = JSON.parse(localStorage.getItem('options')) || {};
-      const focus = new this({ items: sessions[key], options });
-
-      stats[key] = {
-        completed: focus.completed.length,
-        target: focus.target,
-        time: focus.time,
-      };
-    });
-
-    return stats;
+    const state = JSON.parse(localStorage.getItem('state')) || {};
+    return new this(state);
   }
 
   constructor(state = {}) {
@@ -126,18 +102,25 @@ export default class Focus {
     return state;
   }
 
+  statistics() {
+    return {
+      completed: this.completed.length,
+      target: this.target,
+      time: this.time,
+    };
+  }
+
   save() {
     const t = today();
-    const sessions = JSON.parse(localStorage.getItem('sessions')) || {};
-    const current = sessions[t];
-
-    if (!current) this.clear();
-
     const state = this.toJson();
-    sessions[t] = state.items;
+    const statistics = JSON.parse(localStorage.getItem('statistics')) || {};
 
-    localStorage.setItem('sessions', JSON.stringify(sessions));
-    localStorage.setItem('options', JSON.stringify(state.options));
+    if (!statistics[t]) this.clear();
+
+    statistics[t] = propsLimit(this.statistics(), STATS_LIMIT);
+
+    localStorage.setItem('state', JSON.stringify(state));
+    localStorage.setItem('statistics', JSON.stringify(statistics));
 
     this.emit('update');
   }

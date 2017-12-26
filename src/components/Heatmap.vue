@@ -9,6 +9,8 @@
   import humanize from 'humanize-duration';
   import { array, days, dayMonth } from '@/lib/utils';
 
+  const DAYS_LIMIT = 30;
+
   export default {
     name: 'heatmap',
 
@@ -22,7 +24,7 @@
     computed: {
       values() {
         const now = Date.now();
-        const heats = array(30).map((_, i) => i);
+        const heats = array(DAYS_LIMIT).map((_, i) => i);
 
         return heats.map((i) => {
           const day = dayMonth(now - days(i));

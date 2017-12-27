@@ -4,7 +4,6 @@
       <div class="b-settings__label">Work</div>
       <div class="b-settings__control">
         <slider
-          ref="default"
           v-model="options.durations[DEFAULT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
@@ -21,7 +20,6 @@
       <div class="b-settings__label">Break</div>
       <div class="b-settings__control">
         <slider
-          ref="short"
           v-model="options.durations[SHORT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
@@ -38,7 +36,6 @@
       <div class="b-settings__label">Long break</div>
       <div class="b-settings__control">
         <slider
-          ref="long"
           v-model="options.durations[LONG_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
@@ -55,7 +52,6 @@
       <div class="b-settings__label">Target</div>
       <div class="b-settings__control">
         <slider
-          ref="slider"
           v-model="options.target"
           :min="0"
           :max="20"
@@ -71,7 +67,6 @@
       <div class="b-settings__label">Long after</div>
       <div class="b-settings__control">
         <slider
-          ref="longAfter"
           v-model="options.longAfter"
           :min="0"
           :max="20"
@@ -86,6 +81,8 @@
 </template>
 
 <script>
+  /* eslint-disable no-underscore-dangle */
+
   import Slider from 'vue-slider-component';
   import { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE } from '@/lib';
   import { minutes } from '@/lib/utils';
@@ -122,11 +119,11 @@
       minutes,
 
       refresh() {
-        this.$refs.default.refresh();
-        this.$refs.short.refresh();
-        this.$refs.long.refresh();
-        this.$refs.slider.refresh();
-        this.$refs.longAfter.refresh();
+        const sliders = this.$el.querySelectorAll('.vue-slider-component');
+
+        sliders.forEach((item) => {
+          if (item.__vue__) item.__vue__.refresh();
+        });
       },
     },
   };

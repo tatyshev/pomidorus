@@ -25,10 +25,11 @@
       values() {
         const now = Date.now();
         const heats = array(DAYS_LIMIT).map((_, i) => i);
+        const stats = this.stats || {};
 
         return heats.map((i) => {
           const day = dayMonth(now - days(i));
-          const values = this.stats[day] || { completed: 0, time: 0, target: 0 };
+          const values = stats[day] || { completed: 0, time: 0, target: 0 };
 
           return { day, ...values };
         });

@@ -7,10 +7,29 @@
     background: #39b6eb;
   }
 
+  .vue-slider-dot {
+    &.vue-slider-always {
+      .vue-slider-tooltip {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  }
+
   .vue-slider-tooltip {
-    transform: translateY(7px);
-    background: transparent;
+    visibility: visible !important;
+    transition: transform 200ms, opacity 200ms;
     border: 0;
+    padding: 3px 4px;
+    width: auto;
+    line-height: 1;
+    border-radius: 2px;
+    min-width: auto;
+    text-align: center;
+    background: rgba(#000, 0.4);
+    font-size: 0.82em;
+    transform: scale(0.8);
+    opacity: 0;
 
     &:before {
       border-top-color: transparent !important;

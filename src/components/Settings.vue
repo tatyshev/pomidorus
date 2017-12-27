@@ -1,33 +1,49 @@
 <template>
   <div class="b-settings">
     <div class="b-settings__field">
-      <div class="b-settings__label">Work</div>
+      <div class="b-settings__label">Target</div>
+      <div class="b-settings__control">
+        <slider
+          v-model="options.target"
+          :min="0"
+          :max="50"
+          :interval="1"
+          :formatter="(v) => `${v} pomirorus`"
+          :height="3"
+          :stop-propagation="true"
+          tooltip="hover"
+        />
+      </div>
+    </div>
+
+    <div class="b-settings__field">
+      <div class="b-settings__label">Work interval</div>
       <div class="b-settings__control">
         <slider
           v-model="options.durations[DEFAULT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
-          :formatter="(v) => v / 1000 / 60"
+          :formatter="(v) => `${v / 1000 / 60} minutes`"
           :height="3"
-          :dotSize="12"
           :stop-propagation="true"
+          tooltip="hover"
         />
       </div>
     </div>
 
     <div class="b-settings__field">
-      <div class="b-settings__label">Break</div>
+      <div class="b-settings__label">Short break</div>
       <div class="b-settings__control">
         <slider
           v-model="options.durations[SHORT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
-          :formatter="(v) => v / 1000 / 60"
+          :formatter="(v) => `${v / 1000 / 60} minutes`"
           :height="3"
-          :dotSize="12"
           :stop-propagation="true"
+          tooltip="hover"
         />
       </div>
     </div>
@@ -40,40 +56,26 @@
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
-          :formatter="(v) => v / 1000 / 60"
+          :formatter="(v) => `${v / 1000 / 60} minutes`"
           :height="3"
-          :dotSize="12"
           :stop-propagation="true"
+          tooltip="hover"
         />
       </div>
     </div>
 
     <div class="b-settings__field">
-      <div class="b-settings__label">Target</div>
-      <div class="b-settings__control">
-        <slider
-          v-model="options.target"
-          :min="0"
-          :max="20"
-          :interval="1"
-          :height="3"
-          :dotSize="12"
-          :stop-propagation="true"
-        />
-      </div>
-    </div>
-
-    <div class="b-settings__field">
-      <div class="b-settings__label">Long after</div>
+      <div class="b-settings__label">Long break after</div>
       <div class="b-settings__control">
         <slider
           v-model="options.longAfter"
           :min="0"
-          :max="20"
+          :max="50"
           :interval="1"
+          :formatter="(v) => `${v} pomirorus`"
           :height="3"
-          :dotSize="12"
           :stop-propagation="true"
+          tooltip="hover"
         />
       </div>
     </div>

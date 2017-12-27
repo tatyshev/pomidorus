@@ -15,7 +15,7 @@
         Resume
       </button>
 
-      <a class="b-controls__action" @click.prevent="reset">Reset</a>
+      <a class="b-controls__action" @click.prevent="stop">Stop</a>
     </div>
   </div>
 </template>
@@ -34,9 +34,9 @@
     },
 
     methods: {
-      reset() {
+      stop() {
         // eslint-disable-next-line no-alert
-        if (confirm('Are you sure?')) this.focus.reset();
+        if (confirm('Are you sure?')) this.focus.stop();
       },
 
       clear() {

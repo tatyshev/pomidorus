@@ -82,7 +82,7 @@ export default class Focus {
     }
   }
 
-  reset() {
+  stop() {
     if (this.isActive) {
       this.items.pop();
     }

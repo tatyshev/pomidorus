@@ -1,7 +1,7 @@
 <template>
   <div class="b-settings">
     <div class="b-settings__field">
-      <div class="b-settings__label">Target</div>
+      <div class="b-settings__label">Daily target</div>
       <div class="b-settings__control">
         <slider
           v-model="focus.options.target"

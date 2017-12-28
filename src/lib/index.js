@@ -13,6 +13,7 @@ export default class Focus {
     return {
       items: [],
       options: {
+        auto: false,
         target: 10,
         longAfter: 4,
         durations: {
@@ -33,6 +34,8 @@ export default class Focus {
     const events = new Events();
 
     this.state = merge(Focus.state, state);
+    this.pending = null;
+    this.touched = false;
 
     this.on = events.on;
     this.emit = events.emit;
@@ -44,11 +47,22 @@ export default class Focus {
 
   start() {
     setInterval(this.tick.bind(this), 1000);
+    this.touched = this.isActive;
   }
 
   tick() {
     this.items.forEach(item => item.tick());
-    if (this.isActive) this.emit('tick');
+
+    if (this.isActive) {
+      this.emit('tick');
+      return;
+    }
+
+    if (this.isFinished && this.touched && this.pending == null) {
+      this.pending = this.current;
+      if (this.options.auto) this.play();
+      this.emit('finished', this.current);
+    }
   }
 
   play() {
@@ -67,6 +81,8 @@ export default class Focus {
       duration = this.durations[type];
     }
 
+    this.touched = true;
+    this.pending = null;
     this.items.push(new Pomodoro({ type, duration }));
   }
 
@@ -88,7 +104,7 @@ export default class Focus {
     }
   }
 
-  clear() {
+  reset() {
     this.state.items = [];
   }
 
@@ -202,6 +218,10 @@ export default class Focus {
 
   get isActive() {
     return this.current && !this.current.finished;
+  }
+
+  get isFinished() {
+    return this.current && this.current.finished;
   }
 
   get isPaused() {

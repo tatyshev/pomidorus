@@ -79,6 +79,13 @@
         />
       </div>
     </div>
+
+    <div class="b-settings__field">
+      <div class="b-settings__label">Auto-start timer</div>
+      <div class="b-settings__control">
+        <input type="checkbox" v-model="focus.options.auto">
+      </div>
+    </div>
   </div>
 </template>
 

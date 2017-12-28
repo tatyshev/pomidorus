@@ -15,6 +15,7 @@ describe('Focus', () => {
       const custom = {
         items: [],
         options: {
+          auto: false,
           target: 1,
           longAfter: 2,
           durations: { DEFAULT: 3, SHORT: 4, LONG: 5 },
@@ -151,13 +152,13 @@ describe('Focus', () => {
     });
   });
 
-  describe('.reset()', () => {
+  describe('.stop()', () => {
     describe('when current is active', () => {
       given('input', () => ({ items: [{}, { duration: 1 }] }));
 
       it('should remove last element', () => {
         expect(given.focus.items.length).toBe(2);
-        given.focus.reset();
+        given.focus.stop();
         expect(given.focus.items.length).toBe(1);
       });
     });
@@ -167,7 +168,7 @@ describe('Focus', () => {
 
       it('should not do anything', () => {
         expect(given.focus.items.length).toBe(1);
-        given.focus.reset();
+        given.focus.stop();
         expect(given.focus.items.length).toBe(1);
       });
     });
@@ -184,6 +185,7 @@ describe('Focus', () => {
         },
       ],
       options: {
+        auto: false,
         target: 5,
         longAfter: 3,
         durations: {

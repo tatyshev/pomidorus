@@ -4,7 +4,7 @@
       <div class="b-settings__label">Target</div>
       <div class="b-settings__control">
         <slider
-          v-model="options.target"
+          v-model="focus.options.target"
           :min="0"
           :max="50"
           :interval="1"
@@ -20,7 +20,7 @@
       <div class="b-settings__label">Work interval</div>
       <div class="b-settings__control">
         <slider
-          v-model="options.durations[DEFAULT_TYPE]"
+          v-model="focus.options.durations[DEFAULT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
@@ -36,7 +36,7 @@
       <div class="b-settings__label">Short break</div>
       <div class="b-settings__control">
         <slider
-          v-model="options.durations[SHORT_TYPE]"
+          v-model="focus.options.durations[SHORT_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
@@ -52,7 +52,7 @@
       <div class="b-settings__label">Long break</div>
       <div class="b-settings__control">
         <slider
-          v-model="options.durations[LONG_TYPE]"
+          v-model="focus.options.durations[LONG_TYPE]"
           :min="minutes(1)"
           :max="minutes(60)"
           :interval="minutes(1)"
@@ -68,7 +68,7 @@
       <div class="b-settings__label">Long break after</div>
       <div class="b-settings__control">
         <slider
-          v-model="options.longAfter"
+          v-model="focus.options.longAfter"
           :min="0"
           :max="50"
           :interval="1"
@@ -86,7 +86,7 @@
   /* eslint-disable no-underscore-dangle */
 
   import Slider from 'vue-slider-component';
-  import { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE } from '@/lib';
+  import Focus, { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE } from '@/lib';
   import { minutes } from '@/lib/utils';
 
   export default {
@@ -97,8 +97,8 @@
     },
 
     props: {
-      options: {
-        type: Object,
+      focus: {
+        type: Focus,
         required: true,
       },
     },

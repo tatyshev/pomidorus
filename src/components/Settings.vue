@@ -89,7 +89,6 @@
           :width="45"
           :css-colors="true"
         />
-        <!-- <input type="checkbox" v-model="focus.options.auto"> -->
       </div>
     </div>
   </div>

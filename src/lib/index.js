@@ -66,7 +66,7 @@ export default class Focus {
   }
 
   play() {
-    if (this.isActive) return;
+    if (this.isActive === true) return;
 
     let type;
     let duration;

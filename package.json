@@ -5,13 +5,14 @@
   "license": "MIT",
   "scripts": {
     "start": "poi dev",
-    "build": "poi build",
+    "build": "NODE_ENV=production poi build",
+    "deploy": "npm run build && gh-pages -d dist",
     "test": "poi test",
     "debug": "poi test --watch",
     "lint": "eslint --ext .js,.vue src"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.3",
+    "babel-eslint": "^8.1.2",
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-html": "^4.0.1",
@@ -21,12 +22,13 @@
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-jsdom-launcher": "^6.1.2",
-    "karma-spec-reporter": "^0.0.31",
+    "karma-spec-reporter": "^0.0.32",
     "node-sass": "^4.7.2",
     "poi": "^9.6.0",
-    "poi-preset-karma": "^9.2.2",
+    "poi-preset-karma": "^9.2.3",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.10"
+    "vue-template-compiler": "^2.5.10",
+    "gh-pages": "^1.1.0"
   },
   "dependencies": {
     "d3-interpolate": "^1.1.6",

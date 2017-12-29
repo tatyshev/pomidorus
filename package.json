@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "poi dev",
-    "build": "poi build",
+    "build": "NODE_ENV=production poi build",
     "test": "poi test",
     "debug": "poi test --watch",
     "lint": "eslint --ext .js,.vue src"

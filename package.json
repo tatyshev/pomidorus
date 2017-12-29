@@ -6,6 +6,7 @@
   "scripts": {
     "start": "poi dev",
     "build": "NODE_ENV=production poi build",
+    "deploy": "npm run build && gh-pages -d dist",
     "test": "poi test",
     "debug": "poi test --watch",
     "lint": "eslint --ext .js,.vue src"
@@ -26,7 +27,8 @@
     "poi": "^9.6.0",
     "poi-preset-karma": "^9.2.3",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.10"
+    "vue-template-compiler": "^2.5.10",
+    "gh-pages": "^1.1.0"
   },
   "dependencies": {
     "d3-interpolate": "^1.1.6",

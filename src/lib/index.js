@@ -17,9 +17,9 @@ export default class Focus {
         target: 10,
         longAfter: 4,
         durations: {
-          [DEFAULT_TYPE]: minutes(5),
-          [SHORT_TYPE]: minutes(2),
-          [LONG_TYPE]: minutes(5),
+          [DEFAULT_TYPE]: minutes(25),
+          [SHORT_TYPE]: minutes(5),
+          [LONG_TYPE]: minutes(10),
         },
       },
     };

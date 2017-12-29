@@ -83,7 +83,9 @@ export default class Focus {
 
     this.touched = true;
     this.pending = null;
-    this.items.push(new Pomodoro({ type, duration }));
+
+    const item = new Pomodoro({ type, duration });
+    this.state.items.push(item);
   }
 
   pause() {

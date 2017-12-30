@@ -6,6 +6,11 @@ import Pomodoro from '@/lib/pomodoro';
 export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
 export const LONG_TYPE = 'LONG';
+
+export const DEFAULT_ALERT = 'Pomidorus: It\'s time to work';
+export const SHORT_ALERT = 'Pomidorus: It\'s time to break';
+export const LONG_ALERT = 'Pomidorus: It\'s time to break';
+
 export const STATS_LIMIT = 100;
 
 export default class Focus {
@@ -14,6 +19,7 @@ export default class Focus {
       items: [],
       options: {
         auto: false,
+        notifications: false,
         target: 10,
         longAfter: 4,
         durations: {
@@ -61,7 +67,8 @@ export default class Focus {
     if (this.isFinished && this.touched && this.pending == null) {
       this.pending = this.current;
       if (this.options.auto) this.play();
-      this.emit('finished', this.current);
+      this.emit('finish', this.current);
+      this.notify();
     }
   }
 
@@ -141,6 +148,21 @@ export default class Focus {
     localStorage.setItem('statistics', JSON.stringify(statistics));
 
     this.emit('update');
+  }
+
+  notify() {
+    if (!this.options.notifications) return;
+
+    const { type } = this.current;
+    const sound = '/static/quite.mp3';
+    let title = DEFAULT_ALERT;
+
+    if (type === DEFAULT_TYPE) {
+      title = this.isTimeToLong ? LONG_ALERT : SHORT_ALERT;
+    }
+
+    // eslint-disable-next-line consistent-return
+    return new Notification(title, { sound });
   }
 
   get items() {

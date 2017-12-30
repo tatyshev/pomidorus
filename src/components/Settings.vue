@@ -91,6 +91,26 @@
         />
       </div>
     </div>
+
+    <div class="b-settings__field">
+      <div class="b-settings__label">Notifications</div>
+      <div class="b-settings__control">
+        <toggle
+          v-model="focus.options.notifications"
+          :height="20"
+          :width="45"
+          :css-colors="true"
+        />
+
+        <span class="b-settings__warning" v-if="notifications.status === 'denied'">
+          Permissions denied
+        </span>
+
+        <span class="b-settings__warning" v-else-if="notifications.status !== 'granted'">
+          Requires user permissions
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -121,10 +141,17 @@
       DEFAULT_TYPE,
       LONG_TYPE,
       SHORT_TYPE,
+
+      notifications: {
+        pending: false,
+        status: null,
+      },
     }),
 
     mounted() {
       document.addEventListener('transitionend', this.refresh, { passive: true });
+      this.$watch('focus.options.notifications', this.notificationPerms);
+      this.notifications.status = Notification.permission;
     },
 
     destroyed() {
@@ -139,6 +166,23 @@
 
         sliders.forEach((item) => {
           if (item.__vue__) item.__vue__.refresh();
+        });
+      },
+
+      notificationPerms(value) {
+        if (!value || this.pending) return;
+
+        this.notifications.pending = true;
+
+        const req = Notification.requestPermission();
+
+        req.then((status) => {
+          this.notifications.pending = false;
+          this.notifications.status = status;
+        });
+
+        req.catch(() => {
+          alert(1);
         });
       },
     },

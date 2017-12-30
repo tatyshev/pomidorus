@@ -2,6 +2,7 @@ import merge from 'deepmerge';
 import Events from 'events';
 import { minutes, today, propsLimit } from '@/lib/utils';
 import Pomodoro from '@/lib/pomodoro';
+import notify from '@/lib/notify';
 
 export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
@@ -162,7 +163,7 @@ export default class Focus {
     }
 
     // eslint-disable-next-line consistent-return
-    return new Notification(title, { icon });
+    return notify(title, { icon });
   }
 
   get items() {

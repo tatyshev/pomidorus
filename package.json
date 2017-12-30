@@ -1,7 +1,6 @@
 {
-  "name": "pomidorus",
-  "version": "0.0.1",
-  "main": "index.js",
+  "private": true,
+  "author": "Ruslan Tatyshev <ruslan.tatyshev@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "poi dev",

@@ -7,9 +7,9 @@ export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
 export const LONG_TYPE = 'LONG';
 
-export const DEFAULT_ALERT = 'Pomidorus: It\'s time to work';
-export const SHORT_ALERT = 'Pomidorus: It\'s time to break';
-export const LONG_ALERT = 'Pomidorus: It\'s time to break';
+export const DEFAULT_ALERT = 'It\'s time to work';
+export const SHORT_ALERT = 'It\'s time to break';
+export const LONG_ALERT = 'It\'s time to long break';
 
 export const STATS_LIMIT = 100;
 
@@ -154,7 +154,7 @@ export default class Focus {
     if (!this.options.notifications) return;
 
     const { type } = this.current;
-    const sound = '/static/quite.mp3';
+    const icon = 'android-chrome-192x192.png';
     let title = DEFAULT_ALERT;
 
     if (type === DEFAULT_TYPE) {
@@ -162,7 +162,7 @@ export default class Focus {
     }
 
     // eslint-disable-next-line consistent-return
-    return new Notification(title, { sound });
+    return new Notification(title, { icon });
   }
 
   get items() {

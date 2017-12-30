@@ -26,7 +26,7 @@ export default class Focus {
         durations: {
           [DEFAULT_TYPE]: minutes(25),
           [SHORT_TYPE]: minutes(5),
-          [LONG_TYPE]: minutes(10),
+          [LONG_TYPE]: minutes(15),
         },
       },
     };

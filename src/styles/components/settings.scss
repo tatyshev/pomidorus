@@ -31,3 +31,38 @@
   position: relative;
   top: -1px;
 }
+
+.b-settings__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.b-settings__button {
+  transition: background 200ms, color 200ms;
+  margin: 0;
+  color: rgba(#fff, 0.7);
+  font-family: inherit;
+  background: transparent;
+  cursor: pointer;
+  padding: 5px 17px;
+  border: 1px solid rgba(#fff, 0.25);
+  text-align: center;
+  border-radius: 90px;
+  margin-right: -1px;
+  margin: 0 7px;
+
+  &:active {
+    background: rgba(#000, 0.09) !important;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: rgba(#fff, 0.09);
+    color: #fff;
+  }
+}

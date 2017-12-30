@@ -36,12 +36,12 @@
     methods: {
       stop() {
         // eslint-disable-next-line no-alert
-        if (confirm('Are you sure?')) this.focus.stop();
+        if (confirm('Current timer will be stopped.')) this.focus.stop();
       },
 
       reset() {
         // eslint-disable-next-line no-alert
-        if (confirm('Are you sure?')) this.focus.reset();
+        if (confirm('Today\'s completed pomodoros will be reset.')) this.focus.reset();
       },
     },
   };

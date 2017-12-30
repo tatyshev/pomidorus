@@ -111,11 +111,17 @@
         </span>
       </div>
     </div>
+
+    <div class="b-settings__buttons">
+      <button class="b-settings__button" @click="restoreDefault">Restore defaults</button>
+      <button class="b-settings__button" @click="resetSession">Reset current session</button>
+    </div>
   </div>
 </template>
 
 <script>
   /* eslint-disable no-underscore-dangle */
+  /* eslint no-restricted-globals: 0 */
 
   import Toggle from 'vue-js-toggle-button/src/Button';
   import Slider from 'vue-slider-component';
@@ -184,6 +190,18 @@
         req.catch(() => {
           alert(1);
         });
+      },
+
+      restoreDefault() {
+        if (confirm('Reset settings to default values?')) {
+          this.focus.state.options = Focus.state.options;
+        }
+      },
+
+      resetSession() {
+        if (confirm('Today\'s completed pomodoros will be reset.')) {
+          this.focus.reset();
+        }
       },
     },
   };

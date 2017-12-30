@@ -16,6 +16,7 @@ describe('Focus', () => {
         items: [],
         options: {
           auto: false,
+          notifications: false,
           target: 1,
           longAfter: 2,
           durations: { DEFAULT: 3, SHORT: 4, LONG: 5 },
@@ -178,14 +179,15 @@ describe('Focus', () => {
     given('input', () => ({
       items: [
         {
-          createdAt: 1, type: 'one', duration: 1, pauses: [],
+          createdAt: 1, type: 'one', duration: 1, pauses: [], skipped: false,
         },
         {
-          createdAt: 2, type: 'two', duration: 2, pauses: [],
+          createdAt: 2, type: 'two', duration: 2, pauses: [], skipped: false,
         },
       ],
       options: {
         auto: false,
+        notifications: false,
         target: 5,
         longAfter: 3,
         durations: {

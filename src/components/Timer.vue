@@ -15,7 +15,7 @@
 
     <target
       :goal="focus.target"
-      :completed="focus.completed.length"
+      :completed="focus.completed"
     />
   </div>
 </template>

@@ -66,10 +66,13 @@ export default class Focus {
     }
 
     if (this.isFinished && this.touched && this.pending == null) {
+      if (!this.current.skipped) {
+        this.emit('finish', this.current);
+        this.notify();
+      }
+
       this.pending = this.current;
       if (this.options.auto) this.play();
-      this.emit('finish', this.current);
-      this.notify();
     }
   }
 
@@ -116,6 +119,12 @@ export default class Focus {
 
   reset() {
     this.state.items = [];
+  }
+
+  skip() {
+    if (this.isActive) {
+      this.current.state.skipped = true;
+    }
   }
 
   toJson() {

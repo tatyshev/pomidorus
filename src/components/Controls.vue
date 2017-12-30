@@ -1,7 +1,7 @@
 <template>
   <div class="b-controls">
     <div class="b-controls__body">
-      <a class="b-controls__action" @click.prevent="reset">Reset</a>
+      <a class="b-controls__action" @click.prevent="skip">Skip</a>
 
       <button class="b-controls__button" v-if="!focus.isActive" @click="focus.play()">
         Start
@@ -36,12 +36,16 @@
     methods: {
       stop() {
         // eslint-disable-next-line no-alert
-        if (confirm('Current timer will be stopped.')) this.focus.stop();
+        if (confirm('Current timer will be stopped.')) {
+          this.focus.stop();
+        }
       },
 
-      reset() {
+      skip() {
         // eslint-disable-next-line no-alert
-        if (confirm('Today\'s completed pomodoros will be reset.')) this.focus.reset();
+        if (confirm('Current timer will be skipped.')) {
+          this.focus.skip();
+        }
       },
     },
   };

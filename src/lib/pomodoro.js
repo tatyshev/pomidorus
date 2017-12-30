@@ -7,6 +7,7 @@ export default class Pomodoro {
     return {
       createdAt,
       duration: 0,
+      skipped: false,
       type: null,
       pauses: [],
     };
@@ -77,7 +78,12 @@ export default class Pomodoro {
     return this.state.duration;
   }
 
+  get skipped() {
+    return this.state.skipped;
+  }
+
   get interval() {
+    if (this.skipped) return this.duration + 1;
     return this.time - (this.createdAt + this.pauses);
   }
 
@@ -87,6 +93,6 @@ export default class Pomodoro {
   }
 
   get finished() {
-    return this.elapsed <= 0;
+    return this.skipped || this.elapsed <= 0;
   }
 }

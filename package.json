@@ -16,18 +16,16 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-html": "^4.0.1",
     "eslint-plugin-import": "^2.8.0",
+    "gh-pages": "^1.1.0",
     "given2": "^2.1.1",
-    "jsdom": "^11.5.1",
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-jsdom-launcher": "^6.1.2",
     "karma-spec-reporter": "^0.0.32",
     "node-sass": "^4.7.2",
     "poi": "^9.6.0",
     "poi-preset-karma": "^9.2.3",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.10",
-    "gh-pages": "^1.1.0"
+    "vue-template-compiler": "^2.5.10"
   },
   "dependencies": {
     "d3-interpolate": "^1.1.6",
@@ -38,6 +36,7 @@
     "deepmerge": "^2.0.1",
     "events": "^1.1.1",
     "humanize-duration": "^3.12.0",
+    "karma-chrome-launcher": "^2.2.0",
     "normalize.css": "^7.0.0",
     "vue": "^2.5.10",
     "vue-carousel": "^0.6.5",

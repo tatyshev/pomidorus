@@ -9,3 +9,7 @@
 .b-target__item--extra {
   fill: lighten(#39b6eb, 20%);
 }
+
+.b-target__item--skipped {
+  fill: rgba(#39b6eb, 0.5);
+}

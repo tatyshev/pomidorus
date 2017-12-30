@@ -17,8 +17,8 @@
         required: true,
       },
       completed: {
-        type: Number,
-        required: true,
+        type: Array,
+        default: () => [],
       },
     },
 
@@ -59,6 +59,7 @@
         .classed('b-target__item', true)
         .classed('b-target__item--finished', d => d.data.finished)
         .classed('b-target__item--extra', d => d.data.extra)
+        .classed('b-target__item--skipped', d => d.data.skipped)
         .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
       document.addEventListener('visibilitychange', () => {
@@ -67,6 +68,10 @@
     },
 
     computed: {
+      amount() {
+        return this.completed.length;
+      },
+
       viewBox() {
         return `0 0 ${this.width} ${this.height}`;
       },
@@ -76,18 +81,20 @@
       },
 
       values() {
-        const { completed } = this;
-        const goal = completed >= this.goal ? completed + 1 : this.goal;
+        const { amount, completed } = this;
+        const goal = amount >= this.goal ? amount + 1 : this.goal;
         const items = new Array(goal).fill();
 
         return items.map((item, index) => {
-          const finished = index < completed;
+          const finished = index < amount;
           const extra = finished && (index >= this.goal);
+          const skipped = !!completed[index] && completed[index].skipped;
 
           return {
             value: 1,
             finished,
             extra,
+            skipped,
           };
         });
       },
@@ -106,7 +113,8 @@
           .data(this.pie(this.values))
           .classed('b-target__item', true)
           .classed('b-target__item--finished', d => d.data.finished)
-          .classed('b-target__item--extra', d => d.data.extra);
+          .classed('b-target__item--extra', d => d.data.extra)
+          .classed('b-target__item--skipped', d => d.data.skipped);
 
         const recent = all
           .enter()

@@ -88,6 +88,7 @@
           :height="20"
           :width="45"
           :css-colors="true"
+          :sync="true"
         />
       </div>
     </div>
@@ -100,6 +101,7 @@
           :height="20"
           :width="45"
           :css-colors="true"
+          :sync="true"
         />
 
         <span class="b-settings__warning" v-if="notifications.status === 'denied'">

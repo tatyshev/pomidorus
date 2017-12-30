@@ -22,7 +22,7 @@
   .vue-slider-tooltip {
     visibility: visible !important;
     transition: transform 200ms, opacity 200ms;
-    border: 0;
+    border: 0 !important;
     padding: 3px 4px;
     width: auto;
     line-height: 1;

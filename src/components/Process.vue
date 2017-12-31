@@ -4,6 +4,7 @@
 </template>
 
 <script>
+  import debounce from 'lodash.debounce';
   import { select } from 'd3-selection';
   import { interpolate } from 'd3-interpolate';
   import { pie, arc } from 'd3-shape';
@@ -27,6 +28,10 @@
       height: 500,
       weight: 4,
     }),
+
+    created() {
+      this.update = debounce(this.update.bind(this), 500);
+    },
 
     mounted() {
       const self = this;
@@ -63,9 +68,7 @@
         .classed('b-process__bar', d => d.index !== 0)
         .each(function (d) { this.$angle = d; }); // eslint-disable-line func-names
 
-      document.addEventListener('visibilitychange', () => {
-        setTimeout(() => this.update(), 300);
-      });
+      document.addEventListener('visibilitychange', this.update);
     },
 
     computed: {

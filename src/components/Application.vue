@@ -8,7 +8,7 @@
         <tabs :current="activeTab" @go-to="i => $refs.carousel.goToPage(i)"/>
       </div>
 
-      <div class="b-application__body" v-if="visible">
+      <div class="b-application__body">
         <carousel
           ref="carousel"
           class="b-application__sections"
@@ -19,8 +19,8 @@
         >
           <slide class="b-application__section">
             <div class="b-application__wrapper b-application__wrapper--timer">
-              <timer :focus="focus"/>
-              <controls :focus="focus"/>
+              <timer :focus="focus" v-if="visible"/>
+              <controls :focus="focus" v-if="visible"/>
             </div>
           </slide>
 

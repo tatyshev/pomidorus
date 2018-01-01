@@ -79,6 +79,7 @@
 
       Visibility.change((e, state) => {
         this.visible = state === 'visible';
+        this.activeTab = 0;
       });
     },
 

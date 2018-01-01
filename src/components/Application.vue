@@ -8,7 +8,7 @@
         <tabs :current="activeTab" @go-to="i => $refs.carousel.goToPage(i)"/>
       </div>
 
-      <div class="b-application__body">
+      <div class="b-application__body" v-if="visible">
         <carousel
           ref="carousel"
           class="b-application__sections"
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+  import Visibility from 'visibilityjs';
   import { Carousel, Slide } from 'vue-carousel';
   import Focus from '@/lib';
   import Timer from './Timer';
@@ -66,6 +67,7 @@
 
     data() {
       return {
+        visible: true,
         focus: Focus.load(),
         activeTab: 0,
       };
@@ -74,6 +76,10 @@
     mounted() {
       this.focus.start();
       this.$watch('focus.state', () => this.focus.save(), { deep: true });
+
+      Visibility.change((e, state) => {
+        this.visible = state === 'visible';
+      });
     },
 
     computed: {

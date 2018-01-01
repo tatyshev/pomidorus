@@ -40,6 +40,7 @@
     "karma-chrome-launcher": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^7.0.0",
+    "visibilityjs": "^1.2.6",
     "vue": "^2.5.10",
     "vue-carousel": "^0.6.5",
     "vue-js-toggle-button": "^1.2.2",

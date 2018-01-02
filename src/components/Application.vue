@@ -32,6 +32,12 @@
               />
             </div>
           </slide>
+
+          <slide class="b-application__section">
+            <div class="b-application__wrapper b-application__wrapper--about">
+              <about/>
+            </div>
+          </slide>
         </carousel>
       </div>
     </div>
@@ -47,6 +53,7 @@
   import Timer from './Timer';
   import Controls from './Controls';
   import Settings from './Settings';
+  import About from './About';
   import Tabs from './Tabs';
 
   export default {
@@ -58,6 +65,7 @@
       Controls,
       Settings,
       Timer,
+      About,
       Tabs,
     },
 

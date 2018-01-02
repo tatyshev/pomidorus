@@ -2,6 +2,7 @@
   <ul class="b-tabs">
     <li class="b-tabs__item" :class="active(0)" @click="goTo(0)">Timer</li>
     <li class="b-tabs__item" :class="active(1)" @click="goTo(1)">Settings</li>
+    <li class="b-tabs__item" :class="active(2)" @click="goTo(2)">About</li>
   </ul>
 </template>
 

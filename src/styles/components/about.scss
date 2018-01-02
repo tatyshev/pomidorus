@@ -1,0 +1,39 @@
+.b-about {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.b-about__image {
+  margin-bottom: 15px;
+}
+
+.b-about__title {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.b-about__desc {
+  color: rgba(#fff, 0.6);
+  line-height: 1.35;
+  margin-bottom: 15px;
+
+  a {
+    color: #39b6eb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.b-about__github {
+  transition: opacity 200ms;
+  fill: #fff;
+  opacity: 0.5;
+  width: 30px;
+
+  &:hover {
+    opacity: 1;
+  }
+}

@@ -96,7 +96,7 @@ export default class Focus {
     this.pending = null;
 
     const item = new Pomodoro({ type, duration });
-    this.state.items.push(item);
+    this.state.items = [...this.state.items, item];
   }
 
   pause() {

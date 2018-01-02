@@ -148,9 +148,14 @@ export default class Focus {
   save() {
     const t = today();
     const state = this.toJson();
-    const statistics = JSON.parse(localStorage.getItem('statistics')) || {};
+    let statistics = JSON.parse(localStorage.getItem('statistics'));
 
-    if (!statistics[t]) this.reset();
+    if (statistics && !statistics[t]) {
+      this.reset();
+      this.play();
+    } else {
+      statistics = { ...statistics };
+    }
 
     statistics[t] = propsLimit(this.statistics(), STATS_LIMIT);
 

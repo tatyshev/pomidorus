@@ -30,7 +30,7 @@
     }),
 
     created() {
-      this.update = debounce(this.update.bind(this), 500);
+      this.update = debounce(this.update.bind(this), 200);
     },
 
     mounted() {

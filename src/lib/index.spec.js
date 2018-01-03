@@ -50,10 +50,9 @@ describe('Focus', () => {
         given('items', () => [{ type: DEFAULT_TYPE }]);
 
         it('should add "work" pomodoro', () => {
-          const { items } = given.focus;
           given.focus.play();
 
-          expect(items.length).toBe(2);
+          expect(given.focus.items.length).toBe(2);
           expect(given.focus.current.type).toBe(SHORT_TYPE);
         });
       });
@@ -64,12 +63,11 @@ describe('Focus', () => {
           { type: SHORT_TYPE },
         ]);
 
-        it('should add "break" pomodoro', () => {
-          const { items } = given.focus;
+        it('should add "work" pomodoro', () => {
           given.focus.play();
 
-          expect(items.length).toBe(3);
-          expect(items[items.length - 1].type).toBe(DEFAULT_TYPE);
+          expect(given.focus.items.length).toBe(3);
+          expect(given.focus.items[given.focus.items.length - 1].type).toBe(DEFAULT_TYPE);
         });
       });
 

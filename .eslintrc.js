@@ -7,9 +7,6 @@ module.exports = {
     browser: true,
     jasmine: true,
   },
-  globals: {
-    given: true,
-  },
   rules: {
     'import/no-unresolved': [0],
     'import/extensions': [0],

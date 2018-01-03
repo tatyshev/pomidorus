@@ -26,7 +26,8 @@
     "poi": "^9.6.0",
     "poi-preset-karma": "^9.2.3",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.10"
+    "vue-template-compiler": "^2.5.10",
+    "karma-chrome-launcher": "^2.2.0"
   },
   "dependencies": {
     "d3-interpolate": "^1.1.6",
@@ -37,7 +38,6 @@
     "deepmerge": "^2.0.1",
     "events": "^1.1.1",
     "humanize-duration": "^3.12.0",
-    "karma-chrome-launcher": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^7.0.0",
     "visibilityjs": "^1.2.6",

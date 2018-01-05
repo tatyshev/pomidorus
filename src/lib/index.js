@@ -151,6 +151,7 @@ export default class Focus {
     let statistics = JSON.parse(localStorage.getItem('statistics'));
 
     if (statistics && !statistics[t]) {
+      this.emit('daily');
       this.reset();
       this.play();
     } else {

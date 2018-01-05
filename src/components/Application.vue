@@ -40,8 +40,10 @@
 
 <script>
   import Visibility from 'visibilityjs';
+  import humanize from 'humanize-duration';
   import { Carousel, Slide } from 'vue-carousel';
   import Focus from '@/lib';
+  import { reachGoal } from '@/lib/utils';
   import Timer from './Timer';
   import Controls from './Controls';
   import Settings from './Settings';
@@ -75,6 +77,22 @@
 
     mounted() {
       this.focus.start();
+
+      this.focus.on('finish', ({ type, duration }) => {
+        reachGoal(`pomodoro.${type}`, {
+          duration: humanize(duration),
+        });
+      });
+
+      this.focus.on('daily', () => {
+        const stats = this.focus.statistics();
+
+        reachGoal('daily', {
+          ...stats,
+          time: humanize(stats.time),
+        });
+      });
+
       this.$watch('focus.state', () => this.focus.save(), { deep: true });
 
       Visibility.change((e, state) => {

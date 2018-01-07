@@ -11,7 +11,7 @@
   <img src="https://github.com/tatyshev/pomidorus/blob/master/screenshots.png?raw=true"/>
 </p>
 
-> The application was made to try in practice <a href="https://vuejs.org/">Vue</a> and <a href="https://d3js.org/">d3</a> libraries
+> This pet project was made to try in practice <a href="https://vuejs.org/">Vue</a> and <a href="https://d3js.org/">d3</a> libraries
 
 ## Key Features
 

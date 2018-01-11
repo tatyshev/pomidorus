@@ -43,6 +43,7 @@
 .vue-js-switch {
   transform: translateY(-2px);
   overflow: visible !important;
+  -webkit-tap-highlight-color: transparent;
 
   .v-switch-core {
     background: rgba(#fff, 0.05);

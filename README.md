@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  <code>Web based time tracker inspired by Pomodoro Technique®.</code>
+  <code>Web based time tracker inspired by <a href="https://www.youtube.com/watch?v=VFW3Ld7JO0w">Pomodoro Technique</a>.</code>
 </p>
 
 <p align="center">

@@ -12,22 +12,22 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "devDependencies": {
-    "babel-eslint": "^8.1.2",
-    "eslint": "^4.13.1",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-html": "^4.0.1",
     "eslint-plugin-import": "^2.8.0",
     "gh-pages": "^1.1.0",
     "given2": "^2.1.1",
+    "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-spec-reporter": "^0.0.32",
     "node-sass": "^4.7.2",
-    "poi": "^9.6.0",
-    "poi-preset-karma": "^9.2.3",
+    "poi": "^9.6.13",
+    "poi-preset-karma": "^9.2.4",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.10",
-    "karma-chrome-launcher": "^2.2.0"
+    "vue-template-compiler": "^2.5.10"
   },
   "dependencies": {
     "d3-interpolate": "^1.1.6",
@@ -37,13 +37,13 @@
     "d3-transition": "^1.1.1",
     "deepmerge": "^2.0.1",
     "events": "^1.1.1",
-    "humanize-duration": "^3.12.0",
+    "humanize-duration": "^3.12.1",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^7.0.0",
     "visibilityjs": "^1.2.6",
     "vue": "^2.5.10",
     "vue-carousel": "^0.6.5",
     "vue-js-toggle-button": "^1.2.2",
-    "vue-slider-component": "^2.4.7"
+    "vue-slider-component": "^2.5.3"
   }
 }

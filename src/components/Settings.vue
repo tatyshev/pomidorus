@@ -1,118 +1,97 @@
 <template>
   <div class="b-settings">
-    <div class="b-settings__field">
-      <div class="b-settings__label">Daily target</div>
-      <div class="b-settings__control">
-        <slider
-          v-model="focus.options.target"
-          :min="0"
-          :max="50"
-          :interval="1"
-          :formatter="(v) => `${v} pomirorus`"
-          :height="3"
-          :stop-propagation="true"
-          tooltip="hover"
-        />
-      </div>
-    </div>
+    <settings-field label="Daily target">
+      <slider
+        v-model="focus.options.target"
+        :min="0"
+        :max="50"
+        :interval="1"
+        :formatter="(v) => `${v} pomirorus`"
+        :height="3"
+        :stop-propagation="true"
+        tooltip="hover"
+      />
+    </settings-field>
 
-    <div class="b-settings__field">
-      <div class="b-settings__label">Work interval</div>
-      <div class="b-settings__control">
-        <slider
-          v-model="focus.options.durations[DEFAULT_TYPE]"
-          :min="minutes(1)"
-          :max="minutes(60)"
-          :interval="minutes(1)"
-          :formatter="(v) => `${v / 1000 / 60} minutes`"
-          :height="3"
-          :stop-propagation="true"
-          tooltip="hover"
-        />
-      </div>
-    </div>
+    <settings-field label="Work interval">
+      <slider
+        v-model="focus.options.durations[DEFAULT_TYPE]"
+        :min="minutes(1)"
+        :max="minutes(60)"
+        :interval="minutes(1)"
+        :formatter="(v) => `${v / 1000 / 60} minutes`"
+        :height="3"
+        :stop-propagation="true"
+        tooltip="hover"
+      />
+    </settings-field>
 
-    <div class="b-settings__field">
-      <div class="b-settings__label">Short break</div>
-      <div class="b-settings__control">
-        <slider
-          v-model="focus.options.durations[SHORT_TYPE]"
-          :min="minutes(1)"
-          :max="minutes(60)"
-          :interval="minutes(1)"
-          :formatter="(v) => `${v / 1000 / 60} minutes`"
-          :height="3"
-          :stop-propagation="true"
-          tooltip="hover"
-        />
-      </div>
-    </div>
+    <settings-field label="Short break">
+      <slider
+        v-model="focus.options.durations[SHORT_TYPE]"
+        :min="minutes(1)"
+        :max="minutes(60)"
+        :interval="minutes(1)"
+        :formatter="(v) => `${v / 1000 / 60} minutes`"
+        :height="3"
+        :stop-propagation="true"
+        tooltip="hover"
+      />
+    </settings-field>
 
-    <div class="b-settings__field">
-      <div class="b-settings__label">Long break</div>
-      <div class="b-settings__control">
-        <slider
-          v-model="focus.options.durations[LONG_TYPE]"
-          :min="minutes(1)"
-          :max="minutes(60)"
-          :interval="minutes(1)"
-          :formatter="(v) => `${v / 1000 / 60} minutes`"
-          :height="3"
-          :stop-propagation="true"
-          tooltip="hover"
-        />
-      </div>
-    </div>
+    <settings-field label="Long break">
+      <slider
+        v-model="focus.options.durations[LONG_TYPE]"
+        :min="minutes(1)"
+        :max="minutes(60)"
+        :interval="minutes(1)"
+        :formatter="(v) => `${v / 1000 / 60} minutes`"
+        :height="3"
+        :stop-propagation="true"
+        tooltip="hover"
+      />
+    </settings-field>
 
-    <div class="b-settings__field">
-      <div class="b-settings__label">Long break after</div>
-      <div class="b-settings__control">
-        <slider
-          v-model="focus.options.longAfter"
-          :min="0"
-          :max="50"
-          :interval="1"
-          :formatter="(v) => `${v} pomirorus`"
-          :height="3"
-          :stop-propagation="true"
-          tooltip="hover"
-        />
-      </div>
-    </div>
+    <settings-field label="Long break after">
+      <slider
+        v-model="focus.options.longAfter"
+        :min="0"
+        :max="50"
+        :interval="1"
+        :formatter="(v) => `${v} pomirorus`"
+        :height="3"
+        :stop-propagation="true"
+        tooltip="hover"
+      />
+    </settings-field>
 
-    <div class="b-settings__field">
-      <div class="b-settings__label">Auto-start timer</div>
-      <div class="b-settings__control">
-        <toggle
-          v-model="focus.options.auto"
-          :height="20"
-          :width="45"
-          :css-colors="true"
-          :sync="true"
-        />
-      </div>
-    </div>
+    <settings-field label="Auto-start timer">
+      <toggle
+        v-model="focus.options.auto"
+        :height="20"
+        :width="45"
+        :css-colors="true"
+        :sync="true"
+      />
+    </settings-field>
 
-    <div class="b-settings__field">
-      <div class="b-settings__label">Notifications</div>
-      <div class="b-settings__control">
-        <toggle
-          v-model="focus.options.notifications"
-          :height="20"
-          :width="45"
-          :css-colors="true"
-          :sync="true"
-        />
+    <settings-field label="Notifications">
+      <toggle
+        v-model="focus.options.notifications"
+        :height="20"
+        :width="45"
+        :css-colors="true"
+        :sync="true"
+      />
 
-        <span class="b-settings__warning" v-if="notifications.status === 'denied'">
-          Permissions denied
-        </span>
+      <span class="b-settings__warning" v-if="notifications.status === 'denied'">
+        Permissions denied
+      </span>
 
-        <span class="b-settings__warning" v-else-if="notifications.status !== 'granted'">
-          Requires user permissions
-        </span>
-      </div>
-    </div>
+      <span class="b-settings__warning" v-else-if="notifications.status !== 'granted'">
+        Requires user permissions
+      </span>
+    </settings-field>
 
     <div class="b-settings__buttons">
       <button class="b-settings__button" @click="restoreDefault">Restore defaults</button>
@@ -129,11 +108,13 @@
   import Slider from 'vue-slider-component';
   import Focus, { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE } from '@/lib';
   import { minutes } from '@/lib/utils';
+  import SettingsField from './SettingsField';
 
   export default {
     name: 'settings',
 
     components: {
+      SettingsField,
       Toggle,
       Slider,
     },

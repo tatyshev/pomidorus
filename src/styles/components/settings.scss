@@ -10,17 +10,18 @@
 .b-settings__field {
   display: flex;
   margin-bottom: 15px;
-  padding-bottom: 15px;
+  align-items: center;
 }
 
 .b-settings__label {
   color: rgba(#fff, 0.5);
-  min-width: 120px;
+  min-width: 100px;
   text-align: left;
 }
 
 .b-settings__control {
   flex-grow: 1;
+  padding: 7px 10px;
 }
 
 .b-settings__warning {

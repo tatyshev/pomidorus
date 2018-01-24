@@ -173,13 +173,15 @@ export default class Focus {
     const { type } = this.current;
     const icon = 'android-chrome-192x192.png';
     let title = DEFAULT_ALERT;
+    let vibrate = 200;
 
     if (type === DEFAULT_TYPE) {
       title = this.isTimeToLong ? LONG_ALERT : SHORT_ALERT;
+      vibrate = 700;
     }
 
     // eslint-disable-next-line consistent-return
-    return notify(title, { icon });
+    return notify(title, { icon, vibrate });
   }
 
   get items() {

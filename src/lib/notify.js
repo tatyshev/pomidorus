@@ -1,18 +1,31 @@
-const basic = (...args) => new Notification(...args);
-let sw = null;
+const createNotification = (title, options) => {
+  const notification = new Notification(title, options);
+  notification.onclick = () => window.focus();
+  return notification;
+};
+
+let showNotification = null;
 
 try {
   navigator.serviceWorker.register('sw.js');
 
   navigator.serviceWorker.ready.then((reg) => {
-    sw = (...args) => reg.showNotification(...args);
+    showNotification = (title, options) => reg.showNotification(title, options);
   });
 } catch (e) {
-  // Todo
+  // Nothings Todo
+  debugger;
 }
 
-export default (...args) => {
-  if (sw) sw(...args);
-  else basic(...args);
+const notify = (title, options) => {
+  try {
+    return createNotification(title, options);
+  } catch (e) {
+    // Nothings Todo
+  }
+
+  if (showNotification) return showNotification(title, options);
+  return alert(title); // eslint-disable-line no-alert
 };
 
+export default notify;

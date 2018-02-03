@@ -59,6 +59,7 @@
 
 @include device-until(mobile) {
   .b-clock {
+    margin-top: -16px;
     display: flex;
     margin-bottom: 0;
   }

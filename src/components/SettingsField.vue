@@ -35,7 +35,10 @@
 
     methods: {
       hasSlider() {
-        return this.$el.querySelector(SLIDER_SELECTOR) !== null;
+        if (this.$el.querySelector(SLIDER_SELECTOR) !== null) return true;
+        if (this.$el.querySelector('select') !== null) return true;
+
+        return false;
       },
 
       conceal(event) {

@@ -93,6 +93,10 @@
       </span>
     </settings-field>
 
+    <settings-field label="Theme">
+      <themes/>
+    </settings-field>
+
     <div class="b-settings__buttons">
       <button class="b-settings__button" @click="restoreDefault">Restore defaults</button>
       <button class="b-settings__button" @click="resetSession">Reset current session</button>
@@ -109,12 +113,14 @@
   import Focus, { DEFAULT_TYPE, LONG_TYPE, SHORT_TYPE } from '@/lib';
   import { minutes } from '@/lib/utils';
   import SettingsField from './SettingsField';
+  import Themes from './Themes';
 
   export default {
     name: 'settings',
 
     components: {
       SettingsField,
+      Themes,
       Toggle,
       Slider,
     },

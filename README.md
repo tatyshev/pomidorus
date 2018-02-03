@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/tatyshev/pomidorus/blob/master/screenshots.png?raw=true"/>
+  <img src="https://raw.githubusercontent.com/tatyshev/pomidorus/master/screenshots.png"/>
 </p>
 
 > This pet project was made to try in practice <a href="https://vuejs.org/">Vue</a> and <a href="https://d3js.org/">d3</a> libraries

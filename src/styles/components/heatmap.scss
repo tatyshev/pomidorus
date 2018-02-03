@@ -62,3 +62,26 @@ $size: 10px;
 
 .b-heatmap__time {
 }
+
+@include device-until(mobile) {
+  $columns: 8;
+  $size: 8px;
+
+  .b-heatmap {
+    width: ($size * $columns) + ($columns * 6px);
+    transform: translateY(20px);
+  }
+
+  .b-heatmap__box {
+    width: $size;
+    height: $size;
+
+    &:nth-child(n+25) {
+      display: none;
+    }
+  }
+
+  .b-heatmap__title {
+    background: rgba(#000, 0.8);
+  }
+}

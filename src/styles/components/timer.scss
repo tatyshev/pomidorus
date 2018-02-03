@@ -26,3 +26,10 @@
     transform: translateX(-50%) translateY(-50%);
   }
 }
+
+@include device-until(mobile) {
+  .b-timer {
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+  }
+}

@@ -1,4 +1,5 @@
 @import '~normalize.css';
+@import './device';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 
 @import './components/applicaiton';
@@ -15,7 +16,6 @@
 @import './components/settings';
 @import './components/heatmap';
 @import './plugins';
-@import './device';
 
 html {
   box-sizing: border-box;

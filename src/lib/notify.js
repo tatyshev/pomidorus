@@ -1,6 +1,11 @@
 const createNotification = (title, options) => {
   const notification = new Notification(title, options);
-  notification.onclick = () => window.focus();
+
+  notification.onclick = () => {
+    window.focus();
+    notification.close();
+  };
+
   return notification;
 };
 

@@ -12,7 +12,7 @@ const createNotification = (title, options) => {
 let showNotification = null;
 
 try {
-  navigator.serviceWorker.register('sw.js');
+  navigator.serviceWorker.register('sw.js?v=2');
 
   navigator.serviceWorker.ready.then((reg) => {
     showNotification = (title, options) => reg.showNotification(title, options);

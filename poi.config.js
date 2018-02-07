@@ -7,9 +7,6 @@ module.exports = {
   entry: 'src/index.js',
   sourceMap: isProd ? false : 'source-map',
   homepage: '',
-  devServer: {
-    https: true,
-  },
   karma: {
     frameworks: ['jasmine'],
     browsers: ['ChromeHeadless'],

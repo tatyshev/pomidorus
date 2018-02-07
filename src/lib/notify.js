@@ -12,25 +12,23 @@ const createNotification = (title, options) => {
 let showNotification = null;
 
 try {
-  navigator.serviceWorker.register('sw.js');
+  navigator.serviceWorker.register('sw.js?v=2');
 
   navigator.serviceWorker.ready.then((reg) => {
     showNotification = (title, options) => reg.showNotification(title, options);
   });
 } catch (e) {
   // Nothings Todo
-  debugger;
 }
 
 const notify = (title, options) => {
   try {
-    return createNotification(title, options);
+    if (showNotification) showNotification(title, options);
+    else createNotification(title, options);
   } catch (e) {
-    // Nothings Todo
+    alert(title); // eslint-disable-line no-alert
   }
-
-  if (showNotification) return showNotification(title, options);
-  return alert(title); // eslint-disable-line no-alert
 };
 
+window.notify = notify;
 export default notify;

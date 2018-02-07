@@ -85,7 +85,7 @@
 
       values() {
         const { amount, completed } = this;
-        const goal = amount >= this.goal ? amount + 1 : this.goal;
+        const goal = amount >= this.goal ? amount : this.goal;
         const items = new Array(goal).fill();
 
         return items.map((item, index) => {

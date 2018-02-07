@@ -67,3 +67,18 @@
     color: #fff;
   }
 }
+
+@include device-until(mobile) {
+  .b-settings {
+    padding: 0 15px;
+    padding-top: 25px;
+  }
+
+  .b-settings__button {
+    padding: 5px 15px;
+  }
+
+  .b-settings__control {
+    padding: 5px;
+  }
+}

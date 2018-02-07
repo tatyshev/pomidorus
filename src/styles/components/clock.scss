@@ -3,6 +3,7 @@
   display: inline-block;
   transform: translateX(-2px);
   margin-bottom: 20px;
+  z-index: 1;
 }
 
 .b-clock--paused {
@@ -42,9 +43,9 @@
   position: absolute;
   opacity: 0.2;
   white-space: nowrap;
-  bottom: 6px;
+  bottom: 5px;
   left: 100%;
-  transform: translateX(8px);
+  transform: translateX(9px);
 }
 
 .b-clock__pauses--hidden {
@@ -54,4 +55,66 @@
 .b-clock__pauses--small {
   transform: translateX(3px) translateY(1px) scale(0.75);
   bottom: 5px;
+}
+
+@include device-until(mobile) {
+  .b-clock {
+    margin-top: -16px;
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  .b-clock--paused {
+    .b-clock__pauses {
+      transform: translateX(-50%) translateY(-50%) scale(1);
+    }
+
+    .b-clock__minutes {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+
+    .b-clock__seconds {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+  }
+
+  .b-clock__minutes {
+    transition: opacity 300ms, transform 300ms;
+    font-size: 2em;
+  }
+
+  .b-clock__seconds {
+    transition: opacity 300ms, transform 300ms;
+    font-size: 2em;
+    position: static;
+    top: auto;
+    right: auto;
+    opacity: 1;
+
+    &::before {
+      content: ':';
+      display: inline-block;
+      margin: 0 2px;
+      transform: translateY(-2px);
+    }
+  }
+
+  .b-clock__pauses {
+    font-size: 2em;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(-50%) scale(0.5);
+    line-height: 1;
+    display: inline-block;
+    opacity: 0;
+  }
+
+  .b-clock__pauses--small {
+    transform: translateX(-50%) translateY(-50%) scale(0.5);
+    bottom: auto;
+  }
 }

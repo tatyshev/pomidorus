@@ -13,8 +13,8 @@
 <script>
   const THEMES = {
     '': 'Default',
-    'solarized-light': 'Solarized light',
     'solarized-dark': 'Solarized dark',
+    'solarized-light': 'Solarized light',
   };
 
   export default {

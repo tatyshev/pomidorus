@@ -25,6 +25,18 @@ $size: 10px;
       opacity: 1;
     }
   };
+
+
+}
+
+.b-heatmap__level {
+  background: #97ce28;
+  width: $size;
+  height: $size;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
 }
 
 .b-heatmap__title {

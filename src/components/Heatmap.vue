@@ -40,9 +40,9 @@
         return Math.max(...values);
       },
 
-      color() {
+      opacity() {
         return scaleLinear()
-          .range(['#4c525f', '#97ce28'])
+          .range([0, 1])
           .domain([0, this.completedMax]);
       },
     },
@@ -56,10 +56,7 @@
         .enter()
         .append('div')
         .classed('b-heatmap__box', true)
-        .style('background-color', d => this.color(d.completed))
-        .append('div')
-        .classed('b-heatmap__title', true)
-        .html(this.title);
+        .html(this.content);
     },
 
     watch: {
@@ -69,37 +66,34 @@
     },
 
     methods: {
+      content(d) {
+        return this.title(d) + this.level(d);
+      },
+
       title(d) {
-        let result = `
-          <div class="b-heatmap__day">${d.day}</div>
-        `;
+        let result = `<div class="b-heatmap__day">${d.day}</div>`;
 
         if (d.completed !== 0) {
-          result += `
-            <div class="b-heatmap__pomodoros"><b>${d.completed}</b>/${d.target} pomidorus</div>
-          `;
+          result += `<div class="b-heatmap__pomodoros"><b>${d.completed}</b>/${d.target} pomidorus</div>`;
         }
 
         if (d.time !== 0) {
-          result += `
-            <div class="b-heatmap__time">${humanize(d.time)}</div>
-          `;
+          result += `<div class="b-heatmap__time">${humanize(d.time)}</div>`;
         }
 
-        return result;
+        return `<div class="b-heatmap__title">${result}</div>`;
+      },
+
+      level(d) {
+        const opacity = `opacity: ${this.opacity(d.completed)}`;
+        return `<div class="b-heatmap__level" style="${opacity}"></div>`;
       },
 
       update() {
         this.heatmap
           .selectAll('.b-heatmap__box')
           .data(this.values)
-          .style('background-color', d => this.color(d.completed));
-
-
-        this.heatmap
-          .selectAll('.b-heatmap__title')
-          .data(this.values)
-          .html(this.title);
+          .html(this.content);
       },
     },
   };

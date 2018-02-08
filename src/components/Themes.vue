@@ -1,14 +1,22 @@
 <template>
   <div class="b-themes">
+    {{ themes[internal] }}
+
     <select v-model="internal" @input="input">
-      <option value="">Default</option>
-      <option value="solarized-light">Solarized light</option>
-      <option value="solarized-dark">Solarized dark</option>
+      <option v-for="(value, key) in themes" :key="key" :value="key">
+        {{ value }}
+      </option>
     </select>
   </div>
 </template>
 
 <script>
+  const THEMES = {
+    '': 'Default',
+    'solarized-light': 'Solarized light',
+    'solarized-dark': 'Solarized dark',
+  };
+
   export default {
     name: 'themes',
 
@@ -20,6 +28,7 @@
     },
 
     data: () => ({
+      themes: THEMES,
       internal: null,
     }),
 
@@ -40,8 +49,11 @@
 
     methods: {
       themify() {
-        if (this.internal == null) return;
-        document.body.setAttribute('class', `theme-${this.internal}`);
+        if (this.internal == null || this.internal === '') {
+          document.body.setAttribute('class', '');
+        } else {
+          document.body.setAttribute('class', `theme-${this.internal}`);
+        }
       },
 
       input(event) {

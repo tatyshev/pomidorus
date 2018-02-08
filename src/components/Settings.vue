@@ -94,7 +94,7 @@
     </settings-field>
 
     <settings-field label="Theme">
-      <themes/>
+      <themes v-model="focus.options.theme"/>
     </settings-field>
 
     <div class="b-settings__buttons">

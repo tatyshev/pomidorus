@@ -19,6 +19,7 @@ export default class Focus {
     return {
       items: [],
       options: {
+        theme: '',
         auto: false,
         notifications: false,
         target: 10,

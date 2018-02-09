@@ -18,6 +18,7 @@
     'one-dark': 'One dark',
     'one-light': 'One light',
     monokai: 'Monokai',
+    darcula: 'Darcula',
   };
 
   export default {

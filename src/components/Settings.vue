@@ -2,6 +2,8 @@
   <div class="b-settings">
     <settings-field label="Daily target">
       <slider
+        ref="target"
+        :class="activeSlider($refs.target)"
         v-model="focus.options.target"
         :min="1"
         :max="50"
@@ -9,12 +11,13 @@
         :formatter="(v) => `${v} pomirorus`"
         :height="3"
         :stop-propagation="true"
-        tooltip="hover"
       />
     </settings-field>
 
     <settings-field label="Work interval">
       <slider
+        ref="default"
+        :class="activeSlider($refs.default)"
         v-model="focus.options.durations[DEFAULT_TYPE]"
         :min="minutes(1)"
         :max="minutes(60)"
@@ -22,12 +25,13 @@
         :formatter="(v) => `${v / 1000 / 60} minutes`"
         :height="3"
         :stop-propagation="true"
-        tooltip="hover"
       />
     </settings-field>
 
     <settings-field label="Short break">
       <slider
+        ref="short"
+        :class="activeSlider($refs.short)"
         v-model="focus.options.durations[SHORT_TYPE]"
         :min="minutes(1)"
         :max="minutes(60)"
@@ -35,12 +39,13 @@
         :formatter="(v) => `${v / 1000 / 60} minutes`"
         :height="3"
         :stop-propagation="true"
-        tooltip="hover"
       />
     </settings-field>
 
     <settings-field label="Long break">
       <slider
+        ref="long"
+        :class="activeSlider($refs.long)"
         v-model="focus.options.durations[LONG_TYPE]"
         :min="minutes(1)"
         :max="minutes(60)"
@@ -48,12 +53,13 @@
         :formatter="(v) => `${v / 1000 / 60} minutes`"
         :height="3"
         :stop-propagation="true"
-        tooltip="hover"
       />
     </settings-field>
 
     <settings-field label="Long break after">
       <slider
+        ref="longAfter"
+        :class="activeSlider($refs.longAfter)"
         v-model="focus.options.longAfter"
         :min="0"
         :max="50"
@@ -61,7 +67,6 @@
         :formatter="(v) => `${v} pomirorus`"
         :height="3"
         :stop-propagation="true"
-        tooltip="hover"
       />
     </settings-field>
 
@@ -166,6 +171,12 @@
     methods: {
       minutes,
 
+      activeSlider(slider) {
+        return slider && slider.flag === true
+          ? 'vue-slider-component--active'
+          : '';
+      },
+
       refresh() {
         const sliders = this.$el.querySelectorAll('.vue-slider-component');
 
@@ -184,10 +195,6 @@
         req.then((status) => {
           this.notifications.pending = false;
           this.notifications.status = status;
-        });
-
-        req.catch(() => {
-          alert(1);
         });
       },
 

@@ -2,6 +2,14 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 
+  &:hover {
+    .vue-slider-tooltip {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+  }
+
   .vue-slider {
     background: rgba(#fff, 0.1) !important;
   }
@@ -20,8 +28,8 @@
   }
 
   .vue-slider-tooltip {
-    visibility: visible !important;
-    transition: transform 200ms, opacity 200ms;
+    visibility: hidden !important;
+    transition: transform 200ms, opacity 200ms, visibility 200ms;
     border: 0 !important;
     padding: 3px 4px;
     width: auto;
@@ -31,12 +39,20 @@
     text-align: center;
     background: rgba(#000, 0.4) !important;
     font-size: 0.82em;
-    transform: scale(0.8);
-    opacity: 0;
+    transform: scale(0.8) !important;
+    opacity: 0 !important;
 
     &:before {
       border-top-color: transparent !important;
     }
+  }
+}
+
+.vue-slider-component--active {
+  .vue-slider-tooltip {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
   }
 }
 

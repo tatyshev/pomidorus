@@ -3,7 +3,7 @@
     <settings-field label="Daily target">
       <slider
         v-model="focus.options.target"
-        :min="0"
+        :min="1"
         :max="50"
         :interval="1"
         :formatter="(v) => `${v} pomirorus`"

@@ -16,6 +16,7 @@
     'solarized-dark': 'Solarized dark',
     'solarized-light': 'Solarized light',
     'one-dark': 'One dark',
+    'one-light': 'One light',
     monokai: 'Monokai',
   };
 

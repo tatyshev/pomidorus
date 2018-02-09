@@ -1,5 +1,6 @@
 .b-settings {
-  padding: 40px 20px 0;
+  padding: 0 20px;
+  padding-bottom: 20px;
   position: absolute;
   top: 0;
   left: 0;
@@ -9,7 +10,7 @@
 
 .b-settings__field {
   display: flex;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   align-items: center;
 }
 
@@ -71,7 +72,7 @@
 @include device-until(mobile) {
   .b-settings {
     padding: 0 15px;
-    padding-top: 25px;
+    padding-bottom: 25px;
   }
 
   .b-settings__button {

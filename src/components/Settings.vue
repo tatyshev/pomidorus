@@ -93,6 +93,16 @@
       </span>
     </settings-field>
 
+    <settings-field label="Sound alerts">
+      <toggle
+        v-model="focus.options.sounds"
+        :height="20"
+        :width="45"
+        :css-colors="true"
+        :sync="true"
+      />
+    </settings-field>
+
     <settings-field label="Theme">
       <themes v-model="focus.options.theme"/>
     </settings-field>

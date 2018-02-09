@@ -20,6 +20,7 @@ export default class Focus {
       items: [],
       options: {
         theme: '',
+        sounds: false,
         auto: false,
         notifications: false,
         target: 10,
@@ -182,7 +183,7 @@ export default class Focus {
     }
 
     // eslint-disable-next-line consistent-return
-    return notify(title, { icon, vibrate });
+    return notify(title, { icon, vibrate, sounds: this.options.sounds });
   }
 
   get items() {

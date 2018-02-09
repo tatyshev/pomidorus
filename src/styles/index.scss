@@ -2,6 +2,13 @@
 @import './device';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 
+@import './themes/solarized-dark';
+@import './themes/solarized-light';
+@import './themes/one-dark';
+@import './themes/one-light';
+@import './themes/monokai';
+@import './themes/darcula';
+
 @import './components/applicaiton';
 @import './components/layout';
 @import './components/process';
@@ -15,6 +22,7 @@
 @import './components/about';
 @import './components/settings';
 @import './components/heatmap';
+@import './components/themes';
 @import './plugins';
 
 html {

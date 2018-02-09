@@ -1,0 +1,147 @@
+body.theme-solarized-light {
+  background: #fdf6e3;
+  color: #657b83;
+
+  .b-tabs__item {
+    opacity: 0.4;
+  }
+
+  .b-tabs__item--active {
+    opacity: 1;
+  }
+
+  .b-process__value {
+    fill: lighten(#ce4d17, 5%);
+  }
+
+  .b-application--break .b-process__value {
+    fill: #bf9937;
+  }
+
+  .b-target__item {
+    fill: rgba(#657b83, 0.2);
+  }
+
+  .b-target__item--finished {
+    fill: lighten(#2ba29e, 4%);
+  }
+
+  .b-target__item--extra {
+    fill: lighten(#2ba29e, 10%);
+  }
+
+  .b-target__item--skipped {
+    fill: rgba(#2ba29e, 0.5);
+  }
+
+  .b-heatmap__box {
+    background: rgba(#657b83, 0.15);
+  }
+
+  .b-heatmap__level {
+    background: lighten(#84991a, 7%);
+  }
+
+  .b-clock__pauses {
+    color: #cb4b16;
+  }
+
+  .b-controls__button {
+    border-color: rgba(#657b83, 0.6);
+
+    &:hover {
+      background-color: rgba(#657b83, 0.05);
+    }
+
+    &:active {
+      background-color: rgba(#657b83, 0.2);
+    }
+  }
+
+  .b-controls__action {
+    color: #657b83;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .b-settings__label {
+    color: #657b83;
+  }
+
+  .b-settings__button {
+    color: #657b83;
+    border-color: rgba(#657b83, 0.6);
+
+    &:hover {
+      background-color: rgba(#657b83, 0.05);
+    }
+
+    &:active {
+      background-color: rgba(#657b83, 0.2);
+    }
+  }
+
+  .b-about__desc {
+    color: #657b83;
+  }
+
+  .b-themes {
+    background: transparent;
+    color: #657b83;
+    border-color: rgba(#657b83, 0.6);
+
+    &::after {
+      border-top-color: #657b83;
+    }
+  }
+
+  .b-heatmap__title {
+    background: rgba(#000, 0.6);
+    color: #fff;
+  }
+
+  .b-about__github {
+    fill: #657b83;
+  }
+
+  .vue-slider {
+    background: rgba(#657b83, 0.2) !important;
+  }
+
+  .vue-slider-tooltip {
+    background: rgba(#000, 0.7) !important;
+  }
+
+  .vue-slider-process {
+    background: #2ba29e;
+  }
+
+  .vue-js-switch {
+    transform: translateY(-2px);
+    overflow: visible !important;
+    -webkit-tap-highlight-color: transparent;
+
+    .v-switch-core {
+      background: transparent;
+      box-shadow: inset 0 0 0 1px rgba(#657b83, 0.6);
+    }
+
+    .v-switch-button {
+      background: rgba(#657b83, 0.7) !important;
+    }
+
+    &.toggled {
+      .v-switch-core {
+        background: #2ba29e;
+        box-shadow: inset 0 0 0 1px rgba(#fff, 0);
+      }
+
+      .v-switch-button {
+        background: #fff !important;
+      }
+    }
+  }
+}

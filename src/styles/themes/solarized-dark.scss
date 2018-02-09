@@ -1,0 +1,44 @@
+body.theme-solarized-dark {
+  background: #002c36;
+  color: #c9d1d1;
+
+  .b-process__value {
+    fill: #cb4b16;
+  }
+
+  .b-application--break .b-process__value {
+    fill: darken(#84991a, 3%);
+  }
+
+  .b-target__item {
+    fill: rgba(#c9d1d1, 0.2);
+  }
+
+  .b-target__item--finished {
+    fill: #2aa198;
+  }
+
+  .b-target__item--extra {
+    fill: lighten(#2aa198, 20%);
+  }
+
+  .b-target__item--skipped {
+    fill: rgba(#2aa198, 0.5);
+  }
+
+  .b-heatmap__level {
+    background: lighten(#84991a, 5%);
+  }
+
+  .b-clock__pauses {
+    color: lighten(#cb4b16, 15%);
+  }
+
+  .vue-slider-process {
+    background: #2aa198;
+  }
+
+  .vue-js-switch.toggled .v-switch-core {
+    background: #2aa198;
+  }
+}

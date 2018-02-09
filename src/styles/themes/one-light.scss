@@ -1,0 +1,147 @@
+body.theme-one-light {
+  background: #fbfbfb;
+  color: #2c394d;
+
+  .b-tabs__item {
+    opacity: 0.4;
+  }
+
+  .b-tabs__item--active {
+    opacity: 1;
+  }
+
+  .b-process__value {
+    fill: lighten(#eb8388, 5%);
+  }
+
+  .b-application--break .b-process__value {
+    fill: #a5cc8e;
+  }
+
+  .b-target__item {
+    fill: rgba(#2c394d, 0.2);
+  }
+
+  .b-target__item--finished {
+    fill: lighten(#6ebcf0, 4%);
+  }
+
+  .b-target__item--extra {
+    fill: lighten(#6ebcf0, 10%);
+  }
+
+  .b-target__item--skipped {
+    fill: rgba(#6ebcf0, 0.5);
+  }
+
+  .b-heatmap__box {
+    background: rgba(#2c394d, 0.1);
+  }
+
+  .b-heatmap__level {
+    background: #99cc8e;
+  }
+
+  .b-clock__pauses {
+    color: #eb8388;
+  }
+
+  .b-controls__button {
+    border-color: rgba(#2c394d, 0.6);
+
+    &:hover {
+      background-color: rgba(#2c394d, 0.05);
+    }
+
+    &:active {
+      background-color: rgba(#2c394d, 0.2);
+    }
+  }
+
+  .b-controls__action {
+    color: #2c394d;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .b-settings__label {
+    color: #2c394d;
+  }
+
+  .b-settings__button {
+    color: #2c394d;
+    border-color: rgba(#2c394d, 0.6);
+
+    &:hover {
+      background-color: rgba(#2c394d, 0.05);
+    }
+
+    &:active {
+      background-color: rgba(#2c394d, 0.2);
+    }
+  }
+
+  .b-about__desc {
+    color: #2c394d;
+  }
+
+  .b-themes {
+    background: transparent;
+    color: #2c394d;
+    border-color: rgba(#2c394d, 0.6);
+
+    &::after {
+      border-top-color: #2c394d;
+    }
+  }
+
+  .b-heatmap__title {
+    background: rgba(#000, 0.6);
+    color: #fff;
+  }
+
+  .b-about__github {
+    fill: #2c394d;
+  }
+
+  .vue-slider {
+    background: rgba(#2c394d, 0.2) !important;
+  }
+
+  .vue-slider-tooltip {
+    background: rgba(#000, 0.7) !important;
+  }
+
+  .vue-slider-process {
+    background: #6ebcf0;
+  }
+
+  .vue-js-switch {
+    transform: translateY(-2px);
+    overflow: visible !important;
+    -webkit-tap-highlight-color: transparent;
+
+    .v-switch-core {
+      background: transparent;
+      box-shadow: inset 0 0 0 1px rgba(#2c394d, 0.6);
+    }
+
+    .v-switch-button {
+      background: rgba(#2c394d, 0.7) !important;
+    }
+
+    &.toggled {
+      .v-switch-core {
+        background: #6ebcf0;
+        box-shadow: inset 0 0 0 1px rgba(#fff, 0);
+      }
+
+      .v-switch-button {
+        background: #fff !important;
+      }
+    }
+  }
+}

@@ -12,6 +12,16 @@
   font-size: 1.2em;
 }
 
+.b-about__version {
+  opacity: 0.4;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .b-about__desc {
   color: rgba(#fff, 0.6);
   line-height: 1.35;

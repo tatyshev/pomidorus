@@ -4,7 +4,10 @@
       <img class="b-about__image" src="android-chrome-192x192.png" width="100" height="100"/>
     </a>
 
-    <div class="b-about__title">Pomidorus</div>
+    <div class="b-about__title">
+      Pomidorus
+      <a href="//github.com/tatyshev/pomidorus/releases" target="_blank" class="b-about__version">{{ pkg.version }}</a>
+    </div>
 
     <div class="b-about__desc">
       Pomodoro time tracker build using Vue and D3<br/>
@@ -18,3 +21,12 @@
     </div>
   </div>
 </template>
+
+<script>
+  import pkg from '../../package';
+
+  export default {
+    name: 'About',
+    data: () => ({ pkg }),
+  };
+</script>

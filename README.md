@@ -20,6 +20,8 @@
 - System notifications
 - Heatmap statistics for the last month
 - Minimalistic design
+- Themes
+- Sound alerts
 - Keyboard Shortcuts
   - Start/Pause/Unpause - `Space`
 

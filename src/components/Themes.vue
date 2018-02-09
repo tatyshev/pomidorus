@@ -15,6 +15,7 @@
     '': 'Default',
     'solarized-dark': 'Solarized dark',
     'solarized-light': 'Solarized light',
+    'one-dark': 'One dark',
     monokai: 'Monokai',
   };
 

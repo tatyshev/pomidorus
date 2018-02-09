@@ -2,10 +2,6 @@ body.theme-solarized-light {
   background: #fdf6e3;
   color: #657b83;
 
-  .b-heatmap__box {
-    background: rgba(#657b83, 0.2);
-  }
-
   .b-tabs__item {
     opacity: 0.4;
   }
@@ -36,6 +32,10 @@ body.theme-solarized-light {
 
   .b-target__item--skipped {
     fill: rgba(#2ba29e, 0.5);
+  }
+
+  .b-heatmap__box {
+    background: rgba(#657b83, 0.15);
   }
 
   .b-heatmap__level {

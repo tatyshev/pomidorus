@@ -26,13 +26,6 @@
       }
     },
 
-    destroyed() {
-      const { control } = this.$refs;
-
-      control.addEventListener('mousedown', this.conceal);
-      control.addEventListener('touchstart', this.conceal);
-    },
-
     methods: {
       hasSlider() {
         if (this.$el.querySelector(SLIDER_SELECTOR) !== null) return true;

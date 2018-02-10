@@ -2,7 +2,7 @@ import merge from 'deepmerge';
 import Events from 'events';
 import { minutes, today, propsLimit } from '@/lib/utils';
 import Pomodoro from '@/lib/pomodoro';
-import notify from '@/lib/notify';
+import notify, { sounds } from '@/lib/notify';
 
 export const DEFAULT_TYPE = 'DEFAULT';
 export const SHORT_TYPE = 'SHORT';
@@ -170,8 +170,6 @@ export default class Focus {
   }
 
   notify() {
-    if (!this.options.notifications) return;
-
     const { type } = this.current;
     const icon = 'android-chrome-192x192.png';
     let title = DEFAULT_ALERT;
@@ -182,8 +180,12 @@ export default class Focus {
       vibrate = 700;
     }
 
-    // eslint-disable-next-line consistent-return
-    return notify(title, { icon, vibrate, sounds: this.options.sounds });
+    if (this.options.sounds) sounds.play();
+
+    if (this.options.notifications) {
+      // eslint-disable-next-line consistent-return
+      notify(title, { icon, vibrate });
+    }
   }
 
   get items() {

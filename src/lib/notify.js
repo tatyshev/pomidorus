@@ -1,5 +1,3 @@
-const alert = new Audio('alert.mp3');
-
 const createNotification = (title, options) => {
   const notification = new Notification(title, options);
 
@@ -24,17 +22,15 @@ try {
 }
 
 const notify = (title, options) => {
-  const { sounds } = options;
-  delete options.sounds; // eslint-disable-line no-param-reassign
-
   try {
     if (showNotification) showNotification(title, options);
     else createNotification(title, options);
-    if (sounds) alert.play();
   } catch (e) {
     alert(title); // eslint-disable-line no-alert
   }
 };
 
-window.notify = notify;
+export const sounds = new Audio('alert.mp3');
+sounds.load();
+
 export default notify;

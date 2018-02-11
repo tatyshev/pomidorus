@@ -8,7 +8,7 @@
         :min="1"
         :max="50"
         :interval="1"
-        :formatter="(v) => `${v} pomirorus`"
+        :formatter="(v) => `${v} pomodoro`"
         :height="3"
         :stop-propagation="true"
       />
@@ -64,7 +64,7 @@
         :min="0"
         :max="50"
         :interval="1"
-        :formatter="(v) => `${v} pomirorus`"
+        :formatter="(v) => `${v} pomodoro`"
         :height="3"
         :stop-propagation="true"
       />

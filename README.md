@@ -1,6 +1,8 @@
 <h1 align="center">
-  <img src="https://github.com//tatyshev/pomidorus/blob/master/static/android-chrome-192x192.png?raw=true" width="24"/>
-  Pomidorus
+  <a href="https://pomidorus.js.org/">
+    <img src="https://github.com//tatyshev/pomidorus/blob/master/static/android-chrome-192x192.png?raw=true" width="24"/>
+    Pomidorus
+  </a>
 </h1>
 
 <p align="center">

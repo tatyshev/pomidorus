@@ -6,6 +6,12 @@
 </h1>
 
 <p align="center">
+  <img src="https://img.shields.io/github/package-json/v/tatyshev/pomidorus.svg"/>
+  <img src="https://img.shields.io/github/license/tatyshev/pomidorus.svg"/>
+  <a href="https://beerpay.io/tatyshev/pomidorus"><img src="https://beerpay.io/tatyshev/pomidorus/badge.svg" /></a>
+</p>
+
+<p align="center">
   <code>Web based time tracker inspired by <a href="https://www.youtube.com/watch?v=VFW3Ld7JO0w">Pomodoro Technique</a>.</code>
 </p>
 
@@ -31,8 +37,3 @@
 ## License
 
 MIT © [Ruslan Tatyshev](http://github.com/tatyshev)
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/tatyshev/pomidorus/badge.svg?style=beer-square)](https://beerpay.io/tatyshev/pomidorus)  [![Beerpay](https://beerpay.io/tatyshev/pomidorus/make-wish.svg?style=flat-square)](https://beerpay.io/tatyshev/pomidorus?focus=wish)

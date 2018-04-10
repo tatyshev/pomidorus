@@ -6,6 +6,12 @@
 </h1>
 
 <p align="center">
+  <img src="https://img.shields.io/github/package-json/v/tatyshev/pomidorus.svg"/>
+  <img src="https://img.shields.io/github/license/tatyshev/pomidorus.svg"/>
+  <a href="https://beerpay.io/tatyshev/pomidorus"><img src="https://beerpay.io/tatyshev/pomidorus/badge.svg" /></a>
+</p>
+
+<p align="center">
   <code>Web based time tracker inspired by <a href="https://www.youtube.com/watch?v=VFW3Ld7JO0w">Pomodoro Technique</a>.</code>
 </p>
 

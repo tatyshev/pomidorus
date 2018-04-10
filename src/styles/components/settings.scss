@@ -70,8 +70,7 @@
 
 @include device-until(mobile) {
   .b-settings {
-    padding: 0 15px;
-    padding-bottom: 25px;
+    padding: 25 10px;
   }
 
   .b-settings__button {

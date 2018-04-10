@@ -15,6 +15,8 @@ describe('Focus', () => {
       const custom = {
         items: [],
         options: {
+          theme: '',
+          sounds: false,
           auto: false,
           notifications: false,
           target: 1,
@@ -184,6 +186,8 @@ describe('Focus', () => {
         },
       ],
       options: {
+        theme: 'foo',
+        sounds: false,
         auto: false,
         notifications: false,
         target: 5,

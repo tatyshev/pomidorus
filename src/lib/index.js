@@ -117,6 +117,7 @@ export default class Focus {
   stop() {
     if (this.isActive) {
       this.items.pop();
+      this.emit('stop');
     }
   }
 
@@ -127,6 +128,7 @@ export default class Focus {
   skip() {
     if (this.isActive) {
       this.current.state.skipped = true;
+      this.emit('skip');
     }
   }
 

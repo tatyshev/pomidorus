@@ -49,7 +49,8 @@
   import humanize from 'humanize-duration';
   import { Carousel, Slide } from 'vue-carousel';
   import Focus from '@/lib';
-  import { reachGoal } from '@/lib/utils';
+  import Favicon from '@/lib/favicon';
+  import { reachGoal, zeroify } from '@/lib/utils';
   import Timer from './Timer';
   import Controls from './Controls';
   import Settings from './Settings';
@@ -83,6 +84,12 @@
       };
     },
 
+    created() {
+      this.favicon = new Favicon();
+      this.favicon.attach();
+      this.drawFavicon();
+    },
+
     mounted() {
       this.focus.start();
 
@@ -101,7 +108,11 @@
         });
       });
 
-      this.$watch('focus.state', () => this.focus.save(), { deep: true });
+      this.$watch('focus.state', () => {
+        this.focus.save();
+        this.drawFavicon();
+        this.updateTitle();
+      }, { deep: true });
 
       Visibility.change((e, state) => {
         this.visible = state === 'visible';
@@ -129,6 +140,32 @@
     methods: {
       handlePageChange(value) {
         this.activeTab = value;
+      },
+
+      drawFavicon() {
+        let fill = '#97ce28';
+
+        if (this.focus.isWork) fill = '#e4582b';
+        if (this.focus.isPaused) fill = '#7683a2';
+
+        this.favicon.draw({
+          value: this.focus.interval,
+          max: this.focus.duration,
+          fill,
+        });
+      },
+
+      updateTitle() {
+        const { elapsed } = this.focus;
+        const left = Math.floor(elapsed / 1000);
+        const seconds = zeroify(left % 60);
+        const minutes = zeroify((left - seconds) / 60);
+
+        if (elapsed > 0) {
+          document.title = `${minutes}:${seconds} - Pomidorus`;
+        } else {
+          document.title = 'Pomidorus';
+        }
       },
     },
   };

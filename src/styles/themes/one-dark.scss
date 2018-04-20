@@ -10,6 +10,24 @@ body.theme-one-dark {
     fill: #a5cc8e;
   }
 
+  .b-settings__target-slider {
+    .vue-slider-process {
+      background: #6ebcf0 !important;
+    }
+  }
+
+  .b-settings__work-slider {
+    .vue-slider-process {
+      background: #eb8388 !important;
+    }
+  }
+
+  .b-settings__break-slider {
+    .vue-slider-process {
+      background: #a5cc8e !important;
+    }
+  }
+
   .b-target__item {
     fill: rgba(#c9d1d1, 0.2);
   }
@@ -32,10 +50,6 @@ body.theme-one-dark {
 
   .b-clock__pauses {
     color: #ddab7c;
-  }
-
-  .vue-slider-process {
-    background: #6ebcf0;
   }
 
   .vue-js-switch.toggled .v-switch-core {

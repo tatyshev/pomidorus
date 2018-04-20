@@ -3,6 +3,7 @@
     <settings-field label="Daily target">
       <slider
         ref="target"
+        class="b-settings__target-slider"
         :class="activeSlider($refs.target)"
         v-model="focus.options.target"
         :min="1"
@@ -17,6 +18,7 @@
     <settings-field label="Work interval">
       <slider
         ref="default"
+        class="b-settings__work-slider"
         :class="activeSlider($refs.default)"
         v-model="focus.options.durations[DEFAULT_TYPE]"
         :min="minutes(1)"
@@ -31,6 +33,7 @@
     <settings-field label="Short break">
       <slider
         ref="short"
+        class="b-settings__break-slider"
         :class="activeSlider($refs.short)"
         v-model="focus.options.durations[SHORT_TYPE]"
         :min="minutes(1)"

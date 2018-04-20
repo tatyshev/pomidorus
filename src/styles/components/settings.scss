@@ -68,6 +68,24 @@
   }
 }
 
+.b-settings__target-slider {
+  .vue-slider-process {
+    background: #39b6eb !important;
+  }
+}
+
+.b-settings__work-slider {
+  .vue-slider-process {
+    background: #e4582b !important;
+  }
+}
+
+.b-settings__break-slider {
+  .vue-slider-process {
+    background: #97ce28 !important;
+  }
+}
+
 @include device-until(mobile) {
   .b-settings {
     padding: 25 10px;

@@ -34,6 +34,25 @@ body.theme-solarized-light {
     fill: rgba(#2ba29e, 0.5);
   }
 
+  .b-settings__target-slider {
+    .vue-slider-process {
+      background: #2aa198 !important;
+    }
+  }
+
+  .b-settings__work-slider {
+    .vue-slider-process {
+      fill: lighten(#ce4d17, 5%) !important;
+    }
+  }
+
+  .b-settings__break-slider {
+    .vue-slider-process {
+      background: #bf9937 !important;
+    }
+  }
+
+
   .b-heatmap__box {
     background: rgba(#657b83, 0.15);
   }
@@ -116,7 +135,7 @@ body.theme-solarized-light {
   }
 
   .vue-slider-process {
-    background: #2ba29e;
+    background: rgba(#000, 0.2);
   }
 
   .vue-js-switch {
